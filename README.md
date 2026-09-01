@@ -13,10 +13,10 @@ An autonomous executive management team designed for strategic business analysis
 
 * **Team Name**: 4 Star Rating Swarm
 * **Team Members**:
-  - **Member 1**: Team Lead & Orchestration Architect (LangGraph Engine & API Router)
-  - **Member 2**: Agent Engineering Lead (Prompts & Schema Validation)
-  - **Member 3**: Adaptability & Trace Specialist (Surprise Engine & Audit Logging)
-  - **Member 4**: UI Dashboard & Documentation Lead (Streamlit & Pitch Deck)
+  - **Kushagra Saxena**: Team Lead & Orchestration Architect (LangGraph Engine & API Router)
+  - **Sharath Jeeth N R**: Agent Engineering Lead (Prompts & Schema Validation)
+  - **Debadrita Munshi**: Adaptability & Trace Specialist (Surprise Engine & Audit Logging)
+  - **Praggya Pal**: UI Dashboard & Documentation Lead (Streamlit & Pitch Deck)
 * **Selected Challenge**: Theme A/B/C Enterprise Strategy & Surprise Adaptation (FinSwarm / SaaS Swarm / ChipSwarm)
 * **One-Paragraph Solution Summary**: 
   Our system implements an autonomous 5-stage boardroom protocol (Analyse ➔ Share ➔ Challenge ➔ Compare ➔ Decide) powered by 7 specialized agents. An Input Interpreter extracts hard facts vs. tagged `[ASSUMPTION: ...]` labels. Department agents (Business Research, Finance, Marketing, Data Analyst) perform parallel independent analysis and quantitative modeling. A Risk Reviewer scrutinizes departmental claims and issues formal Stage 3 pushback to force realistic rebuttals. The CEO Agent evaluates dynamic strategy tradeoffs, names rejected alternatives with detailed flaws, and outputs a 30-60-90 day roadmap with $\ge 3$ measurable KPIs. A mid-event Surprise Adaptation Engine diffs changed facts and selectively re-runs affected agents, providing dual audit traces (JSON & Markdown) and a Streamlit dashboard with real-time numeric charts and competitor benchmarks.
