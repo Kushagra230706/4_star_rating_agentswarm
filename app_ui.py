@@ -1,5 +1,6 @@
 import streamlit as st
 import json, os, sys
+import pandas as pd
 
 # Force UTF-8 encoding for Windows console output
 if hasattr(sys.stdout, 'reconfigure'):
@@ -21,31 +22,41 @@ from core.state import BoardroomState
 
 st.set_page_config(page_title="Agentic Swarm — AI Boardroom", layout="wide", initial_sidebar_state="expanded")
 
-# Theme Mode Switcher
+# Theme Mode Switcher in Sidebar
 theme_mode = st.sidebar.radio("🌓 Theme", ["Dark Mode", "Light Mode"], horizontal=True)
 
 if theme_mode == "Dark Mode":
     bg_color = "#0b0f19"
+    sidebar_bg = "#111827"
     card_bg = "rgba(255, 255, 255, 0.04)"
     card_border = "rgba(255, 255, 255, 0.12)"
     text_color = "#f8fafc"
     subtext_color = "#94a3b8"
     accent_green = "#10b981"
-    btn_bg = "#1e293b"
+    btn_bg = "#1f2937"
     btn_text = "#f8fafc"
+    input_bg = "#1f2937"
+    code_bg = "rgba(16, 185, 129, 0.15)"
+    code_text = "#34d399"
     header_gradient = "linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%)"
+    mermaid_theme = "dark"
 else:
     bg_color = "#f8fafc"
+    sidebar_bg = "#ffffff"
     card_bg = "#ffffff"
     card_border = "#cbd5e1"
     text_color = "#0f172a"
     subtext_color = "#475569"
     accent_green = "#059669"
-    btn_bg = "#f1f5f9"
+    btn_bg = "#ffffff"
     btn_text = "#0f172a"
+    input_bg = "#ffffff"
+    code_bg = "#ecfdf5"
+    code_text = "#047857"
     header_gradient = "linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(59, 130, 246, 0.08) 100%)"
+    mermaid_theme = "neutral"
 
-# Harmonized CSS Design System
+# Harmonized Light/Dark CSS Design System
 st.markdown(f"""
 <style>
     @keyframes fadeIn {{
@@ -54,8 +65,23 @@ st.markdown(f"""
     }}
     
     .stApp {{
-        background-color: {bg_color};
-        color: {text_color};
+        background-color: {bg_color} !important;
+        color: {text_color} !important;
+    }}
+    
+    /* Sidebar styling */
+    section[data-testid="stSidebar"] {{
+        background-color: {sidebar_bg} !important;
+        border-right: 1px solid {card_border} !important;
+    }}
+    section[data-testid="stSidebar"] * {{
+        color: {text_color} !important;
+    }}
+    section[data-testid="stSidebar"] textarea, section[data-testid="stSidebar"] select {{
+        background-color: {input_bg} !important;
+        color: {text_color} !important;
+        border: 1px solid {card_border} !important;
+        border-radius: 8px !important;
     }}
     
     .animated-stage {{
@@ -74,38 +100,67 @@ st.markdown(f"""
     .project-title {{
         font-size: 1.8rem;
         font-weight: 800;
-        color: {text_color};
+        color: {text_color} !important;
         margin: 0;
     }}
     
     .project-subtitle {{
         font-size: 0.95rem;
-        color: {subtext_color};
+        color: {subtext_color} !important;
         margin-top: 6px;
     }}
     
+    /* Containers & Cards */
     div[data-testid="stContainer"] {{
-        background: {card_bg};
+        background: {card_bg} !important;
         border: 1px solid {card_border} !important;
         border-radius: 12px;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     }}
     
+    /* Metrics Fix for Light Mode */
     div[data-testid="stMetric"] {{
-        background: {card_bg};
-        border: 1px solid {card_border};
+        background: {card_bg} !important;
+        border: 1px solid {card_border} !important;
         border-radius: 12px;
         padding: 12px 16px;
     }}
+    div[data-testid="stMetricValue"] > div {{
+        color: {text_color} !important;
+        font-weight: 800 !important;
+    }}
+    div[data-testid="stMetricLabel"] > div > p {{
+        color: {subtext_color} !important;
+        font-weight: 600 !important;
+    }}
 
-    /* Stage Navigation Buttons */
+    /* Assumptions / Inline Code Fix */
+    code {{
+        background-color: {code_bg} !important;
+        color: {code_text} !important;
+        border: 1px solid {card_border} !important;
+        border-radius: 6px !important;
+        padding: 4px 8px !important;
+        font-size: 0.88rem !important;
+        word-break: break-word !important;
+    }}
+
+    /* Buttons Styling */
     div.stButton > button {{
-        width: 100%;
-        border-radius: 10px;
-        font-weight: 600;
-        font-size: 0.9rem;
-        padding: 10px 14px;
-        transition: all 0.2s ease-in-out;
+        background-color: {btn_bg} !important;
+        color: {btn_text} !important;
+        border: 1px solid {card_border} !important;
+        border-radius: 10px !important;
+        font-weight: 600 !important;
+        font-size: 0.9rem !important;
+        padding: 10px 14px !important;
+        transition: all 0.2s ease-in-out !important;
+    }}
+    
+    div.stButton > button[data-testid="stBaseButton-primary"] {{
+        background-color: {accent_green} !important;
+        color: #ffffff !important;
+        border: none !important;
     }}
 </style>
 """, unsafe_allow_html=True)
@@ -287,18 +342,6 @@ if state_data:
         st.subheader("📌 Stage 0: Structured Case Brief (Fact vs Assumption Extractor)")
         st.markdown(f"**Problem Statement**: {brief.get('problem_statement')}")
         
-        st.markdown("#### 🔄 Stage 0 Protocol Flow")
-        st.markdown("""
-        ```mermaid
-        graph LR
-            A[Raw Business Case] --> B[Input Interpreter Agent]
-            B --> C[Extracted Facts]
-            B --> D[Tagged Assumptions]
-            B --> E[Hard Constraints]
-            C & D & E --> F[Published Brief]
-        ```
-        """)
-
         m1, m2, m3 = st.columns(3)
         with m1:
             st.metric("Supplied Hard Facts", len(brief.get("supplied_facts", [])))
@@ -339,7 +382,8 @@ if state_data:
                 
                 if seg_breakdown:
                     st.markdown("#### 📊 Customer Segment & Capital Allocation Breakdown (%)")
-                    st.bar_chart(seg_breakdown)
+                    df_seg = pd.DataFrame.from_dict(seg_breakdown, orient='index', columns=['Allocation (%)'])
+                    st.bar_chart(df_seg)
                 
                 if comp_benchmarks:
                     st.markdown("#### 🏆 Competitor Benchmarking Matrix")
@@ -357,17 +401,6 @@ if state_data:
 
     elif active_stage == "⚡ Stage 3: Debate":
         st.subheader("⚡ Stage 3: Risk Challenge & Department Debate Trace")
-        
-        st.markdown("""
-        ```mermaid
-        graph TD
-            A[Stage 1 & 2 Department Claims] --> B[Risk Reviewer Audit]
-            B --> C{Contradiction Detected?}
-            C -- Yes --> D[Issue Stage 3 Challenge Memo]
-            D --> E[Target Agent Rebuttal Response]
-            E --> F[Refined Shared Bus State]
-        ```
-        """)
 
         for ch in challenges:
             with st.container(border=True):
@@ -454,7 +487,7 @@ if state_data:
                         b_comp = b_da.get("competitor_benchmarks", [])
                         st.markdown("#### 📊 Baseline Segment Mix")
                         if b_seg:
-                            st.bar_chart(b_seg)
+                            st.bar_chart(pd.DataFrame.from_dict(b_seg, orient='index', columns=['Allocation (%)']))
                         if b_comp:
                             st.markdown("#### 🏆 Baseline Competitor Matrix")
                             st.table(b_comp)
@@ -472,7 +505,7 @@ if state_data:
                         s_comp = s_da.get("competitor_benchmarks", [])
                         st.markdown("#### 📊 Post-Surprise Reallocated Segment Mix")
                         if s_seg:
-                            st.bar_chart(s_seg)
+                            st.bar_chart(pd.DataFrame.from_dict(s_seg, orient='index', columns=['Allocation (%)']))
                         if s_comp:
                             st.markdown("#### ⚡ Post-Surprise Competitor Shock Matrix")
                             st.table(s_comp)
