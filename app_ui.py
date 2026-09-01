@@ -218,6 +218,7 @@ if state_data:
         if s_data:
             s_ceo = s_data.get("stage5_ceo_decision", {})
             s_brief = s_data.get("brief", {})
+            s_dept = s_data.get("stage1_department_outputs", {})
 
             col_base, col_surp = st.columns(2)
 
@@ -228,6 +229,17 @@ if state_data:
                     st.markdown("**Original Case Facts**: " + str(len(brief.get('supplied_facts', []))) + " facts parsed")
                     st.markdown("#### Baseline KPIs")
                     st.table(ceo.get("business_kpis", []))
+                    
+                    if "Data Analyst" in dept_outputs:
+                        b_da = dept_outputs["Data Analyst"].get("metrics", {})
+                        b_seg = b_da.get("segment_breakdown", {})
+                        b_comp = b_da.get("competitor_benchmarks", [])
+                        st.markdown("#### 📊 Baseline Segment Mix")
+                        if b_seg:
+                            st.bar_chart(b_seg)
+                        if b_comp:
+                            st.markdown("#### 🏆 Baseline Competitor Matrix")
+                            st.table(b_comp)
 
             with col_surp:
                 with st.container(border=True):
@@ -235,6 +247,17 @@ if state_data:
                     st.markdown(f"**Revised Decision**: {s_ceo.get('decision_statement')}")
                     st.markdown("#### Updated Surprise KPIs")
                     st.table(s_ceo.get("business_kpis", []))
+                    
+                    if "Data Analyst" in s_dept:
+                        s_da = s_dept["Data Analyst"].get("metrics", {})
+                        s_seg = s_da.get("segment_breakdown", {})
+                        s_comp = s_da.get("competitor_benchmarks", [])
+                        st.markdown("#### 📊 Post-Surprise Reallocated Segment Mix")
+                        if s_seg:
+                            st.bar_chart(s_seg)
+                        if s_comp:
+                            st.markdown("#### ⚡ Post-Surprise Competitor Shock Matrix")
+                            st.table(s_comp)
 
             st.markdown("---")
             st.markdown("### 🗺️ Revised Implementation Roadmap (30/60/90 Days)")
