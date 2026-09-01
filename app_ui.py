@@ -21,10 +21,10 @@ from core.state import BoardroomState
 
 st.set_page_config(page_title="Agentic Swarm — AI Boardroom", layout="wide", initial_sidebar_state="expanded")
 
-# Theme Mode Switcher in Sidebar
-theme_mode = st.sidebar.radio("🎨 Theme Mode", ["Dark Executive", "Light Executive"], horizontal=True)
+# Theme Mode Switcher in Sidebar (Clean naming without "Executive")
+theme_mode = st.sidebar.radio("🌓 Theme", ["Dark Mode", "Light Mode"], horizontal=True)
 
-if theme_mode == "Dark Executive":
+if theme_mode == "Dark Mode":
     bg_color = "#0b0f19"
     card_bg = "rgba(255, 255, 255, 0.03)"
     card_border = "rgba(255, 255, 255, 0.1)"
@@ -34,7 +34,7 @@ if theme_mode == "Dark Executive":
 else:
     bg_color = "#f8fafc"
     card_bg = "#ffffff"
-    card_border = "#e2e8f0"
+    card_border = "#cbd5e1"
     text_color = "#0f172a"
     subtext_color = "#475569"
     accent_green = "#059669"
@@ -80,8 +80,8 @@ st.markdown(f"""
 </style>
 """, unsafe_allow_html=True)
 
-# Top Banner Graphic (Clean version without numbers)
-banner_path = "assets/boardroom_banner_clean.jpg"
+# Top Banner Graphic (Hexagonal Node Network, Clean without version numbers)
+banner_path = "assets/boardroom_banner_hex.jpg"
 if not os.path.exists(banner_path):
     banner_path = "assets/boardroom_banner.jpg"
 
