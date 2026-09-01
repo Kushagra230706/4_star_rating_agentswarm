@@ -1,5 +1,5 @@
 import streamlit as st
-import json, os, sys
+import json, os, sys, socket
 import pandas as pd
 
 # Force UTF-8 encoding for Windows console output
@@ -14,6 +14,16 @@ def safe_print(text: str):
         print(text)
     except UnicodeEncodeError:
         print(text.encode('ascii', errors='replace').decode('ascii'))
+
+def get_local_ip():
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        ip = s.getsockname()[0]
+        s.close()
+        return ip
+    except Exception:
+        return "localhost"
 
 from core.engine import BoardroomEngine
 from core.logger import AuditLogger
@@ -36,7 +46,6 @@ input_bg = "#1f2937"
 code_bg = "rgba(16, 185, 129, 0.15)"
 code_text = "#34d399"
 header_gradient = "linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%)"
-mermaid_theme = "dark"
 
 # Harmonized CSS Design System
 st.markdown(f"""
@@ -100,7 +109,7 @@ st.markdown(f"""
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     }}
     
-    /* Metrics Fix for Light Mode */
+    /* Metrics Fix */
     div[data-testid="stMetric"] {{
         background: {card_bg} !important;
         border: 1px solid {card_border} !important;
@@ -147,7 +156,7 @@ st.markdown(f"""
 </style>
 """, unsafe_allow_html=True)
 
-# Wide Banner Graphic (cropped tight without dark top/bottom bars)
+# Wide Banner Graphic
 banner_path = "assets/boardroom_banner_wide.jpg"
 if not os.path.exists(banner_path):
     banner_path = "assets/boardroom_banner_hex.jpg"
@@ -171,6 +180,12 @@ if os.path.exists(preset_file):
         official_presets = json.load(f)
 
 st.sidebar.header("🕹️ Boardroom Control Panel")
+
+# Network Sharing Info for Teammates
+local_ip = get_local_ip()
+with st.sidebar.container(border=True):
+    st.markdown("🌐 **Team Wi-Fi UI Access**")
+    st.code(f"http://{local_ip}:8501")
 
 # Theme & Test Case Preset Selector
 if official_presets:
@@ -203,6 +218,25 @@ else:
 
 run_baseline = st.sidebar.button("🚀 Run Baseline Swarm Protocol", type="primary")
 run_surprise = st.sidebar.button("🚨 Run Surprise Adaptation Protocol")
+
+# Live Export Report Section in Sidebar
+st.sidebar.markdown("---")
+st.sidebar.markdown("### 📥 Export Audit Reports")
+
+if os.path.exists("outputs/baseline_decision.md"):
+    with open("outputs/baseline_decision.md", "r", encoding="utf-8") as f:
+        b_md = f.read()
+    st.sidebar.download_button("📄 Download Baseline CEO Report (.md)", data=b_md, file_name="baseline_decision.md", mime="text/markdown")
+
+if os.path.exists("outputs/revised_decision.md"):
+    with open("outputs/revised_decision.md", "r", encoding="utf-8") as f:
+        s_md = f.read()
+    st.sidebar.download_button("🚨 Download Revised Surprise Report (.md)", data=s_md, file_name="revised_decision.md", mime="text/markdown")
+
+if os.path.exists("outputs/baseline_trace.json"):
+    with open("outputs/baseline_trace.json", "r", encoding="utf-8") as f:
+        b_json = f.read()
+    st.sidebar.download_button("📊 Download Full Audit Trace (.json)", data=b_json, file_name="baseline_trace.json", mime="application/json")
 
 engine = BoardroomEngine()
 logger = AuditLogger()
