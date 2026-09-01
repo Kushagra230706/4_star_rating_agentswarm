@@ -32,7 +32,7 @@ class LLMRouter:
             try:
                 import google.generativeai as genai
                 genai.configure(api_key=GEMINI_API_KEY)
-                self.gemini_client = genai.GenerativeModel('gemini-2.0-flash')
+                self.gemini_client = genai.GenerativeModel('gemini-3.6-flash')
             except Exception as e:
                 print(f"[CONFIG WARNING] Failed to initialize Gemini client: {e}")
 
