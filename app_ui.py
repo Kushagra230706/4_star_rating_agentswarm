@@ -143,8 +143,8 @@ st.markdown(f"""
         border: 1px solid {card_border} !important;
         border-radius: 10px !important;
         font-weight: 600 !important;
-        font-size: 0.9rem !important;
-        padding: 10px 14px !important;
+        font-size: 0.88rem !important;
+        padding: 8px 10px !important;
         transition: all 0.2s ease-in-out !important;
     }}
     
@@ -272,11 +272,12 @@ if run_surprise:
         st.sidebar.success("✅ Surprise Adaptation execution complete!")
         st.rerun()
 
-# Harmonized Stage Selector Buttons
+# Harmonized Stage Selector Buttons (7 Complete Stages)
 st.markdown("### 🎛️ Boardroom Stage Navigator")
 stage_buttons = [
     "📌 Stage 0: Brief",
     "📊 Stage 1: Analysis",
+    "🔄 Stage 2: Shared Bus",
     "⚡ Stage 3: Debate",
     "⚖️ Stage 4: Strategy",
     "👑 Stage 5: Decision",
@@ -286,7 +287,7 @@ stage_buttons = [
 if "active_stage" not in st.session_state:
     st.session_state["active_stage"] = "📌 Stage 0: Brief"
 
-b_cols = st.columns(6)
+b_cols = st.columns(7)
 for i, b_name in enumerate(stage_buttons):
     with b_cols[i]:
         btn_type = "primary" if st.session_state["active_stage"] == b_name else "secondary"
@@ -379,7 +380,7 @@ if state_data:
                     st.markdown(f"• `{a}`")
 
     elif active_stage == "📊 Stage 1: Analysis":
-        st.subheader("📊 Stage 1 & 2: Department Analysis & Quantitative Data Modeling")
+        st.subheader("📊 Stage 1: Departmental Independent Analysis")
         
         if "Data Analyst" in dept_outputs:
             da_metrics = dept_outputs["Data Analyst"].get("metrics", {})
@@ -414,6 +415,22 @@ if state_data:
                 for kf in data.get("key_findings", []):
                     st.markdown(f"- {kf}")
                 st.caption(f"Financial Impact: {data.get('financial_or_operational_impact')}")
+
+    elif active_stage == "🔄 Stage 2: Shared Bus":
+        st.subheader("🔄 Stage 2: Central Shared Information Bus (Cross-Department Exchange)")
+        st.caption("Consolidates independent Stage 1 findings onto a transparent shared bus for cross-department inspection before Stage 3 Risk Challenge.")
+        
+        bus_rows = []
+        for name, data in dept_outputs.items():
+            bus_rows.append({
+                "Department": name,
+                "Key Insight / Finding": data.get("summary", ""),
+                "Financial / Ops Impact": data.get("financial_or_operational_impact", ""),
+                "Assumptions Relied Upon": ", ".join(data.get("assumptions_used", [])) if data.get("assumptions_used") else "Standard Brief Facts"
+            })
+        
+        if bus_rows:
+            st.table(bus_rows)
 
     elif active_stage == "⚡ Stage 3: Debate":
         st.subheader("⚡ Stage 3: Risk Challenge & Department Debate Trace")
