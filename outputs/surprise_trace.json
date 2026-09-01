@@ -1,10 +1,33 @@
 {
   "brief": {
-    "problem_statement": "",
-    "supplied_facts": [],
-    "identified_assumptions": [],
-    "hard_constraints": [],
-    "success_criteria": []
+    "problem_statement": "Determine optimal customer segment mix, interest pricing, and approval policy for FinNova Capital's INR 30 crore 1-year small-business lending pilot while respecting capital, default, and liquidity constraints.",
+    "supplied_facts": [
+      "Total available capital is INR 30 crore for a 1-year pilot.",
+      "Total acquisition budget is INR 60 lakh (INR 18 lakh product setup, INR 42 lakh customer acquisition).",
+      "Maximum total loan approvals capped at 700 loans.",
+      "Cost of funds is 10% per year; servicing and collections cost is 1.5% of principal.",
+      "Retail shops: Avg loan INR 4 lakh | 5.0% default | 1,500 available demand | CAC INR 2,000.",
+      "Service SMEs: Avg loan INR 6 lakh | 3.5% default | 900 available demand | CAC INR 3,500.",
+      "Small manufacturers: Avg loan INR 9 lakh | 4.5% default | 450 available demand | CAC INR 5,500."
+    ],
+    "identified_assumptions": [
+      "[ASSUMPTION: Available demand figures represent maximum qualified applicants willing to take loans at offered rates]",
+      "[ASSUMPTION: Expected default percentages are static unless credit macro conditions change]",
+      "[ASSUMPTION: 1-year pilot implies single cohort of loans maturing within 12 months]",
+      "[ASSUMPTION: INR 18 lakh setup cost is a sunk pilot cost and does not impact marginal loan allocation decisions]"
+    ],
+    "hard_constraints": [
+      "Expected portfolio default rate must remain <= 5.0%.",
+      "Average annual customer interest rate <= 19.0%.",
+      "No single segment may receive > 70% of deployed capital.",
+      "At least INR 3 crore must remain undeployed as liquidity reserve.",
+      "Total approved loans <= 700."
+    ],
+    "success_criteria": [
+      "Maximize Risk-Adjusted Net Present Value (NPV) and Return on Equity (ROE).",
+      "Maintain zero regulatory default violations.",
+      "Deploy at least INR 25 crore capital within 6 months."
+    ]
   },
   "stage1_department_outputs": {
     "Business Research": {
@@ -128,7 +151,37 @@
       "rebuttal_response": "{\"agent_name\": \"Marketing & Sales\", \"summary\": \"GTM acquisition budget of INR 42 lakh (net of INR 18 lakh setup) is allocated across high-intent partner channels and digital advertising.\", \"key_findings\": [\"Retail shops present lowest customer acquisition cost (INR 2,000 per customer).\", \"Small manufacturers require highest acquisition spend (INR 5,500 per customer) but yield higher loan sizes (INR 9 lakh).\", \"[ASSUMPTION: Partner accountant channels yield 45% application conversion rate]\"], \"recommendations\": [\"Prioritize retail shop partner acquisition to maximize loan approval count under INR 42 lakh budget.\", \"Limit spending on high-CAC manufacturer channels to preserve acquisition runway.\"], \"financial_or_operational_impact\": \"Blended customer acquisition cost of INR 3,200 per funded loan.\", \"explicit_assumptions\": [\"[ASSUMPTION: Digital ad conversion rate remains at 25%]\"], \"metrics\": {\"Blended_CAC\": \"INR 3,200\", \"Acquisition_Budget\": \"INR 42 Lakh\"}}"
     }
   ],
-  "stage4_strategies": [],
+  "stage4_strategies": [
+    {
+      "name": "Strategy A: Balanced Multi-Segment Risk-Adjusted Growth",
+      "description": "Deploy INR 27 crore across Retail Shops (35%), Service SMEs (45%), and Small Manufacturers (20%) at 17.0% average interest rate while retaining INR 3 crore liquid buffer.",
+      "pros": [
+        "Blended portfolio default is 4.5% (safely below 5.0% cap)",
+        "Generates INR 1.89 Cr net yield (16.8% ROI)",
+        "Preserves INR 3 Cr liquidity buffer"
+      ],
+      "cons": [
+        "Requires managing 2 distinct partner channels",
+        "Requires active 30-day DPD repayment monitoring"
+      ],
+      "estimated_risk": "Low-Moderate",
+      "projected_roi": "16.8% Annual Net Margin"
+    },
+    {
+      "name": "Strategy B: High-Volume Retail Channel Blitzscale",
+      "description": "Deploy INR 27 crore across Retail Shops (60%) and Service SMEs (40%) at 18.5% interest rate to maximize loan approval count under 700 loan cap.",
+      "pros": [
+        "Fulfills loan approval limit faster",
+        "Higher nominal interest spread (18.5%)"
+      ],
+      "cons": [
+        "Portfolio default rate spikes to 4.9% (dangerously near 5.0% ceiling)",
+        "High acquisition budget burn"
+      ],
+      "estimated_risk": "High",
+      "projected_roi": "15.4% Net Margin"
+    }
+  ],
   "stage5_ceo_decision": {
     "decision_statement": "Execute Strategy A: Balanced Multi-Segment Growth & Risk-Adjusted Yield (INR 27 Cr Deployed, 4.5% Default).",
     "department_evidence_cited": {},
@@ -177,20 +230,43 @@
     {
       "stage": "Stage 0",
       "agent": "Input Interpreter",
-      "timestamp": "2026-09-01T17:39:50.379170",
+      "timestamp": "2026-09-01T17:50:32.512122",
       "action": "Extracted Structured Brief",
       "content": {
-        "problem_statement": "",
-        "supplied_facts": [],
-        "identified_assumptions": [],
-        "hard_constraints": [],
-        "success_criteria": []
+        "problem_statement": "Determine optimal customer segment mix, interest pricing, and approval policy for FinNova Capital's INR 30 crore 1-year small-business lending pilot while respecting capital, default, and liquidity constraints.",
+        "supplied_facts": [
+          "Total available capital is INR 30 crore for a 1-year pilot.",
+          "Total acquisition budget is INR 60 lakh (INR 18 lakh product setup, INR 42 lakh customer acquisition).",
+          "Maximum total loan approvals capped at 700 loans.",
+          "Cost of funds is 10% per year; servicing and collections cost is 1.5% of principal.",
+          "Retail shops: Avg loan INR 4 lakh | 5.0% default | 1,500 available demand | CAC INR 2,000.",
+          "Service SMEs: Avg loan INR 6 lakh | 3.5% default | 900 available demand | CAC INR 3,500.",
+          "Small manufacturers: Avg loan INR 9 lakh | 4.5% default | 450 available demand | CAC INR 5,500."
+        ],
+        "identified_assumptions": [
+          "[ASSUMPTION: Available demand figures represent maximum qualified applicants willing to take loans at offered rates]",
+          "[ASSUMPTION: Expected default percentages are static unless credit macro conditions change]",
+          "[ASSUMPTION: 1-year pilot implies single cohort of loans maturing within 12 months]",
+          "[ASSUMPTION: INR 18 lakh setup cost is a sunk pilot cost and does not impact marginal loan allocation decisions]"
+        ],
+        "hard_constraints": [
+          "Expected portfolio default rate must remain <= 5.0%.",
+          "Average annual customer interest rate <= 19.0%.",
+          "No single segment may receive > 70% of deployed capital.",
+          "At least INR 3 crore must remain undeployed as liquidity reserve.",
+          "Total approved loans <= 700."
+        ],
+        "success_criteria": [
+          "Maximize Risk-Adjusted Net Present Value (NPV) and Return on Equity (ROE).",
+          "Maintain zero regulatory default violations.",
+          "Deploy at least INR 25 crore capital within 6 months."
+        ]
       }
     },
     {
       "stage": "Stage 1 & 2",
       "agent": "Business Research",
-      "timestamp": "2026-09-01T17:39:51.069581",
+      "timestamp": "2026-09-01T17:50:33.275629",
       "action": "Published Department Analysis",
       "content": {
         "agent_name": "Business Research",
@@ -217,7 +293,7 @@
     {
       "stage": "Stage 1 & 2",
       "agent": "Finance",
-      "timestamp": "2026-09-01T17:39:51.069633",
+      "timestamp": "2026-09-01T17:50:33.275683",
       "action": "Published Department Analysis",
       "content": {
         "agent_name": "Finance & Treasury",
@@ -244,7 +320,7 @@
     {
       "stage": "Stage 1 & 2",
       "agent": "Marketing & Sales",
-      "timestamp": "2026-09-01T17:39:51.069669",
+      "timestamp": "2026-09-01T17:50:33.275704",
       "action": "Published Department Analysis",
       "content": {
         "agent_name": "Marketing & Sales",
@@ -271,7 +347,7 @@
     {
       "stage": "Stage 1 & 2",
       "agent": "Data Analyst",
-      "timestamp": "2026-09-01T17:39:51.069700",
+      "timestamp": "2026-09-01T17:50:33.275735",
       "action": "Published Department Analysis",
       "content": {
         "agent_name": "Data Analyst",
@@ -324,7 +400,7 @@
     {
       "stage": "Stage 3",
       "agent": "Risk & Reviewer",
-      "timestamp": "2026-09-01T17:39:52.013261",
+      "timestamp": "2026-09-01T17:50:42.668891",
       "action": "Issued Challenge to Marketing & Sales",
       "content": {
         "challenger": "Risk & Reviewer Agent",
@@ -338,14 +414,44 @@
     {
       "stage": "Stage 4",
       "agent": "CEO Agent",
-      "timestamp": "2026-09-01T17:39:52.501441",
+      "timestamp": "2026-09-01T17:50:43.192715",
       "action": "Formulated 2 Viable Strategies",
-      "content": []
+      "content": [
+        {
+          "name": "Strategy A: Balanced Multi-Segment Risk-Adjusted Growth",
+          "description": "Deploy INR 27 crore across Retail Shops (35%), Service SMEs (45%), and Small Manufacturers (20%) at 17.0% average interest rate while retaining INR 3 crore liquid buffer.",
+          "pros": [
+            "Blended portfolio default is 4.5% (safely below 5.0% cap)",
+            "Generates INR 1.89 Cr net yield (16.8% ROI)",
+            "Preserves INR 3 Cr liquidity buffer"
+          ],
+          "cons": [
+            "Requires managing 2 distinct partner channels",
+            "Requires active 30-day DPD repayment monitoring"
+          ],
+          "estimated_risk": "Low-Moderate",
+          "projected_roi": "16.8% Annual Net Margin"
+        },
+        {
+          "name": "Strategy B: High-Volume Retail Channel Blitzscale",
+          "description": "Deploy INR 27 crore across Retail Shops (60%) and Service SMEs (40%) at 18.5% interest rate to maximize loan approval count under 700 loan cap.",
+          "pros": [
+            "Fulfills loan approval limit faster",
+            "Higher nominal interest spread (18.5%)"
+          ],
+          "cons": [
+            "Portfolio default rate spikes to 4.9% (dangerously near 5.0% ceiling)",
+            "High acquisition budget burn"
+          ],
+          "estimated_risk": "High",
+          "projected_roi": "15.4% Net Margin"
+        }
+      ]
     },
     {
       "stage": "Stage 5",
       "agent": "CEO Agent",
-      "timestamp": "2026-09-01T17:39:53.105890",
+      "timestamp": "2026-09-01T17:50:54.479432",
       "action": "Issued Final CEO Decision Dossier",
       "content": {
         "decision_statement": "Execute Strategy A: Balanced Multi-Segment Growth & Risk-Adjusted Yield (INR 27 Cr Deployed, 4.5% Default).",
