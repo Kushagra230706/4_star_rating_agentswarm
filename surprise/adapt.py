@@ -1,10 +1,25 @@
 import os
+import sys
 import json
 from typing import Dict, Any, List
+
+# Force UTF-8 encoding for Windows console output
+if hasattr(sys.stdout, 'reconfigure'):
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
+
 from config import router
 from core.state import BoardroomState, CEODecision
 from core.engine import BoardroomEngine
 from core.logger import AuditLogger
+
+def safe_print(text: str):
+    try:
+        print(text)
+    except UnicodeEncodeError:
+        print(text.encode('ascii', errors='replace').decode('ascii'))
 
 SYSTEM_SURPRISE_PROMPT = """You are the Input Interpreter and Adaptation Manager.
 Your role: Compare the original business case brief with a sudden mid-event business surprise (e.g. competitor price drop, budget cut, supplier failure).
@@ -28,10 +43,10 @@ class SurpriseAdaptationEngine:
         self.engine = BoardroomEngine()
         self.logger = AuditLogger()
 
-    def process_surprise(self, base_state: BoardroomState, surprise_text: str) -> BoardroomState:
-        print("\n=======================================================")
-        print("[RUNNING SURPRISE ADAPTATION PROTOCOL]")
-        print("=======================================================\n")
+    def process_surprise(self, base_state: BoardroomState, surprise_text: str, raw_case_text: str = None) -> BoardroomState:
+        safe_print("\n=======================================================")
+        safe_print("[RUNNING SURPRISE ADAPTATION PROTOCOL]")
+        safe_print("=======================================================\n")
 
         # Step 1: Identify fact diffs
         base_brief_json = base_state.brief.model_dump_json() if base_state.brief else "{}"
@@ -53,12 +68,13 @@ class SurpriseAdaptationEngine:
                 "affected_agents": ["Finance", "Marketing & Sales"]
             }
 
-        print(f"  Changed Facts: {diff_data.get('invalidated_facts')}")
-        print(f"  Surprise Factors: {diff_data.get('new_surprise_facts')}")
-        print(f"  Re-running Affected Agents: {diff_data.get('affected_agents')}\n")
+        safe_print(f"  Changed Facts: {diff_data.get('invalidated_facts')}")
+        safe_print(f"  Surprise Factors: {diff_data.get('new_surprise_facts')}")
+        safe_print(f"  Re-running Affected Agents: {diff_data.get('affected_agents')}\n")
 
         # Step 2: Combine original case + surprise event for selective re-execution
-        updated_raw_case = f"{base_state.brief.problem_statement}\n\n[MID-EVENT SURPRISE UPDATE]:\n{surprise_text}"
+        base_case_str = raw_case_text if (raw_case_text and len(raw_case_text.strip()) > 0) else (base_state.brief.problem_statement if base_state and base_state.brief else "")
+        updated_raw_case = f"{base_case_str}\n\n[MID-EVENT SURPRISE UPDATE]:\n{surprise_text}"
         
         # Re-run boardroom swarm with updated parameters
         revised_state = self.engine.run_boardroom_protocol(updated_raw_case)

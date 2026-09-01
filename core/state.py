@@ -8,6 +8,12 @@ class StructuredBrief(BaseModel):
     hard_constraints: List[str] = Field(default_factory=list)
     success_criteria: List[str] = Field(default_factory=list)
 
+class CompetitorBenchmark(BaseModel):
+    competitor_name: str
+    market_share_or_pricing: str
+    key_advantage: str
+    key_vulnerability: str
+
 class DepartmentOutput(BaseModel):
     agent_name: str
     summary: str = ""

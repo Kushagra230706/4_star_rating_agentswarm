@@ -1,5 +1,10 @@
 import os
+import sys
 import json
+
+# Force UTF-8 encoding for Windows console output
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
 from core.engine import BoardroomEngine
 from core.logger import AuditLogger
 from surprise.adapt import SurpriseAdaptationEngine

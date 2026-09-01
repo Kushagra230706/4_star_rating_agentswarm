@@ -82,6 +82,35 @@ class LLMRouter:
     def _try_gemini(self, role: str, system_prompt: str, user_prompt: str):
         if not self.gemini_client:
             return None
+                self.gemini_client = genai.GenerativeModel('gemini-3.6-flash')
+            except Exception as e:
+                print(f"[CONFIG WARNING] Failed to initialize Gemini client: {e}")
+
+    def call_agent_llm(self, role: str, system_prompt: str, user_prompt: str) -> str:
+        """
+        Attempts Groq primary -> Gemini fallback -> Safety Net fallback.
+        Guarantees non-empty text response.
+        """
+        # Try Primary: Groq API
+        if self.groq_client:
+            models_to_try = ["groq/compound", "qwen/qwen3.8-27b", "openai/gpt-oss-120b", "llama-3.3-70b-versatile"]
+            for model_id in models_to_try:
+                try:
+                    response = self.groq_client.chat.completions.create(
+                        model=model_id,
+                        messages=[
+                            {"role": "system", "content": system_prompt},
+                            {"role": "user", "content": user_prompt}
+                        ],
+                        temperature=0.2,
+                        max_tokens=2000
+                    )
+                    res_text = response.choices[0].message.content
+                    if res_text and len(res_text.strip()) > 0:
+                        return res_text
+                except Exception:
+                    continue
+            print(f"[FALLBACK TRIGGERED] Agent '{role}' failed on all Groq models. Switching to Gemini...")
 
         import google.generativeai as genai
         full_prompt = f"{system_prompt}\n\nUSER INPUT:\n{user_prompt}"
