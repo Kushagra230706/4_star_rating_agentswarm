@@ -22,41 +22,23 @@ from core.state import BoardroomState
 
 st.set_page_config(page_title="Agentic Swarm — AI Boardroom", layout="wide", initial_sidebar_state="expanded")
 
-# Theme Mode Switcher in Sidebar
-theme_mode = st.sidebar.radio("🌓 Theme", ["Dark Mode", "Light Mode"], horizontal=True)
+# Dark Glassmorphism Executive Theme
+bg_color = "#0b0f19"
+sidebar_bg = "#111827"
+card_bg = "rgba(255, 255, 255, 0.04)"
+card_border = "rgba(255, 255, 255, 0.12)"
+text_color = "#f8fafc"
+subtext_color = "#94a3b8"
+accent_green = "#10b981"
+btn_bg = "#1f2937"
+btn_text = "#f8fafc"
+input_bg = "#1f2937"
+code_bg = "rgba(16, 185, 129, 0.15)"
+code_text = "#34d399"
+header_gradient = "linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%)"
+mermaid_theme = "dark"
 
-if theme_mode == "Dark Mode":
-    bg_color = "#0b0f19"
-    sidebar_bg = "#111827"
-    card_bg = "rgba(255, 255, 255, 0.04)"
-    card_border = "rgba(255, 255, 255, 0.12)"
-    text_color = "#f8fafc"
-    subtext_color = "#94a3b8"
-    accent_green = "#10b981"
-    btn_bg = "#1f2937"
-    btn_text = "#f8fafc"
-    input_bg = "#1f2937"
-    code_bg = "rgba(16, 185, 129, 0.15)"
-    code_text = "#34d399"
-    header_gradient = "linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%)"
-    mermaid_theme = "dark"
-else:
-    bg_color = "#f8fafc"
-    sidebar_bg = "#ffffff"
-    card_bg = "#ffffff"
-    card_border = "#cbd5e1"
-    text_color = "#0f172a"
-    subtext_color = "#475569"
-    accent_green = "#059669"
-    btn_bg = "#ffffff"
-    btn_text = "#0f172a"
-    input_bg = "#ffffff"
-    code_bg = "#ecfdf5"
-    code_text = "#047857"
-    header_gradient = "linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(59, 130, 246, 0.08) 100%)"
-    mermaid_theme = "neutral"
-
-# Harmonized Light/Dark CSS Design System
+# Harmonized CSS Design System
 st.markdown(f"""
 <style>
     @keyframes fadeIn {{
