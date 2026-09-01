@@ -160,8 +160,7 @@ if state_data:
     with tab5:
         st.subheader("👑 Stage 5: Final CEO Decision Dossier")
         if ceo:
-            with st.container(border=True):
-                st.markdown(f"### 📌 Final Order\n> **{ceo.get('decision_statement')}**")
+            st.success(f"### 📌 Final Order\n**{ceo.get('decision_statement')}**")
             
             st.markdown("#### ❌ Rejected Alternative & Rationale")
             rej = ceo.get("rejected_alternative", {})
