@@ -359,6 +359,18 @@ if state_data:
         st.subheader("📌 Stage 0: Structured Case Brief (Fact vs Assumption Extractor)")
         st.markdown(f"**Problem Statement**: {brief.get('problem_statement')}")
         
+        st.markdown("#### 🔄 Stage 0 Extract Protocol Flow")
+        st.markdown("""
+        ```mermaid
+        graph LR
+            A[Raw Business Case Text] --> B[Input Interpreter Agent]
+            B --> C[Extracted Hard Facts]
+            B --> D[Tagged Assumptions]
+            B --> E[Hard Constraints]
+            C & D & E --> F[Published Brief]
+        ```
+        """)
+
         m1, m2, m3 = st.columns(3)
         with m1:
             st.metric("Supplied Hard Facts", len(brief.get("supplied_facts", [])))
@@ -382,6 +394,18 @@ if state_data:
     elif active_stage == "📊 Stage 1: Analysis":
         st.subheader("📊 Stage 1: Departmental Independent Analysis")
         
+        st.markdown("#### 🔄 Stage 1 Parallel Analysis Flow")
+        st.markdown("""
+        ```mermaid
+        graph TD
+            A[Published Brief] --> B[Business Research Agent]
+            A --> C[Finance & Treasury Agent]
+            A --> D[Marketing & Sales Agent]
+            A --> E[Data Analyst Agent]
+            B & C & D & E --> F[Parallel Department Claims]
+        ```
+        """)
+
         if "Data Analyst" in dept_outputs:
             da_metrics = dept_outputs["Data Analyst"].get("metrics", {})
             seg_breakdown = da_metrics.get("segment_breakdown", {})
@@ -420,6 +444,18 @@ if state_data:
         st.subheader("🔄 Stage 2: Central Shared Information Bus (Cross-Department Exchange)")
         st.caption("Consolidates independent Stage 1 findings onto a transparent shared bus for cross-department inspection before Stage 3 Risk Challenge.")
         
+        st.markdown("#### 🔄 Stage 2 Shared Bus Information Flow")
+        st.markdown("""
+        ```mermaid
+        graph LR
+            A[Business Research] --> SharedBus[(Central Shared Bus State)]
+            B[Finance & Treasury] --> SharedBus
+            C[Marketing & Sales] --> SharedBus
+            D[Data Analyst] --> SharedBus
+            SharedBus --> E[Risk Reviewer Audit]
+        ```
+        """)
+
         bus_rows = []
         for name, data in dept_outputs.items():
             bus_rows.append({
@@ -434,6 +470,18 @@ if state_data:
 
     elif active_stage == "⚡ Stage 3: Debate":
         st.subheader("⚡ Stage 3: Risk Challenge & Department Debate Trace")
+        
+        st.markdown("#### 🔄 Stage 3 Debate & Rebuttal Protocol Flow")
+        st.markdown("""
+        ```mermaid
+        graph TD
+            A[Stage 1 & 2 Department Claims] --> B[Risk Reviewer Audit]
+            B --> C{Contradiction Detected?}
+            C -- Yes --> D[Issue Challenge Memo]
+            D --> E[Target Agent Rebuttal Response]
+            E --> F[Refined Shared Bus State]
+        ```
+        """)
 
         for ch in challenges:
             with st.container(border=True):
@@ -446,6 +494,18 @@ if state_data:
 
     elif active_stage == "⚖️ Stage 4: Strategy":
         st.subheader("⚖️ Stage 4: Dynamic Strategy Comparison Matrix")
+        
+        st.markdown("#### 🔄 Stage 4 Dynamic Strategy Formulation Flow")
+        st.markdown("""
+        ```mermaid
+        graph LR
+            A[Refined Shared Bus State] --> B[Strategy Synthesizer Engine]
+            B --> C[Strategy A: Growth & Scale]
+            B --> D[Strategy B: Risk-Adjusted Efficiency]
+            C & D --> E[Dynamic Tradeoff Comparison Matrix]
+        ```
+        """)
+
         sc1, sc2 = st.columns(2)
         if len(strategies) >= 2:
             with sc1:
@@ -465,6 +525,19 @@ if state_data:
 
     elif active_stage == "👑 Stage 5: Decision":
         st.subheader("👑 Stage 5: Final CEO Decision Dossier")
+        
+        st.markdown("#### 🔄 Stage 5 CEO Synthesis & Roadmap Flow")
+        st.markdown("""
+        ```mermaid
+        graph TD
+            A[Strategy Matrix A vs B] --> B[CEO Synthesizer Agent]
+            B --> C[Issue Final Order Decision]
+            B --> D[Document Rejected Alternative & Flaw]
+            B --> E[30/60/90 Day Implementation Roadmap]
+            B --> F[Define ≥3 Measurable KPIs]
+        ```
+        """)
+
         if ceo:
             st.success(f"### 📌 Final Order\n**{ceo.get('decision_statement')}**")
             
@@ -494,6 +567,18 @@ if state_data:
 
     elif active_stage == "🚨 Surprise Delta":
         st.subheader("🚨 Mid-Event Surprise Adaptation Delta View")
+        
+        st.markdown("#### 🔄 Surprise Adaptation Protocol Flow")
+        st.markdown("""
+        ```mermaid
+        graph LR
+            A[Surprise Event Input] --> B[Surprise Adaptation Engine]
+            B --> C[Diff Changed vs Stable Facts]
+            C --> D[Selectively Re-Run Affected Department Agents]
+            D --> E[Generate Baseline vs Revised Delta View]
+        ```
+        """)
+
         s_data = st.session_state.get('surprise_data')
         if not s_data and os.path.exists(surprise_path):
             with open(surprise_path, "r", encoding="utf-8") as f:
