@@ -13,9 +13,11 @@ def safe_print(text: str):
         print(text)
     except UnicodeEncodeError:
         print(text.encode('ascii', errors='replace').decode('ascii'))
+
 from core.engine import BoardroomEngine
 from core.logger import AuditLogger
 from surprise.adapt import SurpriseAdaptationEngine
+from core.state import BoardroomState
 
 st.set_page_config(page_title="Agentic Swarm — AI Boardroom", layout="wide")
 
@@ -45,26 +47,34 @@ logger = AuditLogger()
 surprise_engine = SurpriseAdaptationEngine()
 
 if run_baseline:
-    with st.spinner("Executing 5-Stage Boardroom Protocol with Live LLM Agents..."):
+    with st.spinner("Executing 5-Stage Boardroom Protocol on Manual Input..."):
         baseline_state = engine.run_boardroom_protocol(case_input)
         logger.export_trace_json(baseline_state, "baseline_trace.json")
         logger.export_decision_markdown(baseline_state, "baseline_decision.md", "Baseline CEO Decision Dossier")
+        st.session_state['baseline_data'] = baseline_state.model_dump()
         st.sidebar.success("✅ Baseline Swarm execution complete!")
+        st.rerun()
 
 if run_surprise:
-    with st.spinner("Executing Surprise Adaptation Engine..."):
+    with st.spinner("Executing Surprise Adaptation Engine on Manual Input..."):
         trace_path = "outputs/baseline_trace.json"
-        if os.path.exists(trace_path):
-            from core.state import BoardroomState
+        if 'baseline_data' in st.session_state:
+            base_state = BoardroomState(**st.session_state['baseline_data'])
+        elif os.path.exists(trace_path):
             with open(trace_path, "r", encoding="utf-8") as f:
                 base_data = json.load(f)
             base_state = BoardroomState(**base_data)
         else:
             base_state = engine.run_boardroom_protocol(case_input)
             logger.export_trace_json(base_state, "baseline_trace.json")
+            st.session_state['baseline_data'] = base_state.model_dump()
 
-        revised_state = surprise_engine.process_surprise(base_state, surprise_input)
+        revised_state = surprise_engine.process_surprise(base_state, surprise_input, raw_case_text=case_input)
+        logger.export_trace_json(revised_state, "surprise_trace.json")
+        logger.export_decision_markdown(revised_state, "revised_decision.md", "Revised CEO Decision Dossier (Post-Surprise Adaptation)")
+        st.session_state['surprise_data'] = revised_state.model_dump()
         st.sidebar.success("✅ Surprise Adaptation execution complete!")
+        st.rerun()
 
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
     "1. Fact Brief (Interpreter)",
@@ -75,13 +85,16 @@ tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
     "6. Surprise Adaptation Delta"
 ])
 
+# Resolve state_data from session_state or disk
 trace_path = "outputs/baseline_trace.json"
 surprise_path = "outputs/surprise_trace.json"
 
-if os.path.exists(trace_path):
+state_data = st.session_state.get('baseline_data')
+if not state_data and os.path.exists(trace_path):
     with open(trace_path, "r", encoding="utf-8") as f:
         state_data = json.load(f)
-        
+
+if state_data:
     brief = state_data.get("brief", {})
     dept_outputs = state_data.get("stage1_department_outputs", {})
     challenges = state_data.get("stage3_challenges", [])
@@ -165,10 +178,12 @@ if os.path.exists(trace_path):
 
     with tab6:
         st.subheader("🚨 Mid-Event Surprise Adaptation Delta View")
-        if os.path.exists(surprise_path):
+        s_data = st.session_state.get('surprise_data')
+        if not s_data and os.path.exists(surprise_path):
             with open(surprise_path, "r", encoding="utf-8") as f:
                 s_data = json.load(f)
-            
+
+        if s_data:
             s_ceo = s_data.get("stage5_ceo_decision", {})
             s_brief = s_data.get("brief", {})
 

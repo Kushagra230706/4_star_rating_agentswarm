@@ -43,7 +43,7 @@ class SurpriseAdaptationEngine:
         self.engine = BoardroomEngine()
         self.logger = AuditLogger()
 
-    def process_surprise(self, base_state: BoardroomState, surprise_text: str) -> BoardroomState:
+    def process_surprise(self, base_state: BoardroomState, surprise_text: str, raw_case_text: str = None) -> BoardroomState:
         safe_print("\n=======================================================")
         safe_print("[RUNNING SURPRISE ADAPTATION PROTOCOL]")
         safe_print("=======================================================\n")
@@ -73,7 +73,8 @@ class SurpriseAdaptationEngine:
         safe_print(f"  Re-running Affected Agents: {diff_data.get('affected_agents')}\n")
 
         # Step 2: Combine original case + surprise event for selective re-execution
-        updated_raw_case = f"{base_state.brief.problem_statement}\n\n[MID-EVENT SURPRISE UPDATE]:\n{surprise_text}"
+        base_case_str = raw_case_text if (raw_case_text and len(raw_case_text.strip()) > 0) else (base_state.brief.problem_statement if base_state and base_state.brief else "")
+        updated_raw_case = f"{base_case_str}\n\n[MID-EVENT SURPRISE UPDATE]:\n{surprise_text}"
         
         # Re-run boardroom swarm with updated parameters
         revised_state = self.engine.run_boardroom_protocol(updated_raw_case)
