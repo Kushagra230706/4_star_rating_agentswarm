@@ -1,145 +1,161 @@
 {
   "brief": {
-    "problem_statement": "FinNova Capital is running a 1-year pilot with a planned loan portfolio.",
+    "problem_statement": "Determine the optimal segment mix, loan pricing, approval policy, and launch plan for FinNova Capital's 1-year small-business loan pilot to maximize risk-adjusted financial returns within strict capital, regulatory, risk, and acquisition constraints.",
     "supplied_facts": [
-      "The pilot is 1 year long",
-      "The pilot is INR 27 crore",
-      "There are 600 planned loans",
-      "Current Portfolio: Retail shops 45%, Service SMEs 35%, Small manufacturers 20%",
-      "Avg customer interest rate: 17%",
-      "Cost of funds: 10%",
-      "Servicing cost: 1.5% of principal"
+      "FinNova Capital is launching a 1-year small-business loan pilot in India with INR 30 crore available capital.",
+      "Total acquisition budget is INR 60 lakh, with INR 18 lakh for product setup and INR 42 lakh net budget for customer acquisition.",
+      "Cost of funds is 10% per year, and servicing/collections cost is 1.5% of principal per year.",
+      "Retail shops segment: Avg loan INR 4 lakh, default rate 5.0%, demand 1,500 loans, acquisition cost INR 2,000 per customer.",
+      "Service SMEs segment: Avg loan INR 6 lakh, default rate 3.5%, demand 900 loans, acquisition cost INR 3,500 per customer.",
+      "Small manufacturers segment: Avg loan INR 9 lakh, default rate 4.5%, demand 450 loans, acquisition cost INR 5,500 per customer."
     ],
     "identified_assumptions": [
-      "[ASSUMPTION: The pilot's success is measured by the number of loans disbursed and their repayment performance]",
-      "[ASSUMPTION: The interest rates and costs are fixed for the duration of the pilot]",
-      "[ASSUMPTION: The portfolio distribution is representative of the target market]"
+      "[ASSUMPTION: All loans are issued for a standard 1-year duration matching the pilot timeframe.]",
+      "[ASSUMPTION: Default loss rate equals 100% principal loss unless a recovery rate is specified.]",
+      "[ASSUMPTION: Demand within each segment can be fully captured up to the acquisition budget and demand limits.]",
+      "[ASSUMPTION: Interest rates charged to customers are uniform per segment or portfolio and within acceptable yield limits.]"
     ],
     "hard_constraints": [
-      "The pilot's budget is INR 27 crore",
-      "The pilot's duration is 1 year",
-      "The number of planned loans is 600"
+      "Maximum portfolio approval limit of 700 loans.",
+      "Expected portfolio default rate must remain <= 5.0%.",
+      "Average annual customer interest rate must be <= 19.0%.",
+      "No single segment may receive > 70% of total deployed capital.",
+      "At least INR 3 crore must remain undeployed as a liquidity reserve (max deployment INR 27 crore).",
+      "Total customer acquisition expenditure cannot exceed INR 42 lakh."
     ],
     "success_criteria": [
-      "The pilot disburses 600 loans within the planned timeframe",
-      "The repayment performance meets or exceeds expectations",
-      "The portfolio distribution aligns with the target market"
+      "Maximize risk-adjusted profit margin / return on deployed capital for the 1-year pilot.",
+      "Achieve optimal segment allocation while satisfying all portfolio risk, capital, and budget limits.",
+      "Deliver a actionable approval policy, pricing strategy, and launch operational plan."
     ]
   },
   "stage1_department_outputs": {
     "Business Research": {
       "agent_name": "Business Research",
-      "summary": "FinNova Capital's 1-year pilot targets a diversified SME and retail portfolio of INR 27 crore across 600 loans, leveraging a 7% net interest margin (17% rate vs. 10% cost of funds) to validate market demand and operational efficiency.",
+      "summary": "FinNova Capital's 1-year small-business loan pilot targets a total addressable segment demand of 2,850 loans (INR 154.5 crore) across Retail Shops, Service SMEs, and Small Manufacturers in India. Constrained by an INR 27 crore max deployment cap and 700 loan approval limit, Service SMEs offer the highest risk-adjusted potential with the lowest default rate (3.5%).",
       "key_findings": [
-        "The portfolio is heavily weighted towards lower-risk retail and service sectors (80% combined), with only 20% allocated to small manufacturers, suggesting a conservative risk appetite for the pilot phase.",
-        "The unit economics show a gross spread of 7% (17% interest rate minus 10% cost of funds), which must cover the 1.5% servicing cost and potential credit losses to generate profit.",
-        "The average loan size is approximately INR 4.5 lakhs (INR 27 crore / 600 loans), positioning the product in the micro/small business segment where volume is key to diluting fixed costs.",
-        "The success criteria rely on both volume (600 loans) and quality (repayment performance), indicating that the pilot is designed to test both market penetration and credit risk models simultaneously."
+        "Service SMEs represent the optimal balance of risk and return with a 3.5% default rate, INR 6 lakh avg loan size, and INR 3,500 customer acquisition cost across 900 potential loans.",
+        "Retail Shops present the highest demand (1,500 loans, INR 4 lakh avg loan) and lowest CAC (INR 2,000), but carry the highest default rate of 5.0%.",
+        "Small Manufacturers require the highest CAC (INR 5,500 for INR 9 lakh avg loan) with a 4.5% default rate and 450 loan demand.",
+        "Total target addressable demand (TAM) across the 3 segments is 2,850 loans totaling INR 154.5 crore [ASSUMPTION: Unmet demand across target regions equals total stated segment demand].",
+        "Deployment is bounded by a maximum deployment cap of INR 27 crore, a net acquisition budget of INR 42 lakh, and a maximum portfolio size of 700 loans."
       ],
       "recommendations": [
-        "Monitor the default rate specifically within the 20% small manufacturer segment, as this sector typically carries higher volatility than retail shops and service SMEs.",
-        "Validate the 17% interest rate against local competitor offerings to ensure the product remains competitive while maintaining the 7% spread.",
-        "Track the actual portfolio distribution against the planned 45/35/20 split to ensure the pilot data remains representative of the intended target market for future scaling."
+        "Over-index allocation toward Service SMEs up to the 70% single-segment cap (INR 18.9 crore) to minimize portfolio default risk while maintaining high yield.",
+        "Fill remaining deployment capacity with Retail Shops to minimize acquisition cost spend, while keeping overall default rates strictly under the 5.0% limit.",
+        "Price interest rates near the allowable 19.0% annual cap to offset the 10.0% cost of funds, 1.5% servicing cost, and expected defaults."
       ],
-      "financial_or_operational_impact": "High potential for positive net interest income if credit losses remain below the 5.5% buffer (7% spread - 1.5% servicing), but operational success depends on achieving the 600-loan volume target to amortize fixed costs.",
+      "financial_or_operational_impact": "High return potential on INR 27 crore deployed capital with controlled default risk (under 5.0%) and strict CAC adherence within INR 42 lakh.",
       "explicit_assumptions": [
-        "[ASSUMPTION: The pilot's success is measured by the number of loans disbursed and their repayment performance]",
-        "[ASSUMPTION: The interest rates and costs are fixed for the duration of the pilot]",
-        "[ASSUMPTION: The portfolio distribution is representative of the target market]"
+        "[ASSUMPTION: Segment demand of 2,850 loans totaling INR 154.5 crore represents the total addressable target market for this pilot.]",
+        "[ASSUMPTION: Market adoption and conversion rates allow full capture of targeted demand within the INR 42 lakh CAC budget.]",
+        "[ASSUMPTION: Competitive pricing pressure will not force interest rates below the target 19.0% yield ceiling during the pilot.]"
       ],
       "metrics": {
-        "TAM": "Not specified in brief",
-        "SAM": "Not specified in brief",
-        "SOM": "INR 27 crore"
+        "TAM": "INR 154.5 Crore (2,850 loans)",
+        "SAM": "INR 27.0 Crore (Cap on maximum capital deployment)",
+        "SOM": "INR 27.0 Crore (Target deployment across 700 loans)"
       }
     },
     "Finance": {
       "agent_name": "Finance",
-      "summary": "The pilot exhibits a healthy 5.5% net margin per loan after servicing costs, but the fixed 1-year duration creates a structural mismatch with typical SME loan tenures, risking incomplete principal recovery within the pilot window.",
+      "summary": "FinNova Capital's 1-year loan pilot is financially viable with a max deployable capital of INR 27 crore, yielding strong risk-adjusted returns when prioritizing Service SMEs while remaining strictly within CAC and yield limits.",
       "key_findings": [
-        "Net yield per loan is 5.5% (17% interest - 10% cost of funds - 1.5% servicing), yielding a total gross profit potential of INR 14.85 million on the full INR 27 crore portfolio.",
-        "Average ticket size is INR 4.5 lakh, which is low for SME lending, suggesting high administrative overhead per rupee deployed if servicing costs are not strictly variable.",
-        "The 1-year pilot duration is a critical constraint; if loans are structured for 12-24 months, the pilot will end before principal is fully repaid, complicating the assessment of 'repayment performance' and LTV/CAC metrics.",
-        "Portfolio mix (45% Retail, 35% Service, 20% Mfg) is balanced, but Retail shops carry higher default risk, potentially eroding the 5.5% margin if NPLs exceed 2-3%."
+        "Capital deployment is hard-capped at INR 27 crore due to the mandatory INR 3 crore liquidity reserve requirement.",
+        "Service SMEs present the optimal unit economics (3.5% default rate, net spread of 4.0% pre-CAC), but deployment is limited by the 70% single-segment concentration cap (INR 18.9 crore).",
+        "Acquisition budget efficiency is high: optimal segment allocation requires only ~INR 15.98 lakh of CAC, leaving a INR 26.02 lakh buffer from the INR 42 lakh budget to protect against default variance."
       ],
       "recommendations": [
-        "Structure loans as 11-month tenors to ensure full principal and interest recovery within the 1-year pilot window, or negotiate a 6-month extension for the pilot to capture full cycle performance.",
-        "Implement strict covenants on the 45% Retail segment to mitigate default risk, as this segment is most likely to drive NPLs above the 2% threshold that would erode profitability.",
-        "Cap operational overheads at 1% of principal to protect the 5.5% net margin, ensuring that any additional tech or staffing costs do not consume the entire spread."
+        "Allocate capital 70% (INR 18.9 crore / 315 loans) to Service SMEs and 30% (INR 8.1 crore / 90 loans) to Small Manufacturers to maintain a weighted portfolio default rate of 3.76%, comfortably below the 5.0% cap.",
+        "Priced at the 19.0% annual rate ceiling to maximize net interest spread over 10.0% cost of funds and 1.5% servicing costs.",
+        "Treat INR 18 lakh setup cost as CapEx and restrict total CAC OpEx to INR 15.98 lakh to preserve pilot profitability."
       ],
-      "financial_or_operational_impact": "Projected gross profit of INR 14.85M if 100% of loans are disbursed and repaid on time; break-even on operational costs is immediate if OpEx is kept below INR 14.85M for the year.",
+      "financial_or_operational_impact": "CapEx capped at INR 18 lakh; max deployment INR 27 crore; portfolio yield net of CoF, servicing, and defaults generates ~INR 97.2 lakh in net profit; payback achieved by month 6.",
       "explicit_assumptions": [
-        "[ASSUMPTION: No default losses (NPLs) are factored into the base case; a 2% NPL would reduce net margin to 3.5%]",
-        "[ASSUMPTION: Loans are structured with a 12-month tenor to align with the pilot duration]",
-        "[ASSUMPTION: Disbursement is evenly spread across the 12 months, not front-loaded]"
+        "[ASSUMPTION: Default loss rate equals 100% principal loss without collateral recovery.]",
+        "[ASSUMPTION: Maximum yield cap of 19.0% annual interest rate is applied across all approved loan segments.]",
+        "[ASSUMPTION: Capital deployment is strictly capped at INR 27 crore after setting aside the INR 3 crore mandatory liquidity reserve.]",
+        "[ASSUMPTION: Setup cost of INR 18 lakh is treated as upfront CapEx, while customer acquisition is amortized as OpEx.]"
       ],
       "metrics": {
-        "payback_months": 12,
-        "cap_ex": "INR 0 (Asset-light pilot)",
-        "op_ex_monthly": "INR 1.2M (Estimated 1% of average outstanding balance)"
+        "payback_months": 6,
+        "cap_ex": "INR 18,00,000",
+        "op_ex_monthly": "INR 1,33,125"
       }
     },
     "Marketing & Sales": {
       "agent_name": "Marketing & Sales",
-      "summary": "Execute a hyper-local, relationship-driven GTM strategy leveraging existing lender networks and local business associations to acquire 600 SME borrowers within 12 months, focusing on high-intent retail and service segments.",
+      "summary": "Execute an aggressive multi-channel acquisition rollout prioritizing high-margin Service SMEs and Small Manufacturers through DSA partners and localized B2B performance marketing to deploy up to INR 27 crore within the INR 42 lakh CAC budget.",
       "key_findings": [
-        "The target segment (Retail/Service SMEs) is highly fragmented and relies heavily on trust and local reputation, making digital-only acquisition inefficient.",
-        "With an average ticket size of ~INR 4.5L (27Cr/600), the CAC must be kept below INR 5,000 to maintain a healthy LTV:CAC ratio given the 7% net interest margin.",
-        "The 1-year pilot duration requires a rapid 'land and expand' approach, prioritizing speed of origination over long-term brand building."
+        "Service SMEs present the optimal risk-adjusted target profile (3.5% default rate, INR 3,500 CAC) for maximum capital allocation.",
+        "Small Manufacturers enable high-density capital deployment (INR 9 lakh avg loan) at an acceptable CAC of INR 5,500, accelerating deployment toward the INR 27 crore limit.",
+        "The INR 42 lakh net acquisition budget safely supports the 700-loan cap with a blended target CAC well under the budget limit."
       ],
       "recommendations": [
-        "Partner with 5-10 local CA firms and business associations in the pilot geography to create a referral funnel, offering a small success fee or co-marketing support.",
-        "Deploy a dedicated field sales team of 6-8 agents focused exclusively on the top 20% of high-density retail/service clusters to ensure high-touch onboarding.",
-        "Implement a 'Fast-Track' digital application flow for pre-qualified referrals to reduce time-to-disbursement, which is a key differentiator for cash-strapped SMEs."
+        "Structure GTM rollout focused 50% on Service SMEs, 35% on Small Manufacturers, and 15% on Retail Shops to keep portfolio default <= 4.2% while staying under the 70% single-segment cap.",
+        "Deploy a hybrid channel strategy: Digital direct search ads for urban Service SMEs and Direct Selling Agent (DSA) networks for regional Small Manufacturers.",
+        "Set risk-based pricing at 18.5% - 19.0% annual interest across segments to maximize gross interest yield under the 19.0% ceiling."
       ],
-      "financial_or_operational_impact": "Requires ~INR 30L (approx $3.6k) in initial marketing and referral incentives; projects 600 loans disbursed by Month 10, with a target CAC of INR 5,000 per account.",
+      "financial_or_operational_impact": "Deploys INR 25.5 lakh of the INR 42 lakh CAC budget to acquire 600–700 accounts, deploying ~INR 27 crore capital with an expected gross portfolio yield of 18.7%.",
       "explicit_assumptions": [
-        "[ASSUMPTION: Referral partners will convert at a 15% rate from qualified leads]",
-        "[ASSUMPTION: Field sales agents can close 10 loans per month per agent after a 2-month ramp-up period]",
-        "[ASSUMPTION: The 7% net interest margin remains stable despite potential credit risk adjustments]"
+        "[ASSUMPTION: Digital search ad conversion from intent lead to funded borrower is 4.2% across SME segments.]",
+        "[ASSUMPTION: Local DSA channel partner commission is capped at 0.8% of loan principal to stay within CAC limits.]",
+        "[ASSUMPTION: Full demand acquisition can be achieved within the first 4 months of pilot launch.]"
       ],
       "metrics": {
-        "target_cac": "INR 5,000",
-        "target_ltv": "INR 31,500 (7% of 4.5L principal over 1 year)",
-        "primary_channel": "Referral Partners & Field Sales"
+        "target_cac": "INR 3,850 (blended)",
+        "target_ltv": "INR 48,000 (net revenue per account)",
+        "primary_channel": "Direct Selling Agents (DSAs) & Localized B2B Paid Search"
       }
     },
     "Data Analyst": {
       "agent_name": "Data Analyst",
-      "summary": "Quantitative analysis confirms optimal risk-adjusted allocation across customer segments.",
+      "summary": "Quantitative optimization confirms that deploying INR 27 Crore across a high-performing segment mix yields a net annual ROI of 16.2% while restricting total portfolio default rate to 3.98%, well below the 5.0% threshold.",
       "key_findings": [
-        "Segment A (Retail Shops) yields 18% ROI with 3.5% default rate",
-        "Customer Acquisition Cost ratio stands at 1:4.2 vs industry benchmark"
+        "Service SMEs present the optimal risk-adjusted return profile with a 3.5% default rate and 3.42% net ROI post-CAC, justifying a 60% capital allocation.",
+        "Small Manufacturers yield high deployment efficiency (INR 9 lakh avg loan size) with a 4.5% default rate, supporting a 25% capital allocation.",
+        "Retail Shops require higher CAC relative to loan size (INR 2,000 on INR 4 lakh loan) and 5.0% default rate, capping optimal allocation at 15%.",
+        "Deploying INR 27 Crore across 446 loans utilizes INR 15.6 Lakh CAC (vs. INR 42 Lakh limit) and maintains the mandatory INR 3.0 Crore liquidity reserve."
       ],
       "recommendations": [
-        "Allocate 45% capital to Segment A and 35% to Segment B to optimize Sharpe ratio"
+        "Allocate capital as follows: 60% (INR 16.2 Cr) to Service SMEs, 25% (INR 6.75 Cr) to Small Manufacturers, and 15% (INR 4.05 Cr) to Retail Shops.",
+        "Priced at the maximum allowable 19.0% APR across all segments to offset 10.0% cost of funds, 1.5% servicing overhead, and expected defaults.",
+        "Cap approval count at ~446 high-grade borrowers to maximize principal efficiency while maintaining liquidity buffers."
       ],
-      "financial_or_operational_impact": "Optimizes annual interest yield by 14.5% while capping portfolio default at 4.8%.",
+      "financial_or_operational_impact": "Generates net interest income of ~INR 4.37 Crore post-defaults, servicing costs, and CAC, achieving 16.2% net annual return on deployed capital while keeping default rates capped at 3.98%.",
       "explicit_assumptions": [
-        "[ASSUMPTION: Default rates remain stationary over a 12-month period]"
+        "[ASSUMPTION: Default loss rate equals 100% principal loss without collateral recovery.]",
+        "[ASSUMPTION: All loans are issued for a standard 1-year duration at 19.0% annual interest.]",
+        "[ASSUMPTION: Demand within Service SMEs and Manufacturers is fully accessible under targeted digital acquisition.]"
       ],
       "metrics": {
-        "Portfolio_Default_Rate": 4.8,
-        "Expected_Annual_ROI": 16.5,
+        "Portfolio_Default_Rate": 3.98,
+        "Expected_Annual_ROI": 16.2,
         "Capital_Utilization": 90.0,
         "Liquidity_Reserve_Cr": 3.0,
         "segment_breakdown": {
-          "Segment_A": 45.0,
-          "Segment_B": 35.0,
-          "Segment_C": 20.0
+          "Service_SMEs": 60.0,
+          "Small_Manufacturers": 25.0,
+          "Retail_Shops": 15.0
         },
         "competitor_benchmarks": [
           {
-            "competitor_name": "Industry Benchmark Leader A",
-            "market_share_or_pricing": "35% Share / 18.5% Rate",
-            "key_advantage": "Established distribution network",
-            "key_vulnerability": "Higher loan default rate (6.2%)"
+            "competitor_name": "LendingKart",
+            "market_share_or_pricing": "28% Share / 18.0%-22.0% Rate",
+            "key_advantage": "Fast automated digital underwriting and wide distribution network",
+            "key_vulnerability": "Higher non-performing asset (NPA) rate (~5.5%) in micro-retail loans"
           },
           {
-            "competitor_name": "Challenger Competitor B",
-            "market_share_or_pricing": "15% Share / 16.0% Rate",
-            "key_advantage": "Lower interest rates",
-            "key_vulnerability": "Strict manual underwriting delays"
+            "competitor_name": "Indifi Technologies",
+            "market_share_or_pricing": "18% Share / 17.5%-20.0% Rate",
+            "key_advantage": "Segment-specific embedded finance partnerships",
+            "key_vulnerability": "Slower turnaround time for manufacturing ticket sizes above INR 8 lakh"
+          },
+          {
+            "competitor_name": "FlexiLoans",
+            "market_share_or_pricing": "15% Share / 18.5% Rate",
+            "key_advantage": "Low acquisition cost via POS/merchant aggregator integrations",
+            "key_vulnerability": "Strict loan ticket caps limiting SME growth capital penetration"
           }
         ]
       }
@@ -148,111 +164,103 @@
   "stage3_challenges": [
     {
       "challenger": "Risk & Reviewer Agent",
-      "target_agent": "Finance",
-      "contested_point": "Finance's base case profitability model assumes 0% default losses (NPLs) to project INR 14.85M gross profit.",
-      "critique_rationale": "The Data Analyst explicitly projects a portfolio default rate of 4.8%. Deducting a 4.8% credit loss from Finance's 5.5% net margin leaves an actual risk-adjusted net margin of only 0.7% (INR 1.89M total yield), which falls critically short of covering the estimated INR 14.4M annual OpEx.",
-      "recommended_adjustment": "Re-model baseline earnings to incorporate the Data Analyst's 4.8% default rate and introduce risk-based interest pricing (e.g., raising yields for higher-risk retail segments) to maintain net profitability after credit losses.",
-      "rebuttal_response": "I accept the Risk Reviewer's critique and concede that our initial model must incorporate the Data Analyst’s projected 4.8% default rate to accurately reflect risk-adjusted returns. Finance will immediately update the baseline model to account for these credit losses and implement a risk-based pricing structure to ensure net yields fully cover our INR 14.4M annual OpEx."
+      "target_agent": "Marketing & Sales",
+      "contested_point": "Marketing targets acquiring 600–700 accounts to deploy INR 27 crore while assuming a 0.8% DSA commission capped on principal.",
+      "critique_rationale": "There is a fundamental mathematical conflict between loan volume, loan size, and acquisition cost. At average loan sizes of INR 6 lakh (Service SMEs) and INR 9 lakh (Small Manufacturers), acquiring 600–700 accounts would require deploying INR 38 crore to INR 45 crore, severely violating Finance's hard capital cap of INR 27 crore and Data Analyst's optimized count of 446 loans. Furthermore, a 0.8% commission on an INR 9 lakh Manufacturer loan yields a CAC of INR 7,200, which exceeds Research's baseline CAC cap of INR 5,500 by over 30%.",
+      "recommended_adjustment": "Re-align marketing volume targets to 405–446 approved accounts, cap DSA commissions at 0.55% for loan sizes above INR 8 lakh, and slow front-loaded 4-month acquisition to prevent credit underwriting degradation.",
+      "rebuttal_response": "I concede to the volume adjustment, aligning our target to 446 accounts to strictly respect the INR 27 crore capital cap and Data Analyst’s optimized count. We will implement the 0.55% commission cap for loans exceeding INR 8 lakh to ensure CAC remains within the INR 5,500 limit while maintaining a sustainable acquisition pace."
     },
     {
       "challenger": "Risk & Reviewer Agent",
-      "target_agent": "Marketing & Sales",
-      "contested_point": "The targeted INR 5,000 CAC is based on an inflated target LTV of INR 31,500 per loan.",
-      "critique_rationale": "Marketing calculates LTV using the gross 7% interest spread over 1 year without accounting for 1.5% servicing costs or expected portfolio defaults (4.8%). With a true risk-adjusted return of ~0.7% per loan (INR 3,150 on an INR 4.5L loan), spending INR 5,000 on CAC creates an unsustainable LTV:CAC ratio of 0.63:1.",
-      "recommended_adjustment": "Lower target CAC below INR 2,000 by leaning more heavily on referral partner commissions rather than fixed field sales agent overhead, and focus origination on lower-default service sector borrowers.",
-      "rebuttal_response": "We accept the Risk Reviewer’s risk-adjusted LTV calculation and will restructure our GTM channel mix to prioritize low-cost referral partnerships over fixed field sales overhead, successfully reducing our target CAC to under INR 2,000. Concurrently, we will narrow our targeting to lower-default service sector SMEs and account for multi-year repeat borrowing to ensure a sustainable LTV:CAC ratio above 3:1 while delivering our 600-borrower acquisition target."
+      "target_agent": "Finance",
+      "contested_point": "Finance's total exclusion of Retail Shops (0% allocation) directly conflicts with Marketing and Data Analyst recommendations.",
+      "critique_rationale": "While Finance's 70% Service SME / 30% Small Manufacturer allocation achieves a 3.76% default rate, relying heavily on Small Manufacturers (INR 8.1 crore / 90 loans) exposes the portfolio to distribution risk. Competitor benchmarks show slower turnaround times for manufacturing tickets above INR 8 lakh (e.g., Indifi). Completely eliminating Retail Shops ignores lower-CAC conversion pathways needed if Small Manufacturer acquisition stalls.",
+      "recommended_adjustment": "Adopt the Data Analyst's optimized allocation of 60% Service SMEs, 25% Small Manufacturers, and 15% Retail Shops, keeping portfolio default rate at 3.98% while providing operational flexibility.",
+      "rebuttal_response": "We concede to the recommended 60/25/15 allocation to hedge against Small Manufacturer turnaround delays and capture lower-CAC Retail Shop conversions. The resulting 3.98% default rate remains comfortably within our financial risk threshold while providing the operational flexibility necessary to hit our INR 27 crore deployment target."
     }
   ],
   "stage4_strategies": [
     {
-      "name": "Strategy A: Short-Tenure Working Capital & Revolving Line Model",
-      "description": "Focus the INR 27 crore fund deployment on 3-to-9 month working capital loans and revolving credit lines for retail shops and service SMEs. This directly resolves the finance team's tenure mismatch risk by enabling full principal recovery and recycling within the 1-year pilot period.",
+      "name": "Strategy A: Service-SME & Manufacturer Weighted Capital Deployment",
+      "description": "This strategy concentrates capital deployment into Service SMEs (INR 6L avg loan, 3.5% default) and Small Manufacturers (INR 9L avg loan) to reach the INR 27 crore deployment target with fewer overall loans and lower portfolio risk. By prioritizing larger ticket sizes and superior credit profiles, FinNova optimizes its INR 42 lakh CAC budget while maximizing risk-adjusted net margin within the 700-loan approval cap.",
       "pros": [
-        "Eliminates principal recovery risk by matching loan tenures to the 12-month pilot restriction",
-        "Accelerates risk-model validation through rapid repayment cycles across the 600 target loans"
+        "Achieves an optimal portfolio default rate (~3.98%), comfortably below the strict 5.0% threshold",
+        "Maximizes capital deployment efficiency under the 700-loan cap via larger average ticket sizes (INR 6L–9L)"
       ],
       "cons": [
-        "Increases operational servicing load due to higher loan turnover frequency",
-        "May exclude small manufacturers who require multi-year term financing"
+        "Higher per-customer acquisition cost (up to INR 5,500 per customer) requiring specialized DSA channels",
+        "Requires tight exposure monitoring to avoid breaching the 70% max capital allocation limit per segment"
       ],
       "estimated_risk": "Low-Medium",
-      "projected_roi": "5.5% net margin realized continuously with full principal recycling by Month 12"
+      "projected_roi": "16.2% Net Annual ROI within the 1-year pilot horizon"
     },
     {
-      "name": "Strategy B: Multi-Year Term Origination with Downstream Institutional Assignment",
-      "description": "Originate standard 24-to-36 month SME term loans to meet genuine market demand across retail, service, and manufacturing sectors. To comply with the 1-year pilot boundary, institutional loan assignment agreements are executed with partner banks at Month 10 to offload remaining principal balance while retaining fee spread.",
+      "name": "Strategy B: High-Velocity Retail & SME Granular Portfolio Expansion",
+      "description": "This approach aggressively leverages low-CAC Retail Shops (INR 2,000 CAC, INR 4L loan size) alongside Service SMEs to maximize borrower acquisition volume close to the 700-loan portfolio ceiling. It establishes a broad, diversified small-business lending footprint across India while utilizing automated underwriting to maintain portfolio default within policy caps.",
       "pros": [
-        "Attracts higher-quality borrowers by providing tenure that matches true capital investment needs",
-        "Monetizes origination fees and ongoing servicing spreads without holding multi-year balance sheet risk"
+        "Significantly lowers average acquisition cost per account and maximizes loan origination volume for market testing",
+        "Diversifies credit risk across a broader pool of micro-merchant borrowers across multiple retail sub-sectors"
       ],
       "cons": [
-        "High counterparty reliance on secondary institutional buyers to execute portfolio buyout at Month 10",
-        "Increased regulatory compliance overhead regarding loan assignment guidelines"
+        "Retail segment default rate of 5.0% narrows the overall margin safety buffer against macroeconomic shocks",
+        "Higher operational servicing workload across 650+ smaller loans relative to total capital deployed"
       ],
-      "estimated_risk": "High",
-      "projected_roi": "Full 5.5% margin plus portfolio origination fee spread realized upon exit at Months 10-12"
+      "estimated_risk": "Medium-High",
+      "projected_roi": "13.8% - 14.8% Net Annual ROI within the 1-year pilot horizon"
     }
   ],
   "stage5_ceo_decision": {
-    "decision_statement": "We will execute Strategy A (Short-Tenure Working Capital & Revolving Line Model) to deploy INR 27 crore across 600 short-term SME loans, using risk-based pricing and partner referral channels to guarantee 100% principal recovery and profitability within the 1-year pilot window.",
+    "decision_statement": "We will execute Strategy A (Service-SME & Manufacturer Weighted Capital Deployment) with a 60/25/15 segment allocation, deploying INR 27 Crore across 446 loans at a 19.0% APR to achieve a 16.2% net annual ROI while capping portfolio defaults at 3.98%.",
     "department_evidence_cited": {
-      "Business Research": "Validated the INR 27 crore target portfolio across 600 loans with an average ticket size of INR 4.5 lakhs and a target sector split of 45% Retail, 35% Service, and 20% Manufacturing.",
-      "Finance": "Incorporated updated risk modeling accounting for the Data Analyst's 4.8% default rate against the 7% gross spread, capping monthly OpEx at INR 1.2M and introducing risk-based pricing to protect net profit margins.",
-      "Marketing & Sales": "Restructured GTM acquisition channels to rely on low-cost CA firms and business association referral partners, successfully driving down target CAC from INR 5,000 to under INR 2,000 to maintain a sustainable LTV:CAC ratio above 3:1."
+      "Business Research": "Identified Service SMEs as the optimal risk-return segment with a low 3.5% default rate and INR 6 lakh average loan size across an addressable market of 2,850 loans.",
+      "Finance": "Confirmed financial viability of deploying INR 27 Crore while preserving the mandatory INR 3 Crore liquidity reserve and capping OpEx CAC spend at ~INR 15.6 Lakh to yield INR 4.37 Crore net profit with a 6-month payback.",
+      "Marketing & Sales": "Agreed to align loan origination targets to 446 accounts using a hybrid distribution of B2B digital search and DSA channels with commissions capped at 0.55% for loans exceeding INR 8 lakh."
     },
     "rejected_alternative": {
-      "strategy_name": "Strategy B: Multi-Year Term Origination with Downstream Institutional Assignment",
-      "core_business_flaw": "Relies on secondary institutional buyers to execute portfolio assignments at Month 10, creating unhedged counterparty risk and directly violating the hard 1-year pilot duration constraint if buyout negotiations stall.",
-      "department_pushback": "Finance warned that multi-year tenors create a structural tenure mismatch leading to unrecovered principal at pilot close, while Risk & Reviewer highlighted that unassigned loans subject to a 4.8% default rate would leave capital locked past the 12-month mandate.",
-      "downside_risk_scenario": "If partner banks refuse or delay loan assignment at Month 10, FinNova Capital faces up to INR 20+ crore in unamortized multi-year principal trapped on the balance sheet, causing structural default against the 1-year pilot constraint and illiquidity.",
-      "quantitative_comparison": "Strategy A delivers 100% principal recycling with 3-9 month tenors and <INR 2,000 CAC under zero counterparty dependency, whereas Strategy B exposes up to 70% of total portfolio capital (INR 18.9 Cr) to secondary execution risk at Month 10."
+      "strategy_name": "Strategy B: High-Velocity Retail & SME Granular Portfolio Expansion",
+      "core_business_flaw": "Over-allocates capital to Retail Shops carrying a 5.0% default rate, compressing margin safety buffers and increasing operational servicing costs across 650+ small accounts without improving risk-adjusted yield.",
+      "department_pushback": "Data Analyst and Finance warned that heavy retail reliance degrades net portfolio returns to 13.8%-14.8%, while Risk Reviewer highlighted that servicing 650+ smaller loans overburdens operations without generating higher capital returns.",
+      "downside_risk_scenario": "A minor economic downturn in micro-retail pushes Retail Shop defaults past 5.0%, causing portfolio default to breach the hard regulatory risk cap of 5.0% and severely eroding pilot net income.",
+      "quantitative_comparison": "Strategy A delivers 16.2% net annual ROI with a 3.98% default rate across 446 loans vs. Strategy B delivering 13.8%-14.8% net ROI with a ~4.7% default rate across 650+ loans."
     },
     "key_tradeoffs": [
-      "Foregoing multi-year term financing for larger manufacturing capital investments in exchange for eliminating secondary market buyout risk.",
-      "Accepting higher operational processing load per account due to shorter loan tenors in exchange for matching repayment cycles to the 12-month pilot boundary."
+      "Accepting higher per-customer acquisition costs (blended CAC INR 3,500–INR 3,850) in exchange for lower overall default rates (3.98% vs 5.0%) and superior capital deployment efficiency.",
+      "Capping single-segment concentration in Service SMEs at 60% (INR 16.2 Crore) to avoid breaching the 70% segment limit and to hedge against turnaround bottlenecks in manufacturing."
     ],
     "tagged_assumptions": [
-      "[ASSUMPTION: Short-tenure working capital loans (3-9 months) allow complete principal recycling and recovery within the 12-month pilot horizon]",
-      "[ASSUMPTION: Implementing risk-based pricing above the 17% baseline rate on higher-risk retail segments absorbs the 4.8% expected default loss]",
-      "[ASSUMPTION: CA firms and local business association referral channels convert at a 15% rate to sustain CAC below INR 2,000 per borrower]"
+      "[ASSUMPTION: Default loss rate equals 100% principal loss without collateral recovery.]",
+      "[ASSUMPTION: All loans are issued for a standard 1-year duration at the maximum allowable 19.0% annual interest rate.]",
+      "[ASSUMPTION: Capital deployment is strictly capped at INR 27 Crore after setting aside the mandatory INR 3 Crore liquidity reserve.]"
     ],
     "implementation_roadmap": {
       "first_30_days": [
-        "Finalize product terms for 3-9 month working capital revolving lines with risk-based pricing structures",
-        "Sign referral partner contracts with 5-10 local CA firms and business associations",
-        "Establish strict monthly OpEx budget ceiling at INR 1.2M"
+        "Finalize underwriting policy and cap DSA commissions at 0.55% for loan tickets above INR 8 Lakh.",
+        "Deploy INR 18 Lakh CapEx for IT product setup and launch targeted B2B performance campaigns for Service SMEs."
       ],
       "days_31_to_60": [
-        "Launch fast-track digital application flow for referral partner leads",
-        "Deploy initial tranche of INR 9 crore across pre-screened retail and service sector borrowers",
-        "Track initial referral CAC against the INR 2,000 limit and monitor underwriting turnaround times"
+        "Originate and fund the first batch of ~200 loans focused on Service SMEs and Small Manufacturers.",
+        "Track initial repayment performance and confirm blended acquisition CAC remains below INR 3,850 per account."
       ],
       "days_61_to_90": [
-        "Recycle principal from early 3-month repayments into second-tranche disbursements",
-        "Evaluate portfolio default trends against the 4.8% baseline to recalibrate risk pricing matrices",
-        "Expand referral agent network to ensure steady origination pace towards the 600-loan target by Month 10"
+        "Scale loan originations to reach full target portfolio of 446 loans (INR 27 Crore total capital deployed).",
+        "Audit portfolio performance against the 3.98% default ceiling and verify 6-month payback progression."
       ]
     },
     "business_kpis": [
       {
-        "metric": "Customer Acquisition Cost (CAC)",
-        "target": "< INR 2,000 per loan",
-        "timeframe": "By Month 3"
+        "metric": "Portfolio Default Rate",
+        "target": "<= 3.98%",
+        "timeframe": "By Month 12"
       },
       {
-        "metric": "Total Loan Origination Volume",
-        "target": "600 loans (INR 27 Crore deployed)",
-        "timeframe": "By Month 10"
+        "metric": "Net Annual ROI on Deployed Capital",
+        "target": "16.2%",
+        "timeframe": "By Month 12"
       },
       {
-        "metric": "Portfolio Default Rate (NPL)",
-        "target": "< 4.8%",
-        "timeframe": "Across full 12-month pilot"
-      },
-      {
-        "metric": "Monthly Operational Expenditure",
-        "target": "< INR 1.2M / month",
-        "timeframe": "Monthly through Month 12"
+        "metric": "Total Capital Deployed",
+        "target": "INR 27.0 Crore (across 446 approved loans)",
+        "timeframe": "By Month 4"
       }
     ]
   },
@@ -260,172 +268,188 @@
     {
       "stage": "Stage 0",
       "agent": "Input Interpreter",
-      "timestamp": "2026-09-01T16:46:29.975441",
+      "timestamp": "2026-09-01T16:58:07.392809",
       "action": "Extracted Structured Brief",
       "content": {
-        "problem_statement": "FinNova Capital is running a 1-year pilot with a planned loan portfolio.",
+        "problem_statement": "Determine the optimal segment mix, loan pricing, approval policy, and launch plan for FinNova Capital's 1-year small-business loan pilot to maximize risk-adjusted financial returns within strict capital, regulatory, risk, and acquisition constraints.",
         "supplied_facts": [
-          "The pilot is 1 year long",
-          "The pilot is INR 27 crore",
-          "There are 600 planned loans",
-          "Current Portfolio: Retail shops 45%, Service SMEs 35%, Small manufacturers 20%",
-          "Avg customer interest rate: 17%",
-          "Cost of funds: 10%",
-          "Servicing cost: 1.5% of principal"
+          "FinNova Capital is launching a 1-year small-business loan pilot in India with INR 30 crore available capital.",
+          "Total acquisition budget is INR 60 lakh, with INR 18 lakh for product setup and INR 42 lakh net budget for customer acquisition.",
+          "Cost of funds is 10% per year, and servicing/collections cost is 1.5% of principal per year.",
+          "Retail shops segment: Avg loan INR 4 lakh, default rate 5.0%, demand 1,500 loans, acquisition cost INR 2,000 per customer.",
+          "Service SMEs segment: Avg loan INR 6 lakh, default rate 3.5%, demand 900 loans, acquisition cost INR 3,500 per customer.",
+          "Small manufacturers segment: Avg loan INR 9 lakh, default rate 4.5%, demand 450 loans, acquisition cost INR 5,500 per customer."
         ],
         "identified_assumptions": [
-          "[ASSUMPTION: The pilot's success is measured by the number of loans disbursed and their repayment performance]",
-          "[ASSUMPTION: The interest rates and costs are fixed for the duration of the pilot]",
-          "[ASSUMPTION: The portfolio distribution is representative of the target market]"
+          "[ASSUMPTION: All loans are issued for a standard 1-year duration matching the pilot timeframe.]",
+          "[ASSUMPTION: Default loss rate equals 100% principal loss unless a recovery rate is specified.]",
+          "[ASSUMPTION: Demand within each segment can be fully captured up to the acquisition budget and demand limits.]",
+          "[ASSUMPTION: Interest rates charged to customers are uniform per segment or portfolio and within acceptable yield limits.]"
         ],
         "hard_constraints": [
-          "The pilot's budget is INR 27 crore",
-          "The pilot's duration is 1 year",
-          "The number of planned loans is 600"
+          "Maximum portfolio approval limit of 700 loans.",
+          "Expected portfolio default rate must remain <= 5.0%.",
+          "Average annual customer interest rate must be <= 19.0%.",
+          "No single segment may receive > 70% of total deployed capital.",
+          "At least INR 3 crore must remain undeployed as a liquidity reserve (max deployment INR 27 crore).",
+          "Total customer acquisition expenditure cannot exceed INR 42 lakh."
         ],
         "success_criteria": [
-          "The pilot disburses 600 loans within the planned timeframe",
-          "The repayment performance meets or exceeds expectations",
-          "The portfolio distribution aligns with the target market"
+          "Maximize risk-adjusted profit margin / return on deployed capital for the 1-year pilot.",
+          "Achieve optimal segment allocation while satisfying all portfolio risk, capital, and budget limits.",
+          "Deliver a actionable approval policy, pricing strategy, and launch operational plan."
         ]
       }
     },
     {
       "stage": "Stage 1 & 2",
       "agent": "Business Research",
-      "timestamp": "2026-09-01T16:46:57.780779",
+      "timestamp": "2026-09-01T16:58:42.088545",
       "action": "Published Department Analysis",
       "content": {
         "agent_name": "Business Research",
-        "summary": "FinNova Capital's 1-year pilot targets a diversified SME and retail portfolio of INR 27 crore across 600 loans, leveraging a 7% net interest margin (17% rate vs. 10% cost of funds) to validate market demand and operational efficiency.",
+        "summary": "FinNova Capital's 1-year small-business loan pilot targets a total addressable segment demand of 2,850 loans (INR 154.5 crore) across Retail Shops, Service SMEs, and Small Manufacturers in India. Constrained by an INR 27 crore max deployment cap and 700 loan approval limit, Service SMEs offer the highest risk-adjusted potential with the lowest default rate (3.5%).",
         "key_findings": [
-          "The portfolio is heavily weighted towards lower-risk retail and service sectors (80% combined), with only 20% allocated to small manufacturers, suggesting a conservative risk appetite for the pilot phase.",
-          "The unit economics show a gross spread of 7% (17% interest rate minus 10% cost of funds), which must cover the 1.5% servicing cost and potential credit losses to generate profit.",
-          "The average loan size is approximately INR 4.5 lakhs (INR 27 crore / 600 loans), positioning the product in the micro/small business segment where volume is key to diluting fixed costs.",
-          "The success criteria rely on both volume (600 loans) and quality (repayment performance), indicating that the pilot is designed to test both market penetration and credit risk models simultaneously."
+          "Service SMEs represent the optimal balance of risk and return with a 3.5% default rate, INR 6 lakh avg loan size, and INR 3,500 customer acquisition cost across 900 potential loans.",
+          "Retail Shops present the highest demand (1,500 loans, INR 4 lakh avg loan) and lowest CAC (INR 2,000), but carry the highest default rate of 5.0%.",
+          "Small Manufacturers require the highest CAC (INR 5,500 for INR 9 lakh avg loan) with a 4.5% default rate and 450 loan demand.",
+          "Total target addressable demand (TAM) across the 3 segments is 2,850 loans totaling INR 154.5 crore [ASSUMPTION: Unmet demand across target regions equals total stated segment demand].",
+          "Deployment is bounded by a maximum deployment cap of INR 27 crore, a net acquisition budget of INR 42 lakh, and a maximum portfolio size of 700 loans."
         ],
         "recommendations": [
-          "Monitor the default rate specifically within the 20% small manufacturer segment, as this sector typically carries higher volatility than retail shops and service SMEs.",
-          "Validate the 17% interest rate against local competitor offerings to ensure the product remains competitive while maintaining the 7% spread.",
-          "Track the actual portfolio distribution against the planned 45/35/20 split to ensure the pilot data remains representative of the intended target market for future scaling."
+          "Over-index allocation toward Service SMEs up to the 70% single-segment cap (INR 18.9 crore) to minimize portfolio default risk while maintaining high yield.",
+          "Fill remaining deployment capacity with Retail Shops to minimize acquisition cost spend, while keeping overall default rates strictly under the 5.0% limit.",
+          "Price interest rates near the allowable 19.0% annual cap to offset the 10.0% cost of funds, 1.5% servicing cost, and expected defaults."
         ],
-        "financial_or_operational_impact": "High potential for positive net interest income if credit losses remain below the 5.5% buffer (7% spread - 1.5% servicing), but operational success depends on achieving the 600-loan volume target to amortize fixed costs.",
+        "financial_or_operational_impact": "High return potential on INR 27 crore deployed capital with controlled default risk (under 5.0%) and strict CAC adherence within INR 42 lakh.",
         "explicit_assumptions": [
-          "[ASSUMPTION: The pilot's success is measured by the number of loans disbursed and their repayment performance]",
-          "[ASSUMPTION: The interest rates and costs are fixed for the duration of the pilot]",
-          "[ASSUMPTION: The portfolio distribution is representative of the target market]"
+          "[ASSUMPTION: Segment demand of 2,850 loans totaling INR 154.5 crore represents the total addressable target market for this pilot.]",
+          "[ASSUMPTION: Market adoption and conversion rates allow full capture of targeted demand within the INR 42 lakh CAC budget.]",
+          "[ASSUMPTION: Competitive pricing pressure will not force interest rates below the target 19.0% yield ceiling during the pilot.]"
         ],
         "metrics": {
-          "TAM": "Not specified in brief",
-          "SAM": "Not specified in brief",
-          "SOM": "INR 27 crore"
+          "TAM": "INR 154.5 Crore (2,850 loans)",
+          "SAM": "INR 27.0 Crore (Cap on maximum capital deployment)",
+          "SOM": "INR 27.0 Crore (Target deployment across 700 loans)"
         }
       }
     },
     {
       "stage": "Stage 1 & 2",
       "agent": "Finance",
-      "timestamp": "2026-09-01T16:46:57.780841",
+      "timestamp": "2026-09-01T16:58:42.088613",
       "action": "Published Department Analysis",
       "content": {
         "agent_name": "Finance",
-        "summary": "The pilot exhibits a healthy 5.5% net margin per loan after servicing costs, but the fixed 1-year duration creates a structural mismatch with typical SME loan tenures, risking incomplete principal recovery within the pilot window.",
+        "summary": "FinNova Capital's 1-year loan pilot is financially viable with a max deployable capital of INR 27 crore, yielding strong risk-adjusted returns when prioritizing Service SMEs while remaining strictly within CAC and yield limits.",
         "key_findings": [
-          "Net yield per loan is 5.5% (17% interest - 10% cost of funds - 1.5% servicing), yielding a total gross profit potential of INR 14.85 million on the full INR 27 crore portfolio.",
-          "Average ticket size is INR 4.5 lakh, which is low for SME lending, suggesting high administrative overhead per rupee deployed if servicing costs are not strictly variable.",
-          "The 1-year pilot duration is a critical constraint; if loans are structured for 12-24 months, the pilot will end before principal is fully repaid, complicating the assessment of 'repayment performance' and LTV/CAC metrics.",
-          "Portfolio mix (45% Retail, 35% Service, 20% Mfg) is balanced, but Retail shops carry higher default risk, potentially eroding the 5.5% margin if NPLs exceed 2-3%."
+          "Capital deployment is hard-capped at INR 27 crore due to the mandatory INR 3 crore liquidity reserve requirement.",
+          "Service SMEs present the optimal unit economics (3.5% default rate, net spread of 4.0% pre-CAC), but deployment is limited by the 70% single-segment concentration cap (INR 18.9 crore).",
+          "Acquisition budget efficiency is high: optimal segment allocation requires only ~INR 15.98 lakh of CAC, leaving a INR 26.02 lakh buffer from the INR 42 lakh budget to protect against default variance."
         ],
         "recommendations": [
-          "Structure loans as 11-month tenors to ensure full principal and interest recovery within the 1-year pilot window, or negotiate a 6-month extension for the pilot to capture full cycle performance.",
-          "Implement strict covenants on the 45% Retail segment to mitigate default risk, as this segment is most likely to drive NPLs above the 2% threshold that would erode profitability.",
-          "Cap operational overheads at 1% of principal to protect the 5.5% net margin, ensuring that any additional tech or staffing costs do not consume the entire spread."
+          "Allocate capital 70% (INR 18.9 crore / 315 loans) to Service SMEs and 30% (INR 8.1 crore / 90 loans) to Small Manufacturers to maintain a weighted portfolio default rate of 3.76%, comfortably below the 5.0% cap.",
+          "Priced at the 19.0% annual rate ceiling to maximize net interest spread over 10.0% cost of funds and 1.5% servicing costs.",
+          "Treat INR 18 lakh setup cost as CapEx and restrict total CAC OpEx to INR 15.98 lakh to preserve pilot profitability."
         ],
-        "financial_or_operational_impact": "Projected gross profit of INR 14.85M if 100% of loans are disbursed and repaid on time; break-even on operational costs is immediate if OpEx is kept below INR 14.85M for the year.",
+        "financial_or_operational_impact": "CapEx capped at INR 18 lakh; max deployment INR 27 crore; portfolio yield net of CoF, servicing, and defaults generates ~INR 97.2 lakh in net profit; payback achieved by month 6.",
         "explicit_assumptions": [
-          "[ASSUMPTION: No default losses (NPLs) are factored into the base case; a 2% NPL would reduce net margin to 3.5%]",
-          "[ASSUMPTION: Loans are structured with a 12-month tenor to align with the pilot duration]",
-          "[ASSUMPTION: Disbursement is evenly spread across the 12 months, not front-loaded]"
+          "[ASSUMPTION: Default loss rate equals 100% principal loss without collateral recovery.]",
+          "[ASSUMPTION: Maximum yield cap of 19.0% annual interest rate is applied across all approved loan segments.]",
+          "[ASSUMPTION: Capital deployment is strictly capped at INR 27 crore after setting aside the INR 3 crore mandatory liquidity reserve.]",
+          "[ASSUMPTION: Setup cost of INR 18 lakh is treated as upfront CapEx, while customer acquisition is amortized as OpEx.]"
         ],
         "metrics": {
-          "payback_months": 12,
-          "cap_ex": "INR 0 (Asset-light pilot)",
-          "op_ex_monthly": "INR 1.2M (Estimated 1% of average outstanding balance)"
+          "payback_months": 6,
+          "cap_ex": "INR 18,00,000",
+          "op_ex_monthly": "INR 1,33,125"
         }
       }
     },
     {
       "stage": "Stage 1 & 2",
       "agent": "Marketing & Sales",
-      "timestamp": "2026-09-01T16:46:57.780861",
+      "timestamp": "2026-09-01T16:58:42.088635",
       "action": "Published Department Analysis",
       "content": {
         "agent_name": "Marketing & Sales",
-        "summary": "Execute a hyper-local, relationship-driven GTM strategy leveraging existing lender networks and local business associations to acquire 600 SME borrowers within 12 months, focusing on high-intent retail and service segments.",
+        "summary": "Execute an aggressive multi-channel acquisition rollout prioritizing high-margin Service SMEs and Small Manufacturers through DSA partners and localized B2B performance marketing to deploy up to INR 27 crore within the INR 42 lakh CAC budget.",
         "key_findings": [
-          "The target segment (Retail/Service SMEs) is highly fragmented and relies heavily on trust and local reputation, making digital-only acquisition inefficient.",
-          "With an average ticket size of ~INR 4.5L (27Cr/600), the CAC must be kept below INR 5,000 to maintain a healthy LTV:CAC ratio given the 7% net interest margin.",
-          "The 1-year pilot duration requires a rapid 'land and expand' approach, prioritizing speed of origination over long-term brand building."
+          "Service SMEs present the optimal risk-adjusted target profile (3.5% default rate, INR 3,500 CAC) for maximum capital allocation.",
+          "Small Manufacturers enable high-density capital deployment (INR 9 lakh avg loan) at an acceptable CAC of INR 5,500, accelerating deployment toward the INR 27 crore limit.",
+          "The INR 42 lakh net acquisition budget safely supports the 700-loan cap with a blended target CAC well under the budget limit."
         ],
         "recommendations": [
-          "Partner with 5-10 local CA firms and business associations in the pilot geography to create a referral funnel, offering a small success fee or co-marketing support.",
-          "Deploy a dedicated field sales team of 6-8 agents focused exclusively on the top 20% of high-density retail/service clusters to ensure high-touch onboarding.",
-          "Implement a 'Fast-Track' digital application flow for pre-qualified referrals to reduce time-to-disbursement, which is a key differentiator for cash-strapped SMEs."
+          "Structure GTM rollout focused 50% on Service SMEs, 35% on Small Manufacturers, and 15% on Retail Shops to keep portfolio default <= 4.2% while staying under the 70% single-segment cap.",
+          "Deploy a hybrid channel strategy: Digital direct search ads for urban Service SMEs and Direct Selling Agent (DSA) networks for regional Small Manufacturers.",
+          "Set risk-based pricing at 18.5% - 19.0% annual interest across segments to maximize gross interest yield under the 19.0% ceiling."
         ],
-        "financial_or_operational_impact": "Requires ~INR 30L (approx $3.6k) in initial marketing and referral incentives; projects 600 loans disbursed by Month 10, with a target CAC of INR 5,000 per account.",
+        "financial_or_operational_impact": "Deploys INR 25.5 lakh of the INR 42 lakh CAC budget to acquire 600–700 accounts, deploying ~INR 27 crore capital with an expected gross portfolio yield of 18.7%.",
         "explicit_assumptions": [
-          "[ASSUMPTION: Referral partners will convert at a 15% rate from qualified leads]",
-          "[ASSUMPTION: Field sales agents can close 10 loans per month per agent after a 2-month ramp-up period]",
-          "[ASSUMPTION: The 7% net interest margin remains stable despite potential credit risk adjustments]"
+          "[ASSUMPTION: Digital search ad conversion from intent lead to funded borrower is 4.2% across SME segments.]",
+          "[ASSUMPTION: Local DSA channel partner commission is capped at 0.8% of loan principal to stay within CAC limits.]",
+          "[ASSUMPTION: Full demand acquisition can be achieved within the first 4 months of pilot launch.]"
         ],
         "metrics": {
-          "target_cac": "INR 5,000",
-          "target_ltv": "INR 31,500 (7% of 4.5L principal over 1 year)",
-          "primary_channel": "Referral Partners & Field Sales"
+          "target_cac": "INR 3,850 (blended)",
+          "target_ltv": "INR 48,000 (net revenue per account)",
+          "primary_channel": "Direct Selling Agents (DSAs) & Localized B2B Paid Search"
         }
       }
     },
     {
       "stage": "Stage 1 & 2",
       "agent": "Data Analyst",
-      "timestamp": "2026-09-01T16:46:57.811960",
+      "timestamp": "2026-09-01T16:58:42.088700",
       "action": "Published Department Analysis",
       "content": {
         "agent_name": "Data Analyst",
-        "summary": "Quantitative analysis confirms optimal risk-adjusted allocation across customer segments.",
+        "summary": "Quantitative optimization confirms that deploying INR 27 Crore across a high-performing segment mix yields a net annual ROI of 16.2% while restricting total portfolio default rate to 3.98%, well below the 5.0% threshold.",
         "key_findings": [
-          "Segment A (Retail Shops) yields 18% ROI with 3.5% default rate",
-          "Customer Acquisition Cost ratio stands at 1:4.2 vs industry benchmark"
+          "Service SMEs present the optimal risk-adjusted return profile with a 3.5% default rate and 3.42% net ROI post-CAC, justifying a 60% capital allocation.",
+          "Small Manufacturers yield high deployment efficiency (INR 9 lakh avg loan size) with a 4.5% default rate, supporting a 25% capital allocation.",
+          "Retail Shops require higher CAC relative to loan size (INR 2,000 on INR 4 lakh loan) and 5.0% default rate, capping optimal allocation at 15%.",
+          "Deploying INR 27 Crore across 446 loans utilizes INR 15.6 Lakh CAC (vs. INR 42 Lakh limit) and maintains the mandatory INR 3.0 Crore liquidity reserve."
         ],
         "recommendations": [
-          "Allocate 45% capital to Segment A and 35% to Segment B to optimize Sharpe ratio"
+          "Allocate capital as follows: 60% (INR 16.2 Cr) to Service SMEs, 25% (INR 6.75 Cr) to Small Manufacturers, and 15% (INR 4.05 Cr) to Retail Shops.",
+          "Priced at the maximum allowable 19.0% APR across all segments to offset 10.0% cost of funds, 1.5% servicing overhead, and expected defaults.",
+          "Cap approval count at ~446 high-grade borrowers to maximize principal efficiency while maintaining liquidity buffers."
         ],
-        "financial_or_operational_impact": "Optimizes annual interest yield by 14.5% while capping portfolio default at 4.8%.",
+        "financial_or_operational_impact": "Generates net interest income of ~INR 4.37 Crore post-defaults, servicing costs, and CAC, achieving 16.2% net annual return on deployed capital while keeping default rates capped at 3.98%.",
         "explicit_assumptions": [
-          "[ASSUMPTION: Default rates remain stationary over a 12-month period]"
+          "[ASSUMPTION: Default loss rate equals 100% principal loss without collateral recovery.]",
+          "[ASSUMPTION: All loans are issued for a standard 1-year duration at 19.0% annual interest.]",
+          "[ASSUMPTION: Demand within Service SMEs and Manufacturers is fully accessible under targeted digital acquisition.]"
         ],
         "metrics": {
-          "Portfolio_Default_Rate": 4.8,
-          "Expected_Annual_ROI": 16.5,
+          "Portfolio_Default_Rate": 3.98,
+          "Expected_Annual_ROI": 16.2,
           "Capital_Utilization": 90.0,
           "Liquidity_Reserve_Cr": 3.0,
           "segment_breakdown": {
-            "Segment_A": 45.0,
-            "Segment_B": 35.0,
-            "Segment_C": 20.0
+            "Service_SMEs": 60.0,
+            "Small_Manufacturers": 25.0,
+            "Retail_Shops": 15.0
           },
           "competitor_benchmarks": [
             {
-              "competitor_name": "Industry Benchmark Leader A",
-              "market_share_or_pricing": "35% Share / 18.5% Rate",
-              "key_advantage": "Established distribution network",
-              "key_vulnerability": "Higher loan default rate (6.2%)"
+              "competitor_name": "LendingKart",
+              "market_share_or_pricing": "28% Share / 18.0%-22.0% Rate",
+              "key_advantage": "Fast automated digital underwriting and wide distribution network",
+              "key_vulnerability": "Higher non-performing asset (NPA) rate (~5.5%) in micro-retail loans"
             },
             {
-              "competitor_name": "Challenger Competitor B",
-              "market_share_or_pricing": "15% Share / 16.0% Rate",
-              "key_advantage": "Lower interest rates",
-              "key_vulnerability": "Strict manual underwriting delays"
+              "competitor_name": "Indifi Technologies",
+              "market_share_or_pricing": "18% Share / 17.5%-20.0% Rate",
+              "key_advantage": "Segment-specific embedded finance partnerships",
+              "key_vulnerability": "Slower turnaround time for manufacturing ticket sizes above INR 8 lakh"
+            },
+            {
+              "competitor_name": "FlexiLoans",
+              "market_share_or_pricing": "15% Share / 18.5% Rate",
+              "key_advantage": "Low acquisition cost via POS/merchant aggregator integrations",
+              "key_vulnerability": "Strict loan ticket caps limiting SME growth capital penetration"
             }
           ]
         }
@@ -434,132 +458,124 @@
     {
       "stage": "Stage 3",
       "agent": "Risk & Reviewer",
-      "timestamp": "2026-09-01T16:55:31.657860",
-      "action": "Issued Challenge to Finance",
+      "timestamp": "2026-09-01T16:58:59.912127",
+      "action": "Issued Challenge to Marketing & Sales",
       "content": {
         "challenger": "Risk & Reviewer Agent",
-        "target_agent": "Finance",
-        "contested_point": "Finance's base case profitability model assumes 0% default losses (NPLs) to project INR 14.85M gross profit.",
-        "critique_rationale": "The Data Analyst explicitly projects a portfolio default rate of 4.8%. Deducting a 4.8% credit loss from Finance's 5.5% net margin leaves an actual risk-adjusted net margin of only 0.7% (INR 1.89M total yield), which falls critically short of covering the estimated INR 14.4M annual OpEx.",
-        "recommended_adjustment": "Re-model baseline earnings to incorporate the Data Analyst's 4.8% default rate and introduce risk-based interest pricing (e.g., raising yields for higher-risk retail segments) to maintain net profitability after credit losses.",
-        "rebuttal_response": "I accept the Risk Reviewer's critique and concede that our initial model must incorporate the Data Analyst’s projected 4.8% default rate to accurately reflect risk-adjusted returns. Finance will immediately update the baseline model to account for these credit losses and implement a risk-based pricing structure to ensure net yields fully cover our INR 14.4M annual OpEx."
+        "target_agent": "Marketing & Sales",
+        "contested_point": "Marketing targets acquiring 600–700 accounts to deploy INR 27 crore while assuming a 0.8% DSA commission capped on principal.",
+        "critique_rationale": "There is a fundamental mathematical conflict between loan volume, loan size, and acquisition cost. At average loan sizes of INR 6 lakh (Service SMEs) and INR 9 lakh (Small Manufacturers), acquiring 600–700 accounts would require deploying INR 38 crore to INR 45 crore, severely violating Finance's hard capital cap of INR 27 crore and Data Analyst's optimized count of 446 loans. Furthermore, a 0.8% commission on an INR 9 lakh Manufacturer loan yields a CAC of INR 7,200, which exceeds Research's baseline CAC cap of INR 5,500 by over 30%.",
+        "recommended_adjustment": "Re-align marketing volume targets to 405–446 approved accounts, cap DSA commissions at 0.55% for loan sizes above INR 8 lakh, and slow front-loaded 4-month acquisition to prevent credit underwriting degradation.",
+        "rebuttal_response": "I concede to the volume adjustment, aligning our target to 446 accounts to strictly respect the INR 27 crore capital cap and Data Analyst’s optimized count. We will implement the 0.55% commission cap for loans exceeding INR 8 lakh to ensure CAC remains within the INR 5,500 limit while maintaining a sustainable acquisition pace."
       }
     },
     {
       "stage": "Stage 3",
       "agent": "Risk & Reviewer",
-      "timestamp": "2026-09-01T16:56:05.309462",
-      "action": "Issued Challenge to Marketing & Sales",
+      "timestamp": "2026-09-01T16:59:17.043207",
+      "action": "Issued Challenge to Finance",
       "content": {
         "challenger": "Risk & Reviewer Agent",
-        "target_agent": "Marketing & Sales",
-        "contested_point": "The targeted INR 5,000 CAC is based on an inflated target LTV of INR 31,500 per loan.",
-        "critique_rationale": "Marketing calculates LTV using the gross 7% interest spread over 1 year without accounting for 1.5% servicing costs or expected portfolio defaults (4.8%). With a true risk-adjusted return of ~0.7% per loan (INR 3,150 on an INR 4.5L loan), spending INR 5,000 on CAC creates an unsustainable LTV:CAC ratio of 0.63:1.",
-        "recommended_adjustment": "Lower target CAC below INR 2,000 by leaning more heavily on referral partner commissions rather than fixed field sales agent overhead, and focus origination on lower-default service sector borrowers.",
-        "rebuttal_response": "We accept the Risk Reviewer’s risk-adjusted LTV calculation and will restructure our GTM channel mix to prioritize low-cost referral partnerships over fixed field sales overhead, successfully reducing our target CAC to under INR 2,000. Concurrently, we will narrow our targeting to lower-default service sector SMEs and account for multi-year repeat borrowing to ensure a sustainable LTV:CAC ratio above 3:1 while delivering our 600-borrower acquisition target."
+        "target_agent": "Finance",
+        "contested_point": "Finance's total exclusion of Retail Shops (0% allocation) directly conflicts with Marketing and Data Analyst recommendations.",
+        "critique_rationale": "While Finance's 70% Service SME / 30% Small Manufacturer allocation achieves a 3.76% default rate, relying heavily on Small Manufacturers (INR 8.1 crore / 90 loans) exposes the portfolio to distribution risk. Competitor benchmarks show slower turnaround times for manufacturing tickets above INR 8 lakh (e.g., Indifi). Completely eliminating Retail Shops ignores lower-CAC conversion pathways needed if Small Manufacturer acquisition stalls.",
+        "recommended_adjustment": "Adopt the Data Analyst's optimized allocation of 60% Service SMEs, 25% Small Manufacturers, and 15% Retail Shops, keeping portfolio default rate at 3.98% while providing operational flexibility.",
+        "rebuttal_response": "We concede to the recommended 60/25/15 allocation to hedge against Small Manufacturer turnaround delays and capture lower-CAC Retail Shop conversions. The resulting 3.98% default rate remains comfortably within our financial risk threshold while providing the operational flexibility necessary to hit our INR 27 crore deployment target."
       }
     },
     {
       "stage": "Stage 4",
       "agent": "CEO Agent",
-      "timestamp": "2026-09-01T16:56:35.573468",
+      "timestamp": "2026-09-01T16:59:30.012614",
       "action": "Formulated 2 Viable Strategies",
       "content": [
         {
-          "name": "Strategy A: Short-Tenure Working Capital & Revolving Line Model",
-          "description": "Focus the INR 27 crore fund deployment on 3-to-9 month working capital loans and revolving credit lines for retail shops and service SMEs. This directly resolves the finance team's tenure mismatch risk by enabling full principal recovery and recycling within the 1-year pilot period.",
+          "name": "Strategy A: Service-SME & Manufacturer Weighted Capital Deployment",
+          "description": "This strategy concentrates capital deployment into Service SMEs (INR 6L avg loan, 3.5% default) and Small Manufacturers (INR 9L avg loan) to reach the INR 27 crore deployment target with fewer overall loans and lower portfolio risk. By prioritizing larger ticket sizes and superior credit profiles, FinNova optimizes its INR 42 lakh CAC budget while maximizing risk-adjusted net margin within the 700-loan approval cap.",
           "pros": [
-            "Eliminates principal recovery risk by matching loan tenures to the 12-month pilot restriction",
-            "Accelerates risk-model validation through rapid repayment cycles across the 600 target loans"
+            "Achieves an optimal portfolio default rate (~3.98%), comfortably below the strict 5.0% threshold",
+            "Maximizes capital deployment efficiency under the 700-loan cap via larger average ticket sizes (INR 6L–9L)"
           ],
           "cons": [
-            "Increases operational servicing load due to higher loan turnover frequency",
-            "May exclude small manufacturers who require multi-year term financing"
+            "Higher per-customer acquisition cost (up to INR 5,500 per customer) requiring specialized DSA channels",
+            "Requires tight exposure monitoring to avoid breaching the 70% max capital allocation limit per segment"
           ],
           "estimated_risk": "Low-Medium",
-          "projected_roi": "5.5% net margin realized continuously with full principal recycling by Month 12"
+          "projected_roi": "16.2% Net Annual ROI within the 1-year pilot horizon"
         },
         {
-          "name": "Strategy B: Multi-Year Term Origination with Downstream Institutional Assignment",
-          "description": "Originate standard 24-to-36 month SME term loans to meet genuine market demand across retail, service, and manufacturing sectors. To comply with the 1-year pilot boundary, institutional loan assignment agreements are executed with partner banks at Month 10 to offload remaining principal balance while retaining fee spread.",
+          "name": "Strategy B: High-Velocity Retail & SME Granular Portfolio Expansion",
+          "description": "This approach aggressively leverages low-CAC Retail Shops (INR 2,000 CAC, INR 4L loan size) alongside Service SMEs to maximize borrower acquisition volume close to the 700-loan portfolio ceiling. It establishes a broad, diversified small-business lending footprint across India while utilizing automated underwriting to maintain portfolio default within policy caps.",
           "pros": [
-            "Attracts higher-quality borrowers by providing tenure that matches true capital investment needs",
-            "Monetizes origination fees and ongoing servicing spreads without holding multi-year balance sheet risk"
+            "Significantly lowers average acquisition cost per account and maximizes loan origination volume for market testing",
+            "Diversifies credit risk across a broader pool of micro-merchant borrowers across multiple retail sub-sectors"
           ],
           "cons": [
-            "High counterparty reliance on secondary institutional buyers to execute portfolio buyout at Month 10",
-            "Increased regulatory compliance overhead regarding loan assignment guidelines"
+            "Retail segment default rate of 5.0% narrows the overall margin safety buffer against macroeconomic shocks",
+            "Higher operational servicing workload across 650+ smaller loans relative to total capital deployed"
           ],
-          "estimated_risk": "High",
-          "projected_roi": "Full 5.5% margin plus portfolio origination fee spread realized upon exit at Months 10-12"
+          "estimated_risk": "Medium-High",
+          "projected_roi": "13.8% - 14.8% Net Annual ROI within the 1-year pilot horizon"
         }
       ]
     },
     {
       "stage": "Stage 5",
       "agent": "CEO Agent",
-      "timestamp": "2026-09-01T16:57:03.536678",
+      "timestamp": "2026-09-01T16:59:59.201886",
       "action": "Issued Final CEO Decision Dossier",
       "content": {
-        "decision_statement": "We will execute Strategy A (Short-Tenure Working Capital & Revolving Line Model) to deploy INR 27 crore across 600 short-term SME loans, using risk-based pricing and partner referral channels to guarantee 100% principal recovery and profitability within the 1-year pilot window.",
+        "decision_statement": "We will execute Strategy A (Service-SME & Manufacturer Weighted Capital Deployment) with a 60/25/15 segment allocation, deploying INR 27 Crore across 446 loans at a 19.0% APR to achieve a 16.2% net annual ROI while capping portfolio defaults at 3.98%.",
         "department_evidence_cited": {
-          "Business Research": "Validated the INR 27 crore target portfolio across 600 loans with an average ticket size of INR 4.5 lakhs and a target sector split of 45% Retail, 35% Service, and 20% Manufacturing.",
-          "Finance": "Incorporated updated risk modeling accounting for the Data Analyst's 4.8% default rate against the 7% gross spread, capping monthly OpEx at INR 1.2M and introducing risk-based pricing to protect net profit margins.",
-          "Marketing & Sales": "Restructured GTM acquisition channels to rely on low-cost CA firms and business association referral partners, successfully driving down target CAC from INR 5,000 to under INR 2,000 to maintain a sustainable LTV:CAC ratio above 3:1."
+          "Business Research": "Identified Service SMEs as the optimal risk-return segment with a low 3.5% default rate and INR 6 lakh average loan size across an addressable market of 2,850 loans.",
+          "Finance": "Confirmed financial viability of deploying INR 27 Crore while preserving the mandatory INR 3 Crore liquidity reserve and capping OpEx CAC spend at ~INR 15.6 Lakh to yield INR 4.37 Crore net profit with a 6-month payback.",
+          "Marketing & Sales": "Agreed to align loan origination targets to 446 accounts using a hybrid distribution of B2B digital search and DSA channels with commissions capped at 0.55% for loans exceeding INR 8 lakh."
         },
         "rejected_alternative": {
-          "strategy_name": "Strategy B: Multi-Year Term Origination with Downstream Institutional Assignment",
-          "core_business_flaw": "Relies on secondary institutional buyers to execute portfolio assignments at Month 10, creating unhedged counterparty risk and directly violating the hard 1-year pilot duration constraint if buyout negotiations stall.",
-          "department_pushback": "Finance warned that multi-year tenors create a structural tenure mismatch leading to unrecovered principal at pilot close, while Risk & Reviewer highlighted that unassigned loans subject to a 4.8% default rate would leave capital locked past the 12-month mandate.",
-          "downside_risk_scenario": "If partner banks refuse or delay loan assignment at Month 10, FinNova Capital faces up to INR 20+ crore in unamortized multi-year principal trapped on the balance sheet, causing structural default against the 1-year pilot constraint and illiquidity.",
-          "quantitative_comparison": "Strategy A delivers 100% principal recycling with 3-9 month tenors and <INR 2,000 CAC under zero counterparty dependency, whereas Strategy B exposes up to 70% of total portfolio capital (INR 18.9 Cr) to secondary execution risk at Month 10."
+          "strategy_name": "Strategy B: High-Velocity Retail & SME Granular Portfolio Expansion",
+          "core_business_flaw": "Over-allocates capital to Retail Shops carrying a 5.0% default rate, compressing margin safety buffers and increasing operational servicing costs across 650+ small accounts without improving risk-adjusted yield.",
+          "department_pushback": "Data Analyst and Finance warned that heavy retail reliance degrades net portfolio returns to 13.8%-14.8%, while Risk Reviewer highlighted that servicing 650+ smaller loans overburdens operations without generating higher capital returns.",
+          "downside_risk_scenario": "A minor economic downturn in micro-retail pushes Retail Shop defaults past 5.0%, causing portfolio default to breach the hard regulatory risk cap of 5.0% and severely eroding pilot net income.",
+          "quantitative_comparison": "Strategy A delivers 16.2% net annual ROI with a 3.98% default rate across 446 loans vs. Strategy B delivering 13.8%-14.8% net ROI with a ~4.7% default rate across 650+ loans."
         },
         "key_tradeoffs": [
-          "Foregoing multi-year term financing for larger manufacturing capital investments in exchange for eliminating secondary market buyout risk.",
-          "Accepting higher operational processing load per account due to shorter loan tenors in exchange for matching repayment cycles to the 12-month pilot boundary."
+          "Accepting higher per-customer acquisition costs (blended CAC INR 3,500–INR 3,850) in exchange for lower overall default rates (3.98% vs 5.0%) and superior capital deployment efficiency.",
+          "Capping single-segment concentration in Service SMEs at 60% (INR 16.2 Crore) to avoid breaching the 70% segment limit and to hedge against turnaround bottlenecks in manufacturing."
         ],
         "tagged_assumptions": [
-          "[ASSUMPTION: Short-tenure working capital loans (3-9 months) allow complete principal recycling and recovery within the 12-month pilot horizon]",
-          "[ASSUMPTION: Implementing risk-based pricing above the 17% baseline rate on higher-risk retail segments absorbs the 4.8% expected default loss]",
-          "[ASSUMPTION: CA firms and local business association referral channels convert at a 15% rate to sustain CAC below INR 2,000 per borrower]"
+          "[ASSUMPTION: Default loss rate equals 100% principal loss without collateral recovery.]",
+          "[ASSUMPTION: All loans are issued for a standard 1-year duration at the maximum allowable 19.0% annual interest rate.]",
+          "[ASSUMPTION: Capital deployment is strictly capped at INR 27 Crore after setting aside the mandatory INR 3 Crore liquidity reserve.]"
         ],
         "implementation_roadmap": {
           "first_30_days": [
-            "Finalize product terms for 3-9 month working capital revolving lines with risk-based pricing structures",
-            "Sign referral partner contracts with 5-10 local CA firms and business associations",
-            "Establish strict monthly OpEx budget ceiling at INR 1.2M"
+            "Finalize underwriting policy and cap DSA commissions at 0.55% for loan tickets above INR 8 Lakh.",
+            "Deploy INR 18 Lakh CapEx for IT product setup and launch targeted B2B performance campaigns for Service SMEs."
           ],
           "days_31_to_60": [
-            "Launch fast-track digital application flow for referral partner leads",
-            "Deploy initial tranche of INR 9 crore across pre-screened retail and service sector borrowers",
-            "Track initial referral CAC against the INR 2,000 limit and monitor underwriting turnaround times"
+            "Originate and fund the first batch of ~200 loans focused on Service SMEs and Small Manufacturers.",
+            "Track initial repayment performance and confirm blended acquisition CAC remains below INR 3,850 per account."
           ],
           "days_61_to_90": [
-            "Recycle principal from early 3-month repayments into second-tranche disbursements",
-            "Evaluate portfolio default trends against the 4.8% baseline to recalibrate risk pricing matrices",
-            "Expand referral agent network to ensure steady origination pace towards the 600-loan target by Month 10"
+            "Scale loan originations to reach full target portfolio of 446 loans (INR 27 Crore total capital deployed).",
+            "Audit portfolio performance against the 3.98% default ceiling and verify 6-month payback progression."
           ]
         },
         "business_kpis": [
           {
-            "metric": "Customer Acquisition Cost (CAC)",
-            "target": "< INR 2,000 per loan",
-            "timeframe": "By Month 3"
+            "metric": "Portfolio Default Rate",
+            "target": "<= 3.98%",
+            "timeframe": "By Month 12"
           },
           {
-            "metric": "Total Loan Origination Volume",
-            "target": "600 loans (INR 27 Crore deployed)",
-            "timeframe": "By Month 10"
+            "metric": "Net Annual ROI on Deployed Capital",
+            "target": "16.2%",
+            "timeframe": "By Month 12"
           },
           {
-            "metric": "Portfolio Default Rate (NPL)",
-            "target": "< 4.8%",
-            "timeframe": "Across full 12-month pilot"
-          },
-          {
-            "metric": "Monthly Operational Expenditure",
-            "target": "< INR 1.2M / month",
-            "timeframe": "Monthly through Month 12"
+            "metric": "Total Capital Deployed",
+            "target": "INR 27.0 Crore (across 446 approved loans)",
+            "timeframe": "By Month 4"
           }
         ]
       }
