@@ -55,6 +55,12 @@ st.markdown(f"""
         to {{ opacity: 1; transform: translateY(0); }}
     }}
     
+    /* Hide Deploy Button and Header Popup */
+    .stDeployButton, div[data-testid="stStatusWidget"], header[data-testid="stHeader"] {{
+        display: none !important;
+        visibility: hidden !important;
+    }}
+
     .stApp {{
         background-color: {bg_color} !important;
         color: {text_color} !important;
