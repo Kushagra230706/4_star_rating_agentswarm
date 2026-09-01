@@ -1,5 +1,18 @@
 import streamlit as st
-import json, os
+import json, os, sys
+
+# Force UTF-8 encoding for Windows console output
+if hasattr(sys.stdout, 'reconfigure'):
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
+
+def safe_print(text: str):
+    try:
+        print(text)
+    except UnicodeEncodeError:
+        print(text.encode('ascii', errors='replace').decode('ascii'))
 from core.engine import BoardroomEngine
 from core.logger import AuditLogger
 from surprise.adapt import SurpriseAdaptationEngine
