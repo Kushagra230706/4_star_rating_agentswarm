@@ -1,5 +1,8 @@
 import streamlit as st
 import json, os
+from core.engine import BoardroomEngine
+from core.logger import AuditLogger
+from surprise.adapt import SurpriseAdaptationEngine
 
 st.set_page_config(page_title="Agentic Swarm — AI Boardroom", layout="wide")
 
@@ -9,7 +12,7 @@ st.caption("Autonomous 6-Agent Strategic Analysis, Department Debate & Surprise 
 # Load sample case
 case_file = "data/sample_case.json"
 if os.path.exists(case_file):
-    with open(case_file, "r") as f:
+    with open(case_file, "r", encoding="utf-8") as f:
         sample_data = json.load(f)
 else:
     sample_data = {
@@ -24,16 +27,44 @@ surprise_input = st.sidebar.text_area("2. Surprise Event Update", value=sample_d
 run_baseline = st.sidebar.button("🚀 Run Baseline Boardroom Swarm", type="primary")
 run_surprise = st.sidebar.button("🚨 Run Surprise Adaptation Protocol")
 
-tab1, tab2, tab3, tab4, tab5 = st.tabs([
+engine = BoardroomEngine()
+logger = AuditLogger()
+surprise_engine = SurpriseAdaptationEngine()
+
+if run_baseline:
+    with st.spinner("Executing 5-Stage Boardroom Protocol with Live LLM Agents..."):
+        baseline_state = engine.run_boardroom_protocol(case_input)
+        logger.export_trace_json(baseline_state, "baseline_trace.json")
+        logger.export_decision_markdown(baseline_state, "baseline_decision.md", "Baseline CEO Decision Dossier")
+        st.sidebar.success("✅ Baseline Swarm execution complete!")
+
+if run_surprise:
+    with st.spinner("Executing Surprise Adaptation Engine..."):
+        trace_path = "outputs/baseline_trace.json"
+        if os.path.exists(trace_path):
+            from core.state import BoardroomState
+            with open(trace_path, "r", encoding="utf-8") as f:
+                base_data = json.load(f)
+            base_state = BoardroomState(**base_data)
+        else:
+            base_state = engine.run_boardroom_protocol(case_input)
+            logger.export_trace_json(base_state, "baseline_trace.json")
+
+        revised_state = surprise_engine.process_surprise(base_state, surprise_input)
+        st.sidebar.success("✅ Surprise Adaptation execution complete!")
+
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
     "1. Fact Brief (Interpreter)",
     "2. Department Analysis",
     "3. Debate & Conflict (Stage 3)",
     "4. Strategy Matrix (Stage 4)",
-    "5. CEO Decision Dossier (Stage 5)"
+    "5. CEO Decision Dossier",
+    "6. Surprise Adaptation Delta"
 ])
 
-# Check if trace exists
 trace_path = "outputs/baseline_trace.json"
+surprise_path = "outputs/surprise_trace.json"
+
 if os.path.exists(trace_path):
     with open(trace_path, "r", encoding="utf-8") as f:
         state_data = json.load(f)
@@ -94,7 +125,7 @@ if os.path.exists(trace_path):
                 st.error("Cons: " + ", ".join(strategies[1].get('cons', [])))
 
     with tab5:
-        st.subheader("👑 Stage 5: Final CEO Decision Dossier")
+        st.subheader("👑 Stage 5: Final CEO Decision Dossier (Baseline)")
         if ceo:
             st.success(f"### 📌 Final Order: {ceo.get('decision_statement')}")
             
@@ -103,5 +134,35 @@ if os.path.exists(trace_path):
             
             st.markdown("#### 📊 Business KPIs")
             st.table(ceo.get("business_kpis", []))
+
+    with tab6:
+        st.subheader("🚨 Mid-Event Surprise Adaptation Delta View")
+        if os.path.exists(surprise_path):
+            with open(surprise_path, "r", encoding="utf-8") as f:
+                s_data = json.load(f)
+            
+            s_ceo = s_data.get("stage5_ceo_decision", {})
+            s_brief = s_data.get("brief", {})
+
+            col_base, col_surp = st.columns(2)
+
+            with col_base:
+                st.markdown("### 🏛️ Baseline Decision (Before Surprise)")
+                st.info(f"**Decision**: {ceo.get('decision_statement')}")
+                st.markdown("**Original Case Facts**: " + str(len(brief.get('supplied_facts', []))) + " facts parsed")
+                st.markdown("#### Baseline KPIs")
+                st.table(ceo.get("business_kpis", []))
+
+            with col_surp:
+                st.markdown("### 🚨 Revised Decision (Post-Surprise Pivot)")
+                st.success(f"**Revised Decision**: {s_ceo.get('decision_statement')}")
+                st.markdown("#### Updated Surprise KPIs")
+                st.table(s_ceo.get("business_kpis", []))
+
+            st.markdown("---")
+            st.markdown("### 🗺️ Revised Implementation Roadmap (30/60/90 Days)")
+            st.json(s_ceo.get("implementation_roadmap", {}))
+        else:
+            st.warning("No surprise adaptation run trace found yet. Click '🚨 Run Surprise Adaptation Protocol' in the sidebar to simulate the surprise round.")
 else:
     st.info("No baseline run trace found yet. Click 'Run Baseline Boardroom Swarm' in the sidebar or run `python main.py` in your terminal.")
