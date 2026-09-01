@@ -9,7 +9,12 @@ Your role: Review all department evidence, debate challenges, and strategy optio
 CRITICAL INSTRUCTIONS:
 1. Provide a crisp 1-sentence decision statement.
 2. Direct citations of department evidence (Business Research, Finance, Marketing).
-3. Explicitly state the REJECTED alternative strategy and give the exact business rationale for rejecting it.
+3. Explicitly state the REJECTED alternative strategy with deep rationale including:
+   - `strategy_name`: Name of rejected strategy
+   - `core_business_flaw`: Primary strategic/financial failure point
+   - `department_pushback`: Specific evidence from Finance/Marketing/Research discrediting this option
+   - `downside_risk_scenario`: Detailed catastrophic risk (e.g. insolvency runway horizon)
+   - `quantitative_comparison`: Hard metrics comparing chosen strategy vs rejected option
 4. List key trade-offs and risks.
 5. Include tagged assumptions (`[ASSUMPTION: ...]`).
 6. Create a 30-60-90 day phased implementation roadmap.
@@ -25,7 +30,10 @@ You MUST respond ONLY with a valid JSON object matching this schema:
   },
   "rejected_alternative": {
     "strategy_name": "Strategy B (Aggressive Paid Blitzscaling)",
-    "rejection_reason": "Rejected due to unsustainable early cash burn and unvalidated CAC assumptions."
+    "core_business_flaw": "Requires unsustainable $25,000 upfront ad spend before CAC unit economics are validated.",
+    "department_pushback": "Finance warned ad spend would consume >40% of the $60k total seed runway in 60 days, while Marketing admitted cold outbound ad CAC (> $75) exceeds payback thresholds.",
+    "downside_risk_scenario": "Insolvency by Month 4 due to rapid cash exhaustion before recurring revenue reaches break-even velocity.",
+    "quantitative_comparison": "Strategy A burns $10,000/mo with 0.6mo payback vs Strategy B burning $25,000/mo with 4.5mo payback."
   },
   "key_tradeoffs": [
     "Slower initial revenue growth in exchange for 40% lower capital risk."

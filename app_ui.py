@@ -142,8 +142,23 @@ if os.path.exists(trace_path):
         if ceo:
             st.success(f"### 📌 Final Order: {ceo.get('decision_statement')}")
             
-            st.markdown("#### ❌ Rejected Alternative & Rationale")
-            st.json(ceo.get("rejected_alternative", {}))
+            st.markdown("#### ❌ Rejected Alternative & Detailed Rationale")
+            rej = ceo.get("rejected_alternative", {})
+            if isinstance(rej, dict):
+                strat_name = rej.get("strategy_name", "Rejected Strategy")
+                reason = rej.get("core_business_flaw") or rej.get("rejection_reason", "High financial/operational risk.")
+                pushback = rej.get("department_pushback", "Finance & Marketing identified negative ROI/runway risk.")
+                downside = rej.get("downside_risk_scenario", "High insolvency probability before break-even horizon.")
+                quant = rej.get("quantitative_comparison", "Lower capital efficiency vs selected strategy.")
+                
+                with st.container():
+                    st.error(f"### 🛑 {strat_name}")
+                    st.markdown(f"**Core Business Flaw**: {reason}")
+                    st.markdown(f"**Department Evidence & Pushback**: {pushback}")
+                    st.markdown(f"**Downside Risk & Insolvency Horizon**: {downside}")
+                    st.markdown(f"**Quantitative Comparison**: `{quant}`")
+            else:
+                st.error(str(rej))
             
             st.markdown("#### 📊 Business KPIs")
             st.table(ceo.get("business_kpis", []))

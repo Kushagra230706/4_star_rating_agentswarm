@@ -82,9 +82,22 @@ class AuditLogger:
             for dept, ev in ceo.department_evidence_cited.items():
                 md.append(f"- **{dept}**: {ev}")
                 
-            md.append("\n### ❌ Rejected Alternative & Rationale")
-            for k, v in ceo.rejected_alternative.items():
-                md.append(f"- **{k}**: {v}")
+            md.append("\n### ❌ Rejected Alternative & Detailed Rationale")
+            rej = ceo.rejected_alternative
+            if isinstance(rej, dict):
+                md.append(f"**Strategy**: {rej.get('strategy_name', 'Rejected Strategy')}")
+                if "core_business_flaw" in rej:
+                    md.append(f"- **Core Business Flaw**: {rej.get('core_business_flaw')}")
+                if "department_pushback" in rej:
+                    md.append(f"- **Department Pushback**: {rej.get('department_pushback')}")
+                if "downside_risk_scenario" in rej:
+                    md.append(f"- **Downside Risk & Insolvency Horizon**: {rej.get('downside_risk_scenario')}")
+                if "quantitative_comparison" in rej:
+                    md.append(f"- **Quantitative Comparison**: `{rej.get('quantitative_comparison')}`")
+                if "rejection_reason" in rej and "core_business_flaw" not in rej:
+                    md.append(f"- **Rejection Rationale**: {rej.get('rejection_reason')}")
+            else:
+                md.append(f"- {rej}")
                 
             md.append("\n### ⚖️ Major Trade-offs & Risks")
             for to in ceo.key_tradeoffs:
