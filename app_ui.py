@@ -179,20 +179,15 @@ if os.path.exists(preset_file):
     with open(preset_file, "r", encoding="utf-8") as f:
         official_presets = json.load(f)
 
-# Theme & Test Case Preset Selector (Showcasing Primary Company: FinNova Capital)
-if official_presets:
-    st.sidebar.markdown("### 🎯 Select Problem Test Case")
-    theme_options = list(official_presets.keys()) + ["Custom Input"]
-    # Default to FinNova Capital (Theme A)
-    selected_theme = st.sidebar.selectbox("Select Business Case", theme_options, index=0)
+# Streamlined Test Case Selector for FinNova Capital
+st.sidebar.markdown("### 🏢 FinNova Capital Digital Lending")
+if official_presets and "FinNova Capital Digital Lending" in official_presets:
+    fin_cases = official_presets["FinNova Capital Digital Lending"]
+    tc_options = list(fin_cases.keys()) + ["Custom Input"]
+    selected_tc = st.sidebar.selectbox("🎯 Select Test Case Scenario", tc_options, index=0)
     
-    default_case_text = ""
-    default_surprise_text = ""
-    
-    if selected_theme != "Custom Input":
-        tc_options = list(official_presets[selected_theme].keys())
-        selected_tc = st.sidebar.selectbox("Select Test Case Scenario", tc_options)
-        tc_data = official_presets[selected_theme][selected_tc]
+    if selected_tc != "Custom Input":
+        tc_data = fin_cases[selected_tc]
         default_case_text = tc_data.get("raw_business_case", "")
         default_surprise_text = tc_data.get("sample_surprise_event", "")
     else:
@@ -202,12 +197,15 @@ if official_presets:
                 sample_data = json.load(f)
             default_case_text = sample_data.get("raw_business_case", "")
             default_surprise_text = sample_data.get("sample_surprise_event", "")
+        else:
+            default_case_text = "Custom business case..."
+            default_surprise_text = "Custom surprise event..."
 
     case_input = st.sidebar.text_area("1. Raw Business Case Input", value=default_case_text, height=180)
     surprise_input = st.sidebar.text_area("2. Surprise Event Update", value=default_surprise_text, height=120)
 else:
-    case_input = st.sidebar.text_area("1. Raw Business Case Input", value="Sample case text...", height=180)
-    surprise_input = st.sidebar.text_area("2. Surprise Event Update", value="Sample surprise text...", height=120)
+    case_input = st.sidebar.text_area("1. Raw Business Case Input", value="FinNova Capital case...", height=180)
+    surprise_input = st.sidebar.text_area("2. Surprise Event Update", value="FinNova Capital surprise...", height=120)
 
 run_baseline = st.sidebar.button("🚀 Run Baseline Swarm Protocol", type="primary")
 run_surprise = st.sidebar.button("🚨 Run Surprise Adaptation Protocol")
