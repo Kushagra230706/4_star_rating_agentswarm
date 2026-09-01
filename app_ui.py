@@ -239,6 +239,26 @@ engine = BoardroomEngine()
 logger = AuditLogger()
 surprise_engine = SurpriseAdaptationEngine()
 
+# Auto-execute swarm when user selects a different Test Case Scenario
+if "last_selected_tc" not in st.session_state or st.session_state["last_selected_tc"] != selected_tc:
+    st.session_state["last_selected_tc"] = selected_tc
+    if "baseline_data" in st.session_state:
+        del st.session_state["baseline_data"]
+    if "surprise_data" in st.session_state:
+        del st.session_state["surprise_data"]
+        
+    with st.spinner(f"⚡ Autoloading Boardroom Swarm Analysis for {selected_tc}..."):
+        baseline_state = engine.run_boardroom_protocol(case_input)
+        logger.export_trace_json(baseline_state, "baseline_trace.json")
+        logger.export_decision_markdown(baseline_state, "baseline_decision.md", "Baseline CEO Decision Dossier")
+        st.session_state['baseline_data'] = baseline_state.model_dump()
+        
+        if surprise_input and len(surprise_input.strip()) > 0:
+            revised_state = surprise_engine.process_surprise(baseline_state, surprise_input, raw_case_text=case_input)
+            logger.export_trace_json(revised_state, "surprise_trace.json")
+            logger.export_decision_markdown(revised_state, "revised_decision.md", "Revised CEO Decision Dossier")
+            st.session_state['surprise_data'] = revised_state.model_dump()
+
 if run_baseline:
     with st.spinner("Executing 5-Stage Boardroom Protocol with Live LLM Agents..."):
         baseline_state = engine.run_boardroom_protocol(case_input)
