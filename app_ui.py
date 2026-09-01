@@ -330,7 +330,5 @@ if state_data:
             render_roadmap_cards(s_ceo.get("implementation_roadmap", {}), "🗺️ Revised Implementation Roadmap (Post-Surprise Pivot)")
         else:
             st.info("No surprise adaptation run trace found yet. Click '🚨 Run Surprise Adaptation Protocol' in the sidebar to simulate the surprise round.")
-        else:
-            st.info("No surprise adaptation run trace found yet. Click '🚨 Run Surprise Adaptation Protocol' in the sidebar to simulate the surprise round.")
 else:
     st.info("No baseline run trace found yet. Click 'Run Baseline Boardroom Swarm' in the sidebar or run `python main.py` in your terminal.")
