@@ -41,23 +41,26 @@ class LLMRouter:
         Attempts Groq primary -> Gemini fallback -> Safety Net fallback.
         Guarantees non-empty text response.
         """
-        # Try Primary: Groq Llama 3.3 70B
+        # Try Primary: Groq API
         if self.groq_client:
-            try:
-                response = self.groq_client.chat.completions.create(
-                    model="llama-3.3-70b-versatile",
-                    messages=[
-                        {"role": "system", "content": system_prompt},
-                        {"role": "user", "content": user_prompt}
-                    ],
-                    temperature=0.2,
-                    max_tokens=2000
-                )
-                res_text = response.choices[0].message.content
-                if res_text and len(res_text.strip()) > 0:
-                    return res_text
-            except Exception as e:
-                print(f"[FALLBACK TRIGGERED] Agent '{role}' failed on Groq API: {e}. Switching to Gemini...")
+            models_to_try = ["groq/compound", "qwen/qwen3.8-27b", "openai/gpt-oss-120b", "llama-3.3-70b-versatile"]
+            for model_id in models_to_try:
+                try:
+                    response = self.groq_client.chat.completions.create(
+                        model=model_id,
+                        messages=[
+                            {"role": "system", "content": system_prompt},
+                            {"role": "user", "content": user_prompt}
+                        ],
+                        temperature=0.2,
+                        max_tokens=2000
+                    )
+                    res_text = response.choices[0].message.content
+                    if res_text and len(res_text.strip()) > 0:
+                        return res_text
+                except Exception:
+                    continue
+            print(f"[FALLBACK TRIGGERED] Agent '{role}' failed on all Groq models. Switching to Gemini...")
 
         # Try Secondary Fallback: Gemini 2.0 Flash
         if self.gemini_client:
