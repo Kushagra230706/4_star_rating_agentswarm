@@ -179,26 +179,19 @@ if os.path.exists(preset_file):
     with open(preset_file, "r", encoding="utf-8") as f:
         official_presets = json.load(f)
 
-st.sidebar.header("🕹️ Boardroom Control Panel")
-
-# Network Sharing Info for Teammates
-local_ip = get_local_ip()
-with st.sidebar.container(border=True):
-    st.markdown("🌐 **Team Wi-Fi UI Access**")
-    st.code(f"http://{local_ip}:8501")
-
-# Theme & Test Case Preset Selector
+# Theme & Test Case Preset Selector (Showcasing Primary Company: FinNova Capital)
 if official_presets:
-    st.sidebar.markdown("### 🎯 Select Official Problem Case")
-    theme_options = ["Custom Input"] + list(official_presets.keys())
-    selected_theme = st.sidebar.selectbox("Select Business Theme", theme_options)
+    st.sidebar.markdown("### 🎯 Select Problem Test Case")
+    theme_options = list(official_presets.keys()) + ["Custom Input"]
+    # Default to FinNova Capital (Theme A)
+    selected_theme = st.sidebar.selectbox("Select Business Case", theme_options, index=0)
     
     default_case_text = ""
     default_surprise_text = ""
     
     if selected_theme != "Custom Input":
         tc_options = list(official_presets[selected_theme].keys())
-        selected_tc = st.sidebar.selectbox("Select Test Case", tc_options)
+        selected_tc = st.sidebar.selectbox("Select Test Case Scenario", tc_options)
         tc_data = official_presets[selected_theme][selected_tc]
         default_case_text = tc_data.get("raw_business_case", "")
         default_surprise_text = tc_data.get("sample_surprise_event", "")
