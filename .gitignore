@@ -19,7 +19,8 @@ env/
 *.swo
 .DS_Store
 
-# Outputs & temporary trace dumps
-outputs/*.json
-outputs/*.md
-!outputs/.gitkeep
+# Outputs & trace dumps (keep sample outputs committed for judge review)
+# outputs/*.json
+# outputs/*.md
+!outputs/*.md
+!outputs/*.json

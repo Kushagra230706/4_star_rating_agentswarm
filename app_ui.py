@@ -1,5 +1,5 @@
 import streamlit as st
-import json, os, sys
+import json, os, sys, socket
 import pandas as pd
 
 # Force UTF-8 encoding for Windows console output
@@ -14,6 +14,16 @@ def safe_print(text: str):
         print(text)
     except UnicodeEncodeError:
         print(text.encode('ascii', errors='replace').decode('ascii'))
+
+def get_local_ip():
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        ip = s.getsockname()[0]
+        s.close()
+        return ip
+    except Exception:
+        return "localhost"
 
 from core.engine import BoardroomEngine
 from core.logger import AuditLogger
@@ -36,7 +46,6 @@ input_bg = "#1f2937"
 code_bg = "rgba(16, 185, 129, 0.15)"
 code_text = "#34d399"
 header_gradient = "linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%)"
-mermaid_theme = "dark"
 
 # Harmonized CSS Design System
 st.markdown(f"""
@@ -100,7 +109,7 @@ st.markdown(f"""
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     }}
     
-    /* Metrics Fix for Light Mode */
+    /* Metrics Fix */
     div[data-testid="stMetric"] {{
         background: {card_bg} !important;
         border: 1px solid {card_border} !important;
@@ -134,8 +143,8 @@ st.markdown(f"""
         border: 1px solid {card_border} !important;
         border-radius: 10px !important;
         font-weight: 600 !important;
-        font-size: 0.9rem !important;
-        padding: 10px 14px !important;
+        font-size: 0.88rem !important;
+        padding: 8px 10px !important;
         transition: all 0.2s ease-in-out !important;
     }}
     
@@ -147,7 +156,7 @@ st.markdown(f"""
 </style>
 """, unsafe_allow_html=True)
 
-# Wide Banner Graphic (cropped tight without dark top/bottom bars)
+# Wide Banner Graphic
 banner_path = "assets/boardroom_banner_wide.jpg"
 if not os.path.exists(banner_path):
     banner_path = "assets/boardroom_banner_hex.jpg"
@@ -171,6 +180,12 @@ if os.path.exists(preset_file):
         official_presets = json.load(f)
 
 st.sidebar.header("🕹️ Boardroom Control Panel")
+
+# Network Sharing Info for Teammates
+local_ip = get_local_ip()
+with st.sidebar.container(border=True):
+    st.markdown("🌐 **Team Wi-Fi UI Access**")
+    st.code(f"http://{local_ip}:8501")
 
 # Theme & Test Case Preset Selector
 if official_presets:
@@ -203,6 +218,25 @@ else:
 
 run_baseline = st.sidebar.button("🚀 Run Baseline Swarm Protocol", type="primary")
 run_surprise = st.sidebar.button("🚨 Run Surprise Adaptation Protocol")
+
+# Live Export Report Section in Sidebar
+st.sidebar.markdown("---")
+st.sidebar.markdown("### 📥 Export Audit Reports")
+
+if os.path.exists("outputs/baseline_decision.md"):
+    with open("outputs/baseline_decision.md", "r", encoding="utf-8") as f:
+        b_md = f.read()
+    st.sidebar.download_button("📄 Download Baseline CEO Report (.md)", data=b_md, file_name="baseline_decision.md", mime="text/markdown")
+
+if os.path.exists("outputs/revised_decision.md"):
+    with open("outputs/revised_decision.md", "r", encoding="utf-8") as f:
+        s_md = f.read()
+    st.sidebar.download_button("🚨 Download Revised Surprise Report (.md)", data=s_md, file_name="revised_decision.md", mime="text/markdown")
+
+if os.path.exists("outputs/baseline_trace.json"):
+    with open("outputs/baseline_trace.json", "r", encoding="utf-8") as f:
+        b_json = f.read()
+    st.sidebar.download_button("📊 Download Full Audit Trace (.json)", data=b_json, file_name="baseline_trace.json", mime="application/json")
 
 engine = BoardroomEngine()
 logger = AuditLogger()
@@ -238,11 +272,12 @@ if run_surprise:
         st.sidebar.success("✅ Surprise Adaptation execution complete!")
         st.rerun()
 
-# Harmonized Stage Selector Buttons
+# Harmonized Stage Selector Buttons (7 Complete Stages)
 st.markdown("### 🎛️ Boardroom Stage Navigator")
 stage_buttons = [
     "📌 Stage 0: Brief",
     "📊 Stage 1: Analysis",
+    "🔄 Stage 2: Shared Bus",
     "⚡ Stage 3: Debate",
     "⚖️ Stage 4: Strategy",
     "👑 Stage 5: Decision",
@@ -252,7 +287,7 @@ stage_buttons = [
 if "active_stage" not in st.session_state:
     st.session_state["active_stage"] = "📌 Stage 0: Brief"
 
-b_cols = st.columns(6)
+b_cols = st.columns(7)
 for i, b_name in enumerate(stage_buttons):
     with b_cols[i]:
         btn_type = "primary" if st.session_state["active_stage"] == b_name else "secondary"
@@ -345,7 +380,7 @@ if state_data:
                     st.markdown(f"• `{a}`")
 
     elif active_stage == "📊 Stage 1: Analysis":
-        st.subheader("📊 Stage 1 & 2: Department Analysis & Quantitative Data Modeling")
+        st.subheader("📊 Stage 1: Departmental Independent Analysis")
         
         if "Data Analyst" in dept_outputs:
             da_metrics = dept_outputs["Data Analyst"].get("metrics", {})
@@ -380,6 +415,22 @@ if state_data:
                 for kf in data.get("key_findings", []):
                     st.markdown(f"- {kf}")
                 st.caption(f"Financial Impact: {data.get('financial_or_operational_impact')}")
+
+    elif active_stage == "🔄 Stage 2: Shared Bus":
+        st.subheader("🔄 Stage 2: Central Shared Information Bus (Cross-Department Exchange)")
+        st.caption("Consolidates independent Stage 1 findings onto a transparent shared bus for cross-department inspection before Stage 3 Risk Challenge.")
+        
+        bus_rows = []
+        for name, data in dept_outputs.items():
+            bus_rows.append({
+                "Department": name,
+                "Key Insight / Finding": data.get("summary", ""),
+                "Financial / Ops Impact": data.get("financial_or_operational_impact", ""),
+                "Assumptions Relied Upon": ", ".join(data.get("assumptions_used", [])) if data.get("assumptions_used") else "Standard Brief Facts"
+            })
+        
+        if bus_rows:
+            st.table(bus_rows)
 
     elif active_stage == "⚡ Stage 3: Debate":
         st.subheader("⚡ Stage 3: Risk Challenge & Department Debate Trace")
