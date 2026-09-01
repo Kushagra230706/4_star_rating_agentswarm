@@ -1,0 +1,377 @@
+OFFICIAL PARTICIPANT RULEBOOK | VERSION 1.0
+AGENTIC SWARM
+The AI Boardroom
+Build an AI workforce that analyses, debates and decides.
+FORMAT
+8-hour challenge
+TEAM
+2-4 members
+SWARM
+4-8 agents
+SCORE
+100 points
+CORE CHALLENGE  Build a multi-agent management team in which specialised department agents analyse one business problem, challenge one another and help a CEO Agent produce an implementable decision.
+What participants must demonstrate
+A working swarm with distinct department responsibilities.
+Visible information exchange and at least one meaningful disagreement.
+A CEO decision based on department evidence and trade-offs.
+A revised decision after an organizer-provided business surprise.
+A practical implementation plan with measurable business KPIs.
+CENTRAL RULE  More agents do not automatically earn more marks. Judges reward useful specialisation, real collaboration and better business decisions.
+1. Event purpose and eligibility
+Purpose
+Agentic Swarm is a business-focused AI build challenge. Participants create a virtual management team whose department agents examine the same business case from different perspectives. The event evaluates whether agent collaboration improves the final decision, not merely whether several prompts were executed.
+Eligibility
+A team must contain two to four registered participants.
+A participant may belong to only one team.
+Organizers, judges and anyone with prior access to confidential challenge material may not compete.
+All team members must satisfy the eligibility requirements stated in the event announcement.
+The registered team composition is locked when the build phase begins. Changes require approval from the Event Head.
+Challenge selection
+The organizing committee publishes a set of approved business challenges at the start of the event.
+Teams select one challenge during the problem-selection window. Multiple teams may select the same challenge.
+Teams must solve the selected challenge; changing challenges after development begins requires Rules Desk approval.
+Only the supplied case facts, permitted public information and clearly labelled assumptions may be used as evidence.
+Rule precedence
+If two instructions conflict, the following order applies:
+Written event addenda or official announcements issued by the Event Head.
+This rulebook.
+The selected challenge pack and its data files.
+General examples, starter material and verbal guidance.
+A verbal answer changes a rule only after the clarification is posted through an official written channel.
+2. Required agent swarm
+Every submission must contain between four and eight identifiable agents. The same underlying model may power several agents, but each agent must have a separate role instruction, responsibility, input and visible output.
+Mandatory agents
+Agent
+Required responsibility
+Minimum visible output
+Business Research
+Analyse market, customers, competitors, opportunity and risk.
+Evidence-based business findings
+Finance
+Evaluate cost, revenue, affordability, profitability and financial risk.
+Financial recommendation and assumptions
+Marketing and Sales
+Define target customers, positioning, channels and acquisition strategy.
+Go-to-market recommendation
+CEO
+Compare alternatives, resolve conflict and issue the final company decision.
+Decision, rationale, actions and KPIs
+Optional agents
+Teams may add Operations, Product, Supply Chain, Customer Experience, Human Resources, Risk, Compliance or Reviewer agents when they materially improve the selected solution.
+When an agent counts
+It has a distinct business responsibility.
+It is invoked separately or appears as an identifiable node in the workflow.
+Its output is visible in the execution trace.
+Its work is used, challenged or considered by another agent.
+NOT AN AGENT  Renaming sections of one generated answer as Finance, Marketing and CEO does not demonstrate a multi-agent system.
+Agent limit
+A maximum of eight agents may be presented as part of the judged workflow. Background utility functions, databases and deterministic tools do not count as agents.
+3. Boardroom collaboration protocol
+The judged workflow must follow the five-stage boardroom protocol. Teams may implement the stages sequentially, in parallel or as a graph, provided the required evidence is visible.
+Stage
+Required behaviour
+Evidence judges should see
+1. Analyse
+Department agents independently examine the same business brief.
+Separate department recommendations
+2. Share
+Agents exchange relevant findings, constraints and assumptions.
+Messages, shared state or trace entries
+3. Challenge
+At least one agent questions or rejects a material recommendation.
+A specific disagreement and response
+4. Compare
+The swarm considers at least two viable business strategies.
+Trade-off comparison
+5. Decide
+The CEO selects and explains one coordinated strategy.
+Final business decision
+CEO decision requirements
+The final CEO output must contain all of the following:
+The selected decision in one clear statement.
+The department evidence that influenced the decision.
+At least one rejected alternative and the reason for rejection.
+Important trade-offs, risks and assumptions.
+A practical implementation sequence with responsible functions.
+At least three measurable business KPIs.
+Termination and control
+The workflow must terminate without an uncontrolled conversation loop.
+The system must cap debate at three review cycles unless the selected design documents and justifies an alternative limit.
+The system must provide a final result even when one non-CEO agent fails.
+4. Technical and build rules
+Allowed implementation methods
+Teams may use code, low-code or no-code systems. Examples include Python, LangGraph, CrewAI, AutoGen, n8n, workflow builders, local models and hosted model APIs. A complete website is optional.
+Permitted resources
+Public documentation, tutorials, libraries and model APIs.
+Reusable setup code, UI components, authentication boilerplate and deployment templates.
+Open-source agent frameworks and clearly disclosed third-party components.
+Generative AI tools for coding, debugging, design and documentation.
+Provided datasets and public or properly licensed data relevant to the challenge.
+Work that must be created during the event
+The selected business workflow and agent architecture.
+Agent instructions, responsibilities and collaboration logic.
+The boardroom decision process and surprise-adaptation flow.
+Challenge-specific outputs, traces and implementation plan.
+Functional requirements
+Inputs and outputs must be visible to judges.
+The final result must not be completely hardcoded.
+The system must preserve an execution trace or equivalent audit record.
+Assumptions must be identified instead of presented as supplied facts.
+At least one failure-handling path must be demonstrated or documented.
+Another person must be able to run or inspect the project using the submitted instructions.
+COST NEUTRALITY  Paid models, larger context windows and premium tools do not receive automatic credit. Participants are responsible for API costs, credits and rate limits.
+5. Event schedule and surprise round
+Standard eight-hour schedule
+Phase
+Duration
+Participant activity
+Opening
+20 min
+Rules, challenge overview and example demonstration
+Problem selection
+20 min
+Select and understand one business case
+Swarm design
+45 min
+Define agents, shared state and decision flow
+Initial build
+150 min
+Implement the working baseline system
+Baseline testing
+45 min
+Generate and verify the initial decision
+Surprise release
+15 min
+Receive the changed business condition
+Adaptation
+60 min
+Update, test and document the revised decision
+Submission
+30 min
+Upload all required files
+Demos
+90 min
+Presentations and judging; timing may run in parallel
+Surprise round
+The surprise is a new business fact such as a budget reduction, cost increase, competitor entry, supplier failure, demand spike or negative customer response. It tests adaptability rather than speed alone.
+Required adaptation output
+Identify which original facts or assumptions changed.
+Re-run the agents materially affected by the surprise.
+Show a second boardroom comparison or review.
+Produce a revised CEO decision.
+Explain what changed, what remained stable and why.
+Update relevant KPIs, budget or implementation steps.
+NO FULL REBUILD  The surprise will remain within the selected business challenge. A well-designed system should adapt through changed inputs or logic, not require a completely new application.
+6. Submission package
+A submission is complete only when the required materials are accessible before the deadline. The organizing committee will publish the submission portal and exact timestamp in the event notice.
+Item
+Required content
+Accepted form
+Source or workflow
+Project code, notebook or exported workflow with dependencies.
+Repository link or ZIP
+README
+Problem, setup, agents, workflow, tools, limitations and run steps.
+Markdown or PDF
+Architecture
+Agents, inputs, communication, shared state and CEO path.
+PNG, PDF or slide
+Baseline evidence
+Initial department outputs, debate trace and CEO decision.
+JSON, text, PDF or screenshots
+Surprise evidence
+Changed input, revised trace and updated CEO decision.
+JSON, text, PDF or screenshots
+Business summary
+Implementation steps, assumptions, risks and at least three KPIs.
+Maximum two pages
+Pitch deck
+Problem, swarm, demo, decision, adaptation and impact.
+Maximum five slides
+README minimum contents
+Team name and member names.
+Selected challenge and one-paragraph solution summary.
+Agent list with roles, inputs and outputs.
+Installation and execution instructions.
+Models, frameworks, datasets and external services used.
+Known limitations and failure-handling behaviour.
+Declaration of pre-existing or reused components.
+Submission naming
+Use the format TeamName_AgenticSwarm. Ensure judges have access to private repositories and linked files until results are announced.
+7. Demonstration and judging procedure
+Eight-minute presentation slot
+Segment
+Maximum time
+Expected content
+Problem and value
+1 min
+Business problem, users and success definition
+Swarm design
+1 min
+Agent responsibilities and collaboration flow
+Live or recorded trace demo
+3 min
+Department outputs, disagreement and CEO decision
+Surprise adaptation
+1 min
+Changed condition and revised decision
+Judge questions
+2 min
+Technical and business clarification
+Mandatory judged evidence
+At least one end-to-end system run or an auditable trace produced by the submitted system.
+A clearly identified disagreement and the responding agent's revision or defence.
+The CEO's chosen strategy and at least one rejected alternative.
+The baseline and surprise decisions.
+A realistic business implementation plan and KPIs.
+Live verification
+Judges may ask a team to change one input, open an agent instruction, inspect an execution trace or explain how a displayed result was generated. A saved trace may support the demo when network access fails, but judges may reduce technical scores if the system cannot be inspected or reproduced.
+Judging panel
+At least two judges will score each eligible team independently. The final score is the arithmetic mean of the judges' 100-point totals after any approved penalties.
+DEMO PRIORITY  Spend presentation time showing agent interaction and business reasoning. A polished interface cannot substitute for a weak swarm.
+8. Judging rubric
+Criterion
+Points
+What earns marks
+Business value
+25
+Problem fit, user value, feasibility, measurable impact and sound financial or operational logic.
+Agent specialisation
+15
+Distinct roles, appropriate context and meaningful department outputs.
+Agent collaboration
+20
+Information exchange, challenge, alternative comparison and traceable synthesis.
+Decision quality
+15
+Evidence, trade-offs, assumptions, risks, implementation plan and KPIs.
+Adaptability
+10
+Correct interpretation of the surprise and a justified revised decision.
+Technical implementation
+10
+Working system, reliability, fallback behaviour and reproducibility.
+Presentation
+5
+Clarity, demo quality and responses to questions.
+Detailed score components
+Criterion
+Sub-components
+Business value - 25
+Problem fit 5; feasibility 5; measurable KPIs 5; business logic 5; user or stakeholder value 5
+Specialisation - 15
+Distinct responsibilities 5; correct context 5; useful outputs 5
+Collaboration - 20
+Information exchange 5; meaningful challenge 5; strategy comparison 5; traceable synthesis 5
+Decision quality - 15
+Evidence 5; trade-offs 4; implementation 3; assumptions and risks 3
+Adaptability - 10
+Changed assumptions 3; affected agents 3; revised action 3; adaptation trace 1
+Technical - 10
+End-to-end execution 3; reliability 3; fallback 2; reproducibility 2
+Presentation - 5
+Clarity 2; demonstration 2; questions 1
+NO BONUS CATEGORY  There are no automatic bonus points for agent count, framework choice, model size, frontend complexity or paid services.
+9. Scoring, tie-breaks and penalties
+Scoring method
+Each judge records a score out of 100 using the published rubric.
+Approved penalties are applied to the averaged score.
+Scores may be rounded to two decimal places for ranking.
+Judges may consider only evidence available in the submission and presentation.
+Tie-break order
+Higher Business Value score.
+Higher Agent Collaboration score.
+Higher Adaptability score.
+Higher Technical Implementation score.
+If still tied, a documented panel vote based on overall solution maturity.
+Late submissions
+Delay
+Default consequence
+Up to 10 minutes
+Five-point deduction
+More than 10 and up to 20 minutes
+Ten-point deduction
+More than 20 and up to 30 minutes
+Fifteen-point deduction
+More than 30 minutes
+Submission accepted only at Event Head discretion and normally ineligible for prizes
+A verified event-wide technical failure may lead to a written deadline extension. Individual API exhaustion, billing issues, device failure or forgotten credentials normally do not qualify.
+Other scoring consequences
+Missing mandatory evidence receives no credit for the affected rubric component.
+A fully hardcoded final outcome receives zero for Agent Collaboration and Technical Implementation unless the hardcoded portion is only a clearly disclosed fallback.
+If a team does not present, it receives zero for Presentation; remaining categories are judged only when the submission contains sufficient evidence.
+10. Integrity, safety and data rules
+Academic and competitive integrity
+Teams must disclose reused code, templates, datasets and external systems.
+Copied challenge-specific work presented as original may result in disqualification.
+Execution traces, screenshots, metrics and demonstrations must not be fabricated.
+Participants may not obtain another team's private code, prompts, credentials or outputs without permission.
+Participants may not interfere with another team, the network, submission portal or judging systems.
+Data and privacy
+Use only organizer-provided, public, licensed or explicitly consented data.
+Do not include passwords, API keys, personal identifiers or confidential information in submissions.
+Personal or sensitive data must be removed, anonymized or replaced with synthetic examples.
+External data claims must be traceable to a source or clearly labelled as assumptions.
+Teams remain responsible for the terms of any third-party service they use.
+Prohibited conduct
+Unauthorized access, credential abuse, phishing, malware, denial-of-service activity or security testing against real systems.
+Automated messages, purchases, applications or transactions involving real people or money without explicit authorization.
+Impersonating organizers, judges, companies or other participants.
+Prompting or manipulating an evaluator to ignore the judging rubric.
+Harassment, discrimination, threats or disruptive conduct.
+DISQUALIFICATION  Plagiarism, fabricated evidence, unauthorized access, intentional interference or serious code-of-conduct violations may lead to immediate disqualification.
+11. Organizer authority and dispute handling
+Rules Desk
+The Rules Desk interprets this rulebook, answers participant questions and records official clarifications. A clarification affecting multiple teams should be published to all participants.
+Technical incidents
+Report an incident as soon as it occurs; do not wait until the deadline.
+The technical desk records the affected team, time, evidence and attempted recovery.
+The Event Head may grant a targeted or event-wide remedy when the failure is attributable to organizer infrastructure.
+No participant may demand access to another team's system or confidential incident record.
+Appeals
+An appeal must be submitted by the registered team representative within 10 minutes of score publication.
+Appeals may address arithmetic mistakes, an incorrectly applied penalty, missing submitted evidence or a clear rule-procedure error.
+Subjective disagreement with a judge's business or technical assessment is not, by itself, grounds for rescoring.
+The Event Head reviews the record and issues a final written decision.
+Organizer powers
+The organizing committee may pause the event, adjust the schedule, replace a judge, verify a submission, investigate integrity concerns or issue a written rule addendum when necessary for safety and fairness. Material changes must be communicated consistently to all affected teams.
+Ownership and showcase permission
+Participants retain ownership of their original work. By submitting, teams permit organizers to review the project and display the team name, project title, screenshots and demo material for event reporting, unless the event registration terms state otherwise.
+FINAL AUTHORITY  The Event Head's decision is final for the event, subject to the host institution's applicable policies.
+12. Final participant checklist and glossary
+Before submission
+Our team has two to four registered members.
+Our judged workflow contains four to eight identifiable agents.
+Research, Finance, Marketing and Sales, and CEO responsibilities are present.
+The trace shows information exchange, disagreement and a response.
+The swarm compares at least two business strategies.
+The CEO output includes evidence, trade-offs, actions, risks, assumptions and KPIs.
+We have baseline and surprise decisions with separate evidence.
+The project includes a fallback or documented failure-handling path.
+All external tools, reused components and datasets are disclosed.
+The repository contains no secrets or unauthorized data.
+Judges can access and inspect every submitted link.
+The pitch fits the eight-minute presentation slot.
+Quick glossary
+Term
+Meaning
+Agent
+An identifiable AI role with its own responsibility, instruction, input and output.
+Swarm
+The complete set of agents and coordination logic used by the team.
+Department Agent
+An agent representing a business function such as Finance or Marketing.
+CEO Agent
+The coordinating agent that resolves conflict and issues the final decision.
+Boardroom Trace
+The auditable record of recommendations, exchanges, challenges and synthesis.
+Surprise
+The organizer-provided change in the business environment.
+Fallback
+A safe alternative behaviour used when part of the workflow fails.
+KPI
+A measurable indicator used to evaluate business success.
+Rules Desk
+The organizer function responsible for official rule interpretation.
+REMEMBER  The winning system is not the swarm with the most agents. It is the swarm that produces the most useful, explainable and adaptable business decision.

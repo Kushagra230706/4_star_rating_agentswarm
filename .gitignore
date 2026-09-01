@@ -1,0 +1,25 @@
+# Python virtualenv & cache
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+
+# Environment variables & secrets (CRITICAL FOR HACKATHON RULEBOOK)
+.env
+.env.local
+.env.*.local
+
+# IDE & Editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Outputs & temporary trace dumps
+outputs/*.json
+outputs/*.md
+!outputs/.gitkeep
