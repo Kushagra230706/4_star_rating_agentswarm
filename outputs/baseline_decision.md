@@ -1,5 +1,5 @@
 # Baseline CEO Decision Dossier
-*Generated at: 2026-09-01 17:32:57*
+*Generated at: 2026-09-01 17:40:55*
 
 ## 1. Executive Problem Brief
 **Problem**: 

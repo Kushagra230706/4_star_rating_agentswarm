@@ -1,5 +1,5 @@
 # Revised CEO Decision Dossier (Post-Surprise Adaptation)
-*Generated at: 2026-09-01 17:32:58*
+*Generated at: 2026-09-01 17:39:53*
 
 ## 1. Executive Problem Brief
 **Problem**: 
