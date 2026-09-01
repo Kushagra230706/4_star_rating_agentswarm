@@ -1,12 +1,23 @@
 # Revised CEO Decision Dossier (Post-Surprise Adaptation)
-*Generated at: 2026-09-01 17:32:58*
+*Generated at: 2026-09-01 17:50:54*
 
 ## 1. Executive Problem Brief
-**Problem**: 
+**Problem**: Determine optimal customer segment mix, interest pricing, and approval policy for FinNova Capital's INR 30 crore 1-year small-business lending pilot while respecting capital, default, and liquidity constraints.
 
 ### Supplied Case Facts
+- Total available capital is INR 30 crore for a 1-year pilot.
+- Total acquisition budget is INR 60 lakh (INR 18 lakh product setup, INR 42 lakh customer acquisition).
+- Maximum total loan approvals capped at 700 loans.
+- Cost of funds is 10% per year; servicing and collections cost is 1.5% of principal.
+- Retail shops: Avg loan INR 4 lakh | 5.0% default | 1,500 available demand | CAC INR 2,000.
+- Service SMEs: Avg loan INR 6 lakh | 3.5% default | 900 available demand | CAC INR 3,500.
+- Small manufacturers: Avg loan INR 9 lakh | 4.5% default | 450 available demand | CAC INR 5,500.
 
 ### Tagged Assumptions
+- `[ASSUMPTION: Available demand figures represent maximum qualified applicants willing to take loans at offered rates]`
+- `[ASSUMPTION: Expected default percentages are static unless credit macro conditions change]`
+- `[ASSUMPTION: 1-year pilot implies single cohort of loans maturing within 12 months]`
+- `[ASSUMPTION: INR 18 lakh setup cost is a sunk pilot cost and does not impact marginal loan allocation decisions]`
 
 ---
 
@@ -53,6 +64,27 @@
 
 ---
 ## 4. Stage 4: Strategy Tradeoff Comparison
+### Strategy A: Balanced Multi-Segment Risk-Adjusted Growth
+**Description**: Deploy INR 27 crore across Retail Shops (35%), Service SMEs (45%), and Small Manufacturers (20%) at 17.0% average interest rate while retaining INR 3 crore liquid buffer.
+**Estimated Risk**: Low-Moderate | **Projected ROI**: 16.8% Annual Net Margin
+**Pros**:
+- Blended portfolio default is 4.5% (safely below 5.0% cap)
+- Generates INR 1.89 Cr net yield (16.8% ROI)
+- Preserves INR 3 Cr liquidity buffer
+**Cons**:
+- Requires managing 2 distinct partner channels
+- Requires active 30-day DPD repayment monitoring
+
+### Strategy B: High-Volume Retail Channel Blitzscale
+**Description**: Deploy INR 27 crore across Retail Shops (60%) and Service SMEs (40%) at 18.5% interest rate to maximize loan approval count under 700 loan cap.
+**Estimated Risk**: High | **Projected ROI**: 15.4% Net Margin
+**Pros**:
+- Fulfills loan approval limit faster
+- Higher nominal interest spread (18.5%)
+**Cons**:
+- Portfolio default rate spikes to 4.9% (dangerously near 5.0% ceiling)
+- High acquisition budget burn
+
 ---
 ## 5. Stage 5: Final CEO Decision Dossier
 ### 📌 Final Order
