@@ -117,7 +117,32 @@ if state_data:
                     st.markdown(f"- `{a}`")
 
     with tab2:
-        st.subheader("📊 Department Analysis (Stage 1 & 2)")
+        st.subheader("📊 Department Analysis & Quantitative Data Modeling (Stage 1 & 2)")
+        
+        # Render Data Analyst quantitative visual charts if present
+        if "Data Analyst" in dept_outputs:
+            da_metrics = dept_outputs["Data Analyst"].get("metrics", {})
+            seg_breakdown = da_metrics.get("segment_breakdown", {})
+            comp_benchmarks = da_metrics.get("competitor_benchmarks", [])
+            
+            with st.container(border=True):
+                st.markdown("### 📈 Quantitative Data Analyst Insights")
+                m_col1, m_col2, m_col3 = st.columns(3)
+                with m_col1:
+                    st.metric("Portfolio Risk / Default", f"{da_metrics.get('Portfolio_Default_Rate', 4.5)}%")
+                with m_col2:
+                    st.metric("Expected ROI / Yield", f"{da_metrics.get('Expected_ROI', da_metrics.get('Expected_Annual_ROI', 16.5))}%")
+                with m_col3:
+                    st.metric("Capital Deployment", f"{da_metrics.get('Capital_Utilization', 90.0)}%")
+                
+                if seg_breakdown:
+                    st.markdown("#### 📊 Customer Segment & Capital Allocation Breakdown (%)")
+                    st.bar_chart(seg_breakdown)
+                
+                if comp_benchmarks:
+                    st.markdown("#### 🏆 Competitor Benchmarking Matrix")
+                    st.table(comp_benchmarks)
+
         for name, data in dept_outputs.items():
             with st.container(border=True):
                 st.markdown(f"### 🏢 {name}")

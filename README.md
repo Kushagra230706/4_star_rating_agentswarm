@@ -25,8 +25,9 @@ An autonomous, 6-agent executive management team designed for strategic business
 | 2 | **Business Research** | TAM/SAM/SOM, market dynamics, competitive threat matrix | Market Findings & Evidence |
 | 3 | **Finance Director** | CapEx/OpEx breakdown, unit economics, ROI, runway modeling | Financial Plan & Assumptions |
 | 4 | **Marketing & Sales** | Ideal Customer Profile (ICP), GTM channels, CAC/LTV benchmarks | Go-To-Market Recommendation |
-| 5 | **Risk & Reviewer** | Scrutinizes departmental claims and issues formal Stage 3 pushback | Challenge Memo & Debate Rebuttal |
-| 6 | **CEO Synthesizer** | Resolves conflict, compares strategies, issues final decision | Final Order, Roadmap, 3+ KPIs |
+| 5 | **Data Analyst** | Quantitative modeling, segment allocation math & competitor benchmarking | Numerical Metrics & Competitor Matrix |
+| 6 | **Risk & Reviewer** | Scrutinizes departmental claims and issues formal Stage 3 pushback | Challenge Memo & Debate Rebuttal |
+| 7 | **CEO Synthesizer** | Resolves conflict, compares strategies, issues final decision | Final Order, Roadmap, 3+ KPIs |
 
 ---
 

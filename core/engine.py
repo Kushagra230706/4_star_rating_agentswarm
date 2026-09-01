@@ -21,6 +21,7 @@ from agents.input_interpreter import InputInterpreterAgent
 from agents.business_research import BusinessResearchAgent
 from agents.finance import FinanceAgent
 from agents.marketing import MarketingAgent
+from agents.data_analyst import DataAnalystAgent
 from agents.risk_reviewer import RiskReviewerAgent
 from agents.ceo import CEOAgent
 
@@ -38,6 +39,7 @@ class BoardroomEngine:
         self.research = BusinessResearchAgent()
         self.finance = FinanceAgent()
         self.marketing = MarketingAgent()
+        self.analyst = DataAnalystAgent()
         self.risk = RiskReviewerAgent()
         self.ceo = CEOAgent()
 
@@ -57,12 +59,14 @@ class BoardroomEngine:
         dept_research = self.research.run(state.brief)
         dept_finance = self.finance.run(state.brief)
         dept_marketing = self.marketing.run(state.brief)
+        dept_analyst = self.analyst.run(state.brief)
 
         # Stage 2: Share
         safe_print("[STAGE 2: SHARE] Publishing Department Outputs to Central Shared Bus...")
         state.stage1_department_outputs["Business Research"] = dept_research
         state.stage1_department_outputs["Finance"] = dept_finance
         state.stage1_department_outputs["Marketing & Sales"] = dept_marketing
+        state.stage1_department_outputs["Data Analyst"] = dept_analyst
 
         for agent_name, out in state.stage1_department_outputs.items():
             self._log_trace(state, "Stage 1 & 2", agent_name, "Published Department Analysis", out.model_dump())
