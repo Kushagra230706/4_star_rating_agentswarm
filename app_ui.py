@@ -85,7 +85,6 @@ tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
     "6. Surprise Adaptation Delta"
 ])
 
-# Resolve state_data from session_state or disk
 trace_path = "outputs/baseline_trace.json"
 surprise_path = "outputs/surprise_trace.json"
 
@@ -107,18 +106,21 @@ if state_data:
         
         c1, c2 = st.columns(2)
         with c1:
-            st.markdown("### ✅ Supplied Hard Facts")
-            for f in brief.get("supplied_facts", []):
-                st.markdown(f"- {f}")
+            with st.container(border=True):
+                st.markdown("### ✅ Supplied Hard Facts")
+                for f in brief.get("supplied_facts", []):
+                    st.markdown(f"- {f}")
         with c2:
-            st.markdown("### 🏷️ Tagged Assumptions")
-            for a in brief.get("identified_assumptions", []):
-                st.info(a)
+            with st.container(border=True):
+                st.markdown("### 🏷️ Tagged Assumptions")
+                for a in brief.get("identified_assumptions", []):
+                    st.markdown(f"- `{a}`")
 
     with tab2:
         st.subheader("📊 Department Analysis (Stage 1 & 2)")
         for name, data in dept_outputs.items():
-            with st.expander(f"🏢 {name} Department Report", expanded=True):
+            with st.container(border=True):
+                st.markdown(f"### 🏢 {name}")
                 st.markdown(f"**Summary**: {data.get('summary')}")
                 st.markdown("**Key Findings**:")
                 for kf in data.get("key_findings", []):
@@ -128,34 +130,40 @@ if state_data:
     with tab3:
         st.subheader("⚡ Stage 3: Risk Challenge & Debate Trace")
         for ch in challenges:
-            st.warning(f"**Challenger**: {ch.get('challenger')} ➔ **Target**: {ch.get('target_agent')}")
-            st.markdown(f"- **Contested Point**: {ch.get('contested_point')}")
-            st.markdown(f"- **Critique**: {ch.get('critique_rationale')}")
-            st.markdown(f"- **Recommended Adjustment**: {ch.get('recommended_adjustment')}")
-            if ch.get("rebuttal_response"):
-                st.success(f"**Rebuttal Response**: {ch.get('rebuttal_response')}")
+            with st.container(border=True):
+                st.markdown(f"**Challenger**: `{ch.get('challenger')}` ➔ **Target**: `{ch.get('target_agent')}`")
+                st.markdown(f"- **Contested Point**: {ch.get('contested_point')}")
+                st.markdown(f"- **Critique Rationale**: {ch.get('critique_rationale')}")
+                st.markdown(f"- **Recommended Adjustment**: {ch.get('recommended_adjustment')}")
+                if ch.get("rebuttal_response"):
+                    st.markdown(f"💬 **Rebuttal Response**: {ch.get('rebuttal_response')}")
 
     with tab4:
         st.subheader("⚖️ Stage 4: Strategy Comparison Matrix")
         sc1, sc2 = st.columns(2)
         if len(strategies) >= 2:
             with sc1:
-                st.markdown(f"### {strategies[0].get('name')}")
-                st.write(strategies[0].get('description'))
-                st.success("Pros: " + ", ".join(strategies[0].get('pros', [])))
-                st.error("Cons: " + ", ".join(strategies[0].get('cons', [])))
+                with st.container(border=True):
+                    st.markdown(f"### {strategies[0].get('name')}")
+                    st.write(strategies[0].get('description'))
+                    st.markdown("**Pros**:\n" + "\n".join([f"- {p}" for p in strategies[0].get('pros', [])]))
+                    st.markdown("**Cons**:\n" + "\n".join([f"- {c}" for c in strategies[0].get('cons', [])]))
+                    st.caption(f"Risk: {strategies[0].get('estimated_risk')} | ROI: {strategies[0].get('projected_roi')}")
             with sc2:
-                st.markdown(f"### {strategies[1].get('name')}")
-                st.write(strategies[1].get('description'))
-                st.success("Pros: " + ", ".join(strategies[1].get('pros', [])))
-                st.error("Cons: " + ", ".join(strategies[1].get('cons', [])))
+                with st.container(border=True):
+                    st.markdown(f"### {strategies[1].get('name')}")
+                    st.write(strategies[1].get('description'))
+                    st.markdown("**Pros**:\n" + "\n".join([f"- {p}" for p in strategies[1].get('pros', [])]))
+                    st.markdown("**Cons**:\n" + "\n".join([f"- {c}" for c in strategies[1].get('cons', [])]))
+                    st.caption(f"Risk: {strategies[1].get('estimated_risk')} | ROI: {strategies[1].get('projected_roi')}")
 
     with tab5:
-        st.subheader("👑 Stage 5: Final CEO Decision Dossier (Baseline)")
+        st.subheader("👑 Stage 5: Final CEO Decision Dossier")
         if ceo:
-            st.success(f"### 📌 Final Order: {ceo.get('decision_statement')}")
+            with st.container(border=True):
+                st.markdown(f"### 📌 Final Order\n> **{ceo.get('decision_statement')}**")
             
-            st.markdown("#### ❌ Rejected Alternative & Detailed Rationale")
+            st.markdown("#### ❌ Rejected Alternative & Rationale")
             rej = ceo.get("rejected_alternative", {})
             if isinstance(rej, dict):
                 strat_name = rej.get("strategy_name", "Rejected Strategy")
@@ -164,14 +172,14 @@ if state_data:
                 downside = rej.get("downside_risk_scenario", "High insolvency probability before break-even horizon.")
                 quant = rej.get("quantitative_comparison", "Lower capital efficiency vs selected strategy.")
                 
-                with st.container():
-                    st.error(f"### 🛑 {strat_name}")
+                with st.container(border=True):
+                    st.markdown(f"### 🛑 {strat_name}")
                     st.markdown(f"**Core Business Flaw**: {reason}")
                     st.markdown(f"**Department Evidence & Pushback**: {pushback}")
                     st.markdown(f"**Downside Risk & Insolvency Horizon**: {downside}")
                     st.markdown(f"**Quantitative Comparison**: `{quant}`")
             else:
-                st.error(str(rej))
+                st.write(str(rej))
             
             st.markdown("#### 📊 Business KPIs")
             st.table(ceo.get("business_kpis", []))
@@ -190,22 +198,24 @@ if state_data:
             col_base, col_surp = st.columns(2)
 
             with col_base:
-                st.markdown("### 🏛️ Baseline Decision (Before Surprise)")
-                st.info(f"**Decision**: {ceo.get('decision_statement')}")
-                st.markdown("**Original Case Facts**: " + str(len(brief.get('supplied_facts', []))) + " facts parsed")
-                st.markdown("#### Baseline KPIs")
-                st.table(ceo.get("business_kpis", []))
+                with st.container(border=True):
+                    st.markdown("### 🏛️ Baseline Decision (Before Surprise)")
+                    st.markdown(f"**Decision**: {ceo.get('decision_statement')}")
+                    st.markdown("**Original Case Facts**: " + str(len(brief.get('supplied_facts', []))) + " facts parsed")
+                    st.markdown("#### Baseline KPIs")
+                    st.table(ceo.get("business_kpis", []))
 
             with col_surp:
-                st.markdown("### 🚨 Revised Decision (Post-Surprise Pivot)")
-                st.success(f"**Revised Decision**: {s_ceo.get('decision_statement')}")
-                st.markdown("#### Updated Surprise KPIs")
-                st.table(s_ceo.get("business_kpis", []))
+                with st.container(border=True):
+                    st.markdown("### 🚨 Revised Decision (Post-Surprise Pivot)")
+                    st.markdown(f"**Revised Decision**: {s_ceo.get('decision_statement')}")
+                    st.markdown("#### Updated Surprise KPIs")
+                    st.table(s_ceo.get("business_kpis", []))
 
             st.markdown("---")
             st.markdown("### 🗺️ Revised Implementation Roadmap (30/60/90 Days)")
             st.json(s_ceo.get("implementation_roadmap", {}))
         else:
-            st.warning("No surprise adaptation run trace found yet. Click '🚨 Run Surprise Adaptation Protocol' in the sidebar to simulate the surprise round.")
+            st.info("No surprise adaptation run trace found yet. Click '🚨 Run Surprise Adaptation Protocol' in the sidebar to simulate the surprise round.")
 else:
     st.info("No baseline run trace found yet. Click 'Run Baseline Boardroom Swarm' in the sidebar or run `python main.py` in your terminal.")

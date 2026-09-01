@@ -54,27 +54,71 @@ You MUST respond ONLY with a valid JSON object matching this schema:
 }
 """
 
+SYSTEM_STRATEGY_PROMPT = """You are the CEO formulating strategic options.
+Given the business brief and department findings, generate TWO distinct, viable strategic options tailored SPECIFICALLY to this business case idea.
+Do NOT use generic boilerplate names like 'Lean Phased Growth' or 'Paid Ad Blitzscale' unless they directly match the specific case. Name each strategy according to the specific business model, market path, or operational model.
+
+You MUST respond ONLY with a valid JSON object matching this schema:
+{
+  "strategies": [
+    {
+      "name": "Strategy A: [Specific Custom Strategy Name Tailored to Case]",
+      "description": "2-sentence detailed description of this strategic approach for the specific problem",
+      "pros": ["Key Advantage 1", "Key Advantage 2"],
+      "cons": ["Key Risk 1", "Key Risk 2"],
+      "estimated_risk": "Low-Medium",
+      "projected_roi": "Estimated timeline or ROI horizon"
+    },
+    {
+      "name": "Strategy B: [Alternative Specific Custom Strategy Name Tailored to Case]",
+      "description": "2-sentence detailed description of the alternative strategic approach",
+      "pros": ["Key Advantage 1", "Key Advantage 2"],
+      "cons": ["Key Risk 1", "Key Risk 2"],
+      "estimated_risk": "High",
+      "projected_roi": "Estimated timeline or ROI horizon"
+    }
+  ]
+}
+"""
+
 class CEOAgent:
     def formulate_strategies(self, state: BoardroomState) -> List[StrategyOption]:
-        """Stage 4: Formulate two viable strategies for comparison."""
-        return [
-            StrategyOption(
-                name="Strategy A: Lean Phased Growth (Organic & Partner First)",
-                description="Focus on high-margin mid-market accounts using low-cost organic channels, preserving capital until unit economics are proven.",
-                pros=["Preserves cash runway", "Lower downside financial risk", "High customer retention potential"],
-                cons=["Slower initial top-line growth speed", "Risk of competitor fast-following"],
-                estimated_risk="Low-Medium",
-                projected_roi="180% over 18 months"
-            ),
-            StrategyOption(
-                name="Strategy B: Aggressive Market Blitzscale (Paid Ad Driven)",
-                description="Heavy upfront paid marketing ad spend to capture maximum initial market share across broad demographics.",
-                pros=["Faster market penetration", "High top-line brand visibility"],
-                cons=["High capital burn rate", "Vulnerable to CAC inflation and runway exhaustion"],
-                estimated_risk="High",
-                projected_roi="250% if CAC holds, negative if CAC spikes"
-            )
-        ]
+        """Stage 4: Formulate two dynamic, case-specific strategies for comparison."""
+        payload = {
+            "brief": state.brief.model_dump() if state.brief else {},
+            "department_findings": {k: v.summary for k, v in state.stage1_department_outputs.items()}
+        }
+        user_prompt = f"Formulate 2 contrasting, custom strategic options for this business brief:\n{json.dumps(payload, indent=2)}"
+        res_text = router.call_agent_llm("CEO Synthesizer", SYSTEM_STRATEGY_PROMPT, user_prompt)
+        
+        try:
+            cleaned = res_text.strip()
+            if cleaned.startswith("```json"): cleaned = cleaned[7:]
+            if cleaned.startswith("```"): cleaned = cleaned[3:]
+            if cleaned.endswith("```"): cleaned = cleaned[:-3]
+            data = json.loads(cleaned.strip())
+            return [StrategyOption(**s) for s in data.get("strategies", [])]
+        except Exception as e:
+            print(f"[AGENT ERROR] Strategy formulation parsing failed: {e}. Using case fallback.")
+            problem = state.brief.problem_statement if state.brief else "Business expansion"
+            return [
+                StrategyOption(
+                    name=f"Strategy A: Focused Capital-Efficient Execution",
+                    description=f"Tailored lean rollout focusing on immediate high-intent customer segments for {problem}.",
+                    pros=["Preserves capital runway", "Low downside risk"],
+                    cons=["Slower initial market capture"],
+                    estimated_risk="Low-Medium",
+                    projected_roi="180% over 18 months"
+                ),
+                StrategyOption(
+                    name=f"Strategy B: Rapid Market Expansion Model",
+                    description=f"Aggressive upfront investment path to capture broader market share rapidly.",
+                    pros=["Faster brand footprint"],
+                    cons=["High upfront capital burn rate"],
+                    estimated_risk="High",
+                    projected_roi="250% if unit economics hold"
+                )
+            ]
 
     def make_final_decision(self, state: BoardroomState) -> CEODecision:
         """Stage 5: Synthesize complete CEO decision dossier."""
