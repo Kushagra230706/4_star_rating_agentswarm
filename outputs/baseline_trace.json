@@ -32,19 +32,19 @@
   "stage1_department_outputs": {
     "Business Research": {
       "agent_name": "Business Research",
-      "summary": "FinNova Capital's 1-year pilot targets a high-yield INR 27 crore SME digital lending portfolio, leveraging an unserved market of 2,800 total applicant loans across Retail, SME, and Manufacturing segments.",
+      "summary": "FinNova Capital's pilot targets a high-yield SME digital lending portfolio across Retail, SME, and Manufacturing segments.",
       "key_findings": [
-        "Retail shops exhibit highest loan volume potential (1,500 available demand) with lowest acquisition cost (INR 2,000/cust).",
-        "Service SMEs offer balanced unit economics (INR 6 lakh avg loan size, 3.5% baseline default rate).",
-        "[ASSUMPTION: Small-business digital lending demand in tier-2 Indian hubs will expand by 18% annually]"
+        "Retail shops exhibit highest default risk under macro stress (8.0% default rate).",
+        "Service SMEs offer strongest risk-adjusted resilience (5.0% default, INR 6 lakh avg loan size).",
+        "[ASSUMPTION: Tier-2 business credit demand remains resilient at higher interest rates]"
       ],
       "recommendations": [
-        "Cap retail shop exposure below 45% of total capital to protect portfolio default ceiling.",
-        "Focus direct acquisition budget on high-conversion partner accountant networks."
+        "Reduce retail shop exposure from 45% down to 20% of total capital.",
+        "Focus direct partner acquisition on resilient Service SME networks."
       ],
-      "financial_or_operational_impact": "High capital utilization potential with total market demand exceeding capital supply 3.2x.",
+      "financial_or_operational_impact": "Prevents INR 1.2 crore in incremental default losses.",
       "explicit_assumptions": [
-        "[ASSUMPTION: Retail applicant credit bureau scoring remains stable]"
+        "[ASSUMPTION: Retail applicant credit bureau scoring remains depressed]"
       ],
       "metrics": {
         "Available_Demand_Loans": 2850,
@@ -53,65 +53,65 @@
     },
     "Finance": {
       "agent_name": "Finance & Treasury",
-      "summary": "Financial model allocates INR 27 crore principal across 600 loans with a 7.0% net interest margin (17% customer interest vs 10% cost of funds and 1.5% servicing costs).",
+      "summary": "Financial model allocates capital across loans with target net interest margins.",
       "key_findings": [
-        "Cost of funds fixed at 10% per annum; servicing & collection overhead is 1.5% of principal.",
-        "Retaining INR 3 crore liquid reserve maintains full regulatory capital safety buffer.",
-        "[ASSUMPTION: Net interest income will generate INR 1.89 crore in annual net yield]"
+        "Cost of funds fixed at 10% per annum; servicing overhead is 1.5%.",
+        "Increasing interest rate to 18.5% preserves net yield at 7.0%.",
+        "[ASSUMPTION: Retaining INR 3 crore liquid reserve maintains full regulatory safety buffer]"
       ],
       "recommendations": [
         "Maintain INR 3 crore unallocated liquidity buffer at all times.",
-        "Price Service SMEs at 16.5% and Retail Shops at 18.0% to balance default risk."
+        "Price Service SMEs at 17.5% and Retail Shops at 19.0% to balance default risk."
       ],
-      "financial_or_operational_impact": "Expected annual ROI of 16.5% with total approval count capped strictly at 700 loans.",
+      "financial_or_operational_impact": "Expected annual ROI of 15.8% with average interest pricing at 17.0%.",
       "explicit_assumptions": [
         "[ASSUMPTION: Servicing cost remains static at 1.5% per annum]"
       ],
       "metrics": {
-        "Expected_ROI": 16.5,
+        "Expected_ROI": 15.8,
         "Capital_Utilization": 90.0
       }
     },
     "Marketing & Sales": {
       "agent_name": "Marketing & Sales",
-      "summary": "GTM acquisition budget of INR 42 lakh (net of INR 18 lakh setup) is allocated across high-intent partner channels and digital advertising.",
+      "summary": "GTM acquisition budget is allocated across high-intent partner channels and digital advertising.",
       "key_findings": [
-        "Retail shops present lowest customer acquisition cost (INR 2,000 per customer).",
-        "Small manufacturers require highest acquisition spend (INR 5,500 per customer) but yield higher loan sizes (INR 9 lakh).",
-        "[ASSUMPTION: Partner accountant channels yield 45% application conversion rate]"
+        "Partner accountants yield highest application conversion rate (45%).",
+        "Digital ad CAC rises under budget constraints; referral programs offer lowest CAC (INR 1,200/app).",
+        "[ASSUMPTION: Accountant referral conversion remains stable at 45%]"
       ],
       "recommendations": [
-        "Prioritize retail shop partner acquisition to maximize loan approval count under INR 42 lakh budget.",
+        "Prioritize partner accountant channels to maximize loan approval count.",
         "Limit spending on high-CAC manufacturer channels to preserve acquisition runway."
       ],
-      "financial_or_operational_impact": "Blended customer acquisition cost of INR 3,200 per funded loan.",
+      "financial_or_operational_impact": "Blended customer acquisition cost of INR 3,400 per funded loan.",
       "explicit_assumptions": [
         "[ASSUMPTION: Digital ad conversion rate remains at 25%]"
       ],
       "metrics": {
-        "Blended_CAC": "INR 3,200",
+        "Blended_CAC": "INR 3,400",
         "Acquisition_Budget": "INR 42 Lakh"
       }
     },
     "Data Analyst": {
       "agent_name": "Data Analyst",
-      "summary": "Quantitative allocation math optimizes capital distribution: 35% Retail Shops, 45% Service SMEs, and 20% Small Manufacturers.",
+      "summary": "Quantitative allocation math optimizes capital distribution: 35.0% Retail, 45.0% SME, 20.0% Manufacturers.",
       "key_findings": [
-        "Blended portfolio default rate modeled at 4.5% (strictly under 5.0% constraint ceiling).",
+        "Blended portfolio default rate modeled at 4.5% (strictly under 5.5% constraint ceiling).",
         "Capital deployment reaches INR 27 crore across 550 approved loans with INR 3 crore retained liquidity.",
-        "[ASSUMPTION: Default probability distribution follows standard historical SME credit curve]"
+        "[ASSUMPTION: Default probability distribution follows updated credit stress curve]"
       ],
       "recommendations": [
-        "Allocate 45% capital to Service SMEs (INR 12.15 Cr) for optimal risk-adjusted yield.",
-        "Rebalance monthly if retail shop defaults exceed 5.5%."
+        "Allocate 45.0% capital to Service SMEs for optimal risk-adjusted yield.",
+        "Rebalance monthly if retail shop defaults exceed 8.0%."
       ],
-      "financial_or_operational_impact": "Portfolio default probability = 4.5%, total yield = 16.8%.",
+      "financial_or_operational_impact": "Portfolio default probability = 4.5%, total yield = 16.2%.",
       "explicit_assumptions": [
         "[ASSUMPTION: Default correlation between segments is under 0.25]"
       ],
       "metrics": {
         "Portfolio_Default_Rate": 4.5,
-        "Expected_ROI": 16.8,
+        "Expected_ROI": 16.2,
         "Capital_Utilization": 90.0,
         "segment_breakdown": {
           "Retail_Shops": 35.0,
@@ -122,7 +122,7 @@
           {
             "Competitor": "LendingKart",
             "Interest_Rate": "18.5%",
-            "Default_Rate": "4.8%",
+            "Default_Rate": "5.8%",
             "Approval_Speed": "24 Hours"
           },
           {
@@ -134,7 +134,7 @@
           {
             "Competitor": "FlexiLoans",
             "Interest_Rate": "19.0%",
-            "Default_Rate": "5.2%",
+            "Default_Rate": "6.2%",
             "Approval_Speed": "48 Hours"
           }
         ]
@@ -148,7 +148,7 @@
       "contested_point": "Marketing's aggressive paid acquisition budget projections.",
       "critique_rationale": "Finance has imposed a conservative cash preservation rule; unvalidated paid ad burn poses high insolvency risk.",
       "recommended_adjustment": "Cap paid ad spending to 30% of marketing budget and tie further funding to CAC milestone targets.",
-      "rebuttal_response": "{\"agent_name\": \"Marketing & Sales\", \"summary\": \"GTM acquisition budget of INR 42 lakh (net of INR 18 lakh setup) is allocated across high-intent partner channels and digital advertising.\", \"key_findings\": [\"Retail shops present lowest customer acquisition cost (INR 2,000 per customer).\", \"Small manufacturers require highest acquisition spend (INR 5,500 per customer) but yield higher loan sizes (INR 9 lakh).\", \"[ASSUMPTION: Partner accountant channels yield 45% application conversion rate]\"], \"recommendations\": [\"Prioritize retail shop partner acquisition to maximize loan approval count under INR 42 lakh budget.\", \"Limit spending on high-CAC manufacturer channels to preserve acquisition runway.\"], \"financial_or_operational_impact\": \"Blended customer acquisition cost of INR 3,200 per funded loan.\", \"explicit_assumptions\": [\"[ASSUMPTION: Digital ad conversion rate remains at 25%]\"], \"metrics\": {\"Blended_CAC\": \"INR 3,200\", \"Acquisition_Budget\": \"INR 42 Lakh\"}}"
+      "rebuttal_response": "{\"agent_name\": \"Marketing & Sales\", \"summary\": \"Marketing re-optimizes INR 18 lakh acquisition budget into Partner Accountants (45% conv) and Referrals to achieve 160 funded loans.\", \"key_findings\": [\"Partner accountants yield highest application conversion rate (45%).\", \"Digital ad CAC rises under budget constraints; referral programs offer lowest CAC (INR 1,200/app).\", \"[ASSUMPTION: Accountant referral conversion remains stable at 45%]\"], \"recommendations\": [\"Prioritize partner accountant channels to maximize loan approval count.\", \"Limit spending on high-CAC manufacturer channels to preserve acquisition runway.\"], \"financial_or_operational_impact\": \"Blended customer acquisition cost of INR 3,400 per funded loan.\", \"explicit_assumptions\": [\"[ASSUMPTION: Digital ad conversion rate remains at 25%]\"], \"metrics\": {\"Blended_CAC\": \"INR 3,400\", \"Acquisition_Budget\": \"INR 18 Lakh\"}}"
     }
   ],
   "stage4_strategies": [
@@ -183,41 +183,41 @@
     }
   ],
   "stage5_ceo_decision": {
-    "decision_statement": "Execute Strategy A: Balanced Multi-Segment Growth & Risk-Adjusted Yield (INR 27 Cr Deployed, 4.5% Default).",
+    "decision_statement": "Execute Strategy A: Defensive Capital Retrenchment & Credit Policy Tightening (INR 27 Cr Deployed, 5.4% Default).",
     "department_evidence_cited": {},
     "rejected_alternative": {
-      "strategy_name": "Aggressive Manufacturer-Only Concentration Strategy",
-      "core_business_flaw": "Exceeds underwriting capacity, concentrates credit risk in high-default segments, and exhausts acquisition budget.",
-      "department_pushback": "Finance and Risk Reviewer identified potential portfolio default spike above 5.5% constraint limit.",
+      "strategy_name": "Aggressive High-Yield Retail Exposure Strategy",
+      "core_business_flaw": "Exceeds underwriting risk capacity, causing portfolio default rate to breach 6.4%.",
+      "department_pushback": "Risk Reviewer and Finance identified severe default spike above 5.5% constraint limit.",
       "downside_risk_scenario": "Sudden credit shock triggers portfolio-wide losses exceeding INR 2.5 crore buffer.",
-      "quantitative_comparison": "Lower capital efficiency (14.2% ROI vs 16.8% selected Strategy A)."
+      "quantitative_comparison": "Lower capital efficiency (14.2% ROI vs 15.8% selected Strategy A)."
     },
     "key_tradeoffs": [],
     "tagged_assumptions": [],
     "implementation_roadmap": {
       "first_30_days": [
-        "Complete partner accountant onboarding & digital verification integration",
-        "Deploy initial INR 8 crore pilot cohort to Service SMEs"
+        "Enforce tightened retail underwriting filters",
+        "Re-price customer interest rate to 18.5%"
       ],
       "days_31_to_60": [
-        "Scale retail shop acquisition channel",
-        "Review early 30-day DPD repayment metrics"
+        "Reallocate INR 9.5 crore capital to Service SMEs",
+        "Review 30-day DPD repayment metrics"
       ],
       "days_61_to_90": [
-        "Optimize interest pricing spreads up to 18%",
-        "Achieve full INR 27 crore deployment across 550 loans"
+        "Maintain INR 3 crore liquid reserve",
+        "Achieve full INR 27 crore deployment under 5.4% default"
       ]
     },
     "business_kpis": [
       {
         "KPI": "Portfolio Default Rate",
-        "Target": "<= 5.0%",
-        "Expected": "4.5%"
+        "Target": "<= 5.5%",
+        "Expected": "5.4%"
       },
       {
         "KPI": "Annual Net Yield (ROI)",
         "Target": ">= 15.0%",
-        "Expected": "16.8%"
+        "Expected": "15.8%"
       },
       {
         "KPI": "Capital Deployed",
@@ -230,7 +230,7 @@
     {
       "stage": "Stage 0",
       "agent": "Input Interpreter",
-      "timestamp": "2026-09-01T17:50:24.663640",
+      "timestamp": "2026-09-01T18:12:43.002777",
       "action": "Extracted Structured Brief",
       "content": {
         "problem_statement": "Determine optimal customer segment mix, interest pricing, and approval policy for FinNova Capital's INR 30 crore 1-year small-business lending pilot while respecting capital, default, and liquidity constraints.",
@@ -266,23 +266,23 @@
     {
       "stage": "Stage 1 & 2",
       "agent": "Business Research",
-      "timestamp": "2026-09-01T17:50:27.015771",
+      "timestamp": "2026-09-01T18:12:43.798634",
       "action": "Published Department Analysis",
       "content": {
         "agent_name": "Business Research",
-        "summary": "FinNova Capital's 1-year pilot targets a high-yield INR 27 crore SME digital lending portfolio, leveraging an unserved market of 2,800 total applicant loans across Retail, SME, and Manufacturing segments.",
+        "summary": "FinNova Capital's pilot targets a high-yield SME digital lending portfolio across Retail, SME, and Manufacturing segments.",
         "key_findings": [
-          "Retail shops exhibit highest loan volume potential (1,500 available demand) with lowest acquisition cost (INR 2,000/cust).",
-          "Service SMEs offer balanced unit economics (INR 6 lakh avg loan size, 3.5% baseline default rate).",
-          "[ASSUMPTION: Small-business digital lending demand in tier-2 Indian hubs will expand by 18% annually]"
+          "Retail shops exhibit highest default risk under macro stress (8.0% default rate).",
+          "Service SMEs offer strongest risk-adjusted resilience (5.0% default, INR 6 lakh avg loan size).",
+          "[ASSUMPTION: Tier-2 business credit demand remains resilient at higher interest rates]"
         ],
         "recommendations": [
-          "Cap retail shop exposure below 45% of total capital to protect portfolio default ceiling.",
-          "Focus direct acquisition budget on high-conversion partner accountant networks."
+          "Reduce retail shop exposure from 45% down to 20% of total capital.",
+          "Focus direct partner acquisition on resilient Service SME networks."
         ],
-        "financial_or_operational_impact": "High capital utilization potential with total market demand exceeding capital supply 3.2x.",
+        "financial_or_operational_impact": "Prevents INR 1.2 crore in incremental default losses.",
         "explicit_assumptions": [
-          "[ASSUMPTION: Retail applicant credit bureau scoring remains stable]"
+          "[ASSUMPTION: Retail applicant credit bureau scoring remains depressed]"
         ],
         "metrics": {
           "Available_Demand_Loans": 2850,
@@ -293,26 +293,26 @@
     {
       "stage": "Stage 1 & 2",
       "agent": "Finance",
-      "timestamp": "2026-09-01T17:50:27.015858",
+      "timestamp": "2026-09-01T18:12:43.798686",
       "action": "Published Department Analysis",
       "content": {
         "agent_name": "Finance & Treasury",
-        "summary": "Financial model allocates INR 27 crore principal across 600 loans with a 7.0% net interest margin (17% customer interest vs 10% cost of funds and 1.5% servicing costs).",
+        "summary": "Financial model allocates capital across loans with target net interest margins.",
         "key_findings": [
-          "Cost of funds fixed at 10% per annum; servicing & collection overhead is 1.5% of principal.",
-          "Retaining INR 3 crore liquid reserve maintains full regulatory capital safety buffer.",
-          "[ASSUMPTION: Net interest income will generate INR 1.89 crore in annual net yield]"
+          "Cost of funds fixed at 10% per annum; servicing overhead is 1.5%.",
+          "Increasing interest rate to 18.5% preserves net yield at 7.0%.",
+          "[ASSUMPTION: Retaining INR 3 crore liquid reserve maintains full regulatory safety buffer]"
         ],
         "recommendations": [
           "Maintain INR 3 crore unallocated liquidity buffer at all times.",
-          "Price Service SMEs at 16.5% and Retail Shops at 18.0% to balance default risk."
+          "Price Service SMEs at 17.5% and Retail Shops at 19.0% to balance default risk."
         ],
-        "financial_or_operational_impact": "Expected annual ROI of 16.5% with total approval count capped strictly at 700 loans.",
+        "financial_or_operational_impact": "Expected annual ROI of 15.8% with average interest pricing at 17.0%.",
         "explicit_assumptions": [
           "[ASSUMPTION: Servicing cost remains static at 1.5% per annum]"
         ],
         "metrics": {
-          "Expected_ROI": 16.5,
+          "Expected_ROI": 15.8,
           "Capital_Utilization": 90.0
         }
       }
@@ -320,26 +320,26 @@
     {
       "stage": "Stage 1 & 2",
       "agent": "Marketing & Sales",
-      "timestamp": "2026-09-01T17:50:27.015873",
+      "timestamp": "2026-09-01T18:12:43.798723",
       "action": "Published Department Analysis",
       "content": {
         "agent_name": "Marketing & Sales",
-        "summary": "GTM acquisition budget of INR 42 lakh (net of INR 18 lakh setup) is allocated across high-intent partner channels and digital advertising.",
+        "summary": "GTM acquisition budget is allocated across high-intent partner channels and digital advertising.",
         "key_findings": [
-          "Retail shops present lowest customer acquisition cost (INR 2,000 per customer).",
-          "Small manufacturers require highest acquisition spend (INR 5,500 per customer) but yield higher loan sizes (INR 9 lakh).",
-          "[ASSUMPTION: Partner accountant channels yield 45% application conversion rate]"
+          "Partner accountants yield highest application conversion rate (45%).",
+          "Digital ad CAC rises under budget constraints; referral programs offer lowest CAC (INR 1,200/app).",
+          "[ASSUMPTION: Accountant referral conversion remains stable at 45%]"
         ],
         "recommendations": [
-          "Prioritize retail shop partner acquisition to maximize loan approval count under INR 42 lakh budget.",
+          "Prioritize partner accountant channels to maximize loan approval count.",
           "Limit spending on high-CAC manufacturer channels to preserve acquisition runway."
         ],
-        "financial_or_operational_impact": "Blended customer acquisition cost of INR 3,200 per funded loan.",
+        "financial_or_operational_impact": "Blended customer acquisition cost of INR 3,400 per funded loan.",
         "explicit_assumptions": [
           "[ASSUMPTION: Digital ad conversion rate remains at 25%]"
         ],
         "metrics": {
-          "Blended_CAC": "INR 3,200",
+          "Blended_CAC": "INR 3,400",
           "Acquisition_Budget": "INR 42 Lakh"
         }
       }
@@ -347,27 +347,27 @@
     {
       "stage": "Stage 1 & 2",
       "agent": "Data Analyst",
-      "timestamp": "2026-09-01T17:50:27.015916",
+      "timestamp": "2026-09-01T18:12:43.798811",
       "action": "Published Department Analysis",
       "content": {
         "agent_name": "Data Analyst",
-        "summary": "Quantitative allocation math optimizes capital distribution: 35% Retail Shops, 45% Service SMEs, and 20% Small Manufacturers.",
+        "summary": "Quantitative allocation math optimizes capital distribution: 35.0% Retail, 45.0% SME, 20.0% Manufacturers.",
         "key_findings": [
-          "Blended portfolio default rate modeled at 4.5% (strictly under 5.0% constraint ceiling).",
+          "Blended portfolio default rate modeled at 4.5% (strictly under 5.5% constraint ceiling).",
           "Capital deployment reaches INR 27 crore across 550 approved loans with INR 3 crore retained liquidity.",
-          "[ASSUMPTION: Default probability distribution follows standard historical SME credit curve]"
+          "[ASSUMPTION: Default probability distribution follows updated credit stress curve]"
         ],
         "recommendations": [
-          "Allocate 45% capital to Service SMEs (INR 12.15 Cr) for optimal risk-adjusted yield.",
-          "Rebalance monthly if retail shop defaults exceed 5.5%."
+          "Allocate 45.0% capital to Service SMEs for optimal risk-adjusted yield.",
+          "Rebalance monthly if retail shop defaults exceed 8.0%."
         ],
-        "financial_or_operational_impact": "Portfolio default probability = 4.5%, total yield = 16.8%.",
+        "financial_or_operational_impact": "Portfolio default probability = 4.5%, total yield = 16.2%.",
         "explicit_assumptions": [
           "[ASSUMPTION: Default correlation between segments is under 0.25]"
         ],
         "metrics": {
           "Portfolio_Default_Rate": 4.5,
-          "Expected_ROI": 16.8,
+          "Expected_ROI": 16.2,
           "Capital_Utilization": 90.0,
           "segment_breakdown": {
             "Retail_Shops": 35.0,
@@ -378,7 +378,7 @@
             {
               "Competitor": "LendingKart",
               "Interest_Rate": "18.5%",
-              "Default_Rate": "4.8%",
+              "Default_Rate": "5.8%",
               "Approval_Speed": "24 Hours"
             },
             {
@@ -390,7 +390,7 @@
             {
               "Competitor": "FlexiLoans",
               "Interest_Rate": "19.0%",
-              "Default_Rate": "5.2%",
+              "Default_Rate": "6.2%",
               "Approval_Speed": "48 Hours"
             }
           ]
@@ -400,7 +400,7 @@
     {
       "stage": "Stage 3",
       "agent": "Risk & Reviewer",
-      "timestamp": "2026-09-01T17:50:30.189483",
+      "timestamp": "2026-09-01T18:12:44.714145",
       "action": "Issued Challenge to Marketing & Sales",
       "content": {
         "challenger": "Risk & Reviewer Agent",
@@ -408,13 +408,13 @@
         "contested_point": "Marketing's aggressive paid acquisition budget projections.",
         "critique_rationale": "Finance has imposed a conservative cash preservation rule; unvalidated paid ad burn poses high insolvency risk.",
         "recommended_adjustment": "Cap paid ad spending to 30% of marketing budget and tie further funding to CAC milestone targets.",
-        "rebuttal_response": "{\"agent_name\": \"Marketing & Sales\", \"summary\": \"GTM acquisition budget of INR 42 lakh (net of INR 18 lakh setup) is allocated across high-intent partner channels and digital advertising.\", \"key_findings\": [\"Retail shops present lowest customer acquisition cost (INR 2,000 per customer).\", \"Small manufacturers require highest acquisition spend (INR 5,500 per customer) but yield higher loan sizes (INR 9 lakh).\", \"[ASSUMPTION: Partner accountant channels yield 45% application conversion rate]\"], \"recommendations\": [\"Prioritize retail shop partner acquisition to maximize loan approval count under INR 42 lakh budget.\", \"Limit spending on high-CAC manufacturer channels to preserve acquisition runway.\"], \"financial_or_operational_impact\": \"Blended customer acquisition cost of INR 3,200 per funded loan.\", \"explicit_assumptions\": [\"[ASSUMPTION: Digital ad conversion rate remains at 25%]\"], \"metrics\": {\"Blended_CAC\": \"INR 3,200\", \"Acquisition_Budget\": \"INR 42 Lakh\"}}"
+        "rebuttal_response": "{\"agent_name\": \"Marketing & Sales\", \"summary\": \"Marketing re-optimizes INR 18 lakh acquisition budget into Partner Accountants (45% conv) and Referrals to achieve 160 funded loans.\", \"key_findings\": [\"Partner accountants yield highest application conversion rate (45%).\", \"Digital ad CAC rises under budget constraints; referral programs offer lowest CAC (INR 1,200/app).\", \"[ASSUMPTION: Accountant referral conversion remains stable at 45%]\"], \"recommendations\": [\"Prioritize partner accountant channels to maximize loan approval count.\", \"Limit spending on high-CAC manufacturer channels to preserve acquisition runway.\"], \"financial_or_operational_impact\": \"Blended customer acquisition cost of INR 3,400 per funded loan.\", \"explicit_assumptions\": [\"[ASSUMPTION: Digital ad conversion rate remains at 25%]\"], \"metrics\": {\"Blended_CAC\": \"INR 3,400\", \"Acquisition_Budget\": \"INR 18 Lakh\"}}"
       }
     },
     {
       "stage": "Stage 4",
       "agent": "CEO Agent",
-      "timestamp": "2026-09-01T17:50:31.154566",
+      "timestamp": "2026-09-01T18:12:45.111693",
       "action": "Formulated 2 Viable Strategies",
       "content": [
         {
@@ -451,44 +451,44 @@
     {
       "stage": "Stage 5",
       "agent": "CEO Agent",
-      "timestamp": "2026-09-01T17:50:31.656747",
+      "timestamp": "2026-09-01T18:12:45.539995",
       "action": "Issued Final CEO Decision Dossier",
       "content": {
-        "decision_statement": "Execute Strategy A: Balanced Multi-Segment Growth & Risk-Adjusted Yield (INR 27 Cr Deployed, 4.5% Default).",
+        "decision_statement": "Execute Strategy A: Defensive Capital Retrenchment & Credit Policy Tightening (INR 27 Cr Deployed, 5.4% Default).",
         "department_evidence_cited": {},
         "rejected_alternative": {
-          "strategy_name": "Aggressive Manufacturer-Only Concentration Strategy",
-          "core_business_flaw": "Exceeds underwriting capacity, concentrates credit risk in high-default segments, and exhausts acquisition budget.",
-          "department_pushback": "Finance and Risk Reviewer identified potential portfolio default spike above 5.5% constraint limit.",
+          "strategy_name": "Aggressive High-Yield Retail Exposure Strategy",
+          "core_business_flaw": "Exceeds underwriting risk capacity, causing portfolio default rate to breach 6.4%.",
+          "department_pushback": "Risk Reviewer and Finance identified severe default spike above 5.5% constraint limit.",
           "downside_risk_scenario": "Sudden credit shock triggers portfolio-wide losses exceeding INR 2.5 crore buffer.",
-          "quantitative_comparison": "Lower capital efficiency (14.2% ROI vs 16.8% selected Strategy A)."
+          "quantitative_comparison": "Lower capital efficiency (14.2% ROI vs 15.8% selected Strategy A)."
         },
         "key_tradeoffs": [],
         "tagged_assumptions": [],
         "implementation_roadmap": {
           "first_30_days": [
-            "Complete partner accountant onboarding & digital verification integration",
-            "Deploy initial INR 8 crore pilot cohort to Service SMEs"
+            "Enforce tightened retail underwriting filters",
+            "Re-price customer interest rate to 18.5%"
           ],
           "days_31_to_60": [
-            "Scale retail shop acquisition channel",
-            "Review early 30-day DPD repayment metrics"
+            "Reallocate INR 9.5 crore capital to Service SMEs",
+            "Review 30-day DPD repayment metrics"
           ],
           "days_61_to_90": [
-            "Optimize interest pricing spreads up to 18%",
-            "Achieve full INR 27 crore deployment across 550 loans"
+            "Maintain INR 3 crore liquid reserve",
+            "Achieve full INR 27 crore deployment under 5.4% default"
           ]
         },
         "business_kpis": [
           {
             "KPI": "Portfolio Default Rate",
-            "Target": "<= 5.0%",
-            "Expected": "4.5%"
+            "Target": "<= 5.5%",
+            "Expected": "5.4%"
           },
           {
             "KPI": "Annual Net Yield (ROI)",
             "Target": ">= 15.0%",
-            "Expected": "16.8%"
+            "Expected": "15.8%"
           },
           {
             "KPI": "Capital Deployed",
