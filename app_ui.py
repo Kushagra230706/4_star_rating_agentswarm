@@ -24,20 +24,44 @@ st.set_page_config(page_title="Agentic Swarm — AI Boardroom", layout="wide")
 st.title("🏛️ Agentic Swarm: Executive AI Boardroom")
 st.caption("Autonomous 6-Agent Strategic Analysis, Department Debate & Surprise Adaptation Engine")
 
-# Load sample case
-case_file = "data/sample_case.json"
-if os.path.exists(case_file):
-    with open(case_file, "r", encoding="utf-8") as f:
-        sample_data = json.load(f)
-else:
-    sample_data = {
-        "raw_business_case": "Sample case text...",
-        "sample_surprise_event": "Sample surprise text..."
-    }
+# Load official test cases
+preset_file = "data/official_test_cases.json"
+official_presets = {}
+if os.path.exists(preset_file):
+    with open(preset_file, "r", encoding="utf-8") as f:
+        official_presets = json.load(f)
 
 st.sidebar.header("🕹️ Boardroom Control Panel")
-case_input = st.sidebar.text_area("1. Raw Business Case Input", value=sample_data.get("raw_business_case", ""), height=180)
-surprise_input = st.sidebar.text_area("2. Surprise Event Update", value=sample_data.get("sample_surprise_event", ""), height=120)
+
+# Theme & Test Case Preset Selector
+if official_presets:
+    st.sidebar.markdown("### 🎯 Select Official Problem Case")
+    theme_options = ["Custom Input"] + list(official_presets.keys())
+    selected_theme = st.sidebar.selectbox("Select Business Theme", theme_options)
+    
+    default_case_text = ""
+    default_surprise_text = ""
+    
+    if selected_theme != "Custom Input":
+        tc_options = list(official_presets[selected_theme].keys())
+        selected_tc = st.sidebar.selectbox("Select Test Case", tc_options)
+        tc_data = official_presets[selected_theme][selected_tc]
+        default_case_text = tc_data.get("raw_business_case", "")
+        default_surprise_text = tc_data.get("sample_surprise_event", "")
+    else:
+        # Load sample case fallback
+        case_file = "data/sample_case.json"
+        if os.path.exists(case_file):
+            with open(case_file, "r", encoding="utf-8") as f:
+                sample_data = json.load(f)
+            default_case_text = sample_data.get("raw_business_case", "")
+            default_surprise_text = sample_data.get("sample_surprise_event", "")
+
+    case_input = st.sidebar.text_area("1. Raw Business Case Input", value=default_case_text, height=180)
+    surprise_input = st.sidebar.text_area("2. Surprise Event Update", value=default_surprise_text, height=120)
+else:
+    case_input = st.sidebar.text_area("1. Raw Business Case Input", value="Sample case text...", height=180)
+    surprise_input = st.sidebar.text_area("2. Surprise Event Update", value="Sample surprise text...", height=120)
 
 run_baseline = st.sidebar.button("🚀 Run Baseline Boardroom Swarm", type="primary")
 run_surprise = st.sidebar.button("🚨 Run Surprise Adaptation Protocol")

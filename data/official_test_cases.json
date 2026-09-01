@@ -1,0 +1,68 @@
+{
+  "Theme A - FinSwarm (FinNova Capital Digital Lending)": {
+    "TC1 - Baseline: Launch Small-Business Loan": {
+      "raw_business_case": "FinNova Capital is an Indian digital lending company launching a small-business loan pilot.\n- Available Capital: INR 30 crore for 1-year pilot.\n- Acquisition Budget: INR 60 lakh (Product setup cost INR 18 lakh deducted from this budget, leaving INR 42 lakh for acquisition).\n- Loan Approval Limit: Max 700 loans.\nCOMMON COSTS:\n- Cost of funds: 10% per year\n- Servicing and collections cost: 1.5% of principal per year\nSEGMENT DATA:\n1. Retail shops: Avg loan INR 4 lakh | Expected default: 5.0% | Available demand: 1,500 loans | Acquisition cost: INR 2,000 per customer\n2. Service SMEs: Avg loan INR 6 lakh | Expected default: 3.5% | Available demand: 900 loans | Acquisition cost: INR 3,500 per customer\n3. Small manufacturers: Avg loan INR 9 lakh | Expected default: 4.5% | Available demand: 450 loans | Acquisition cost: INR 5,500 per customer\nCONSTRAINTS:\n- Expected portfolio default must remain <= 5.0%.\n- Average annual customer interest rate <= 19.0%.\n- No segment may receive > 70% of deployed capital.\n- At least INR 3 crore must remain undeployed as liquidity reserve.\n- Total approved loans <= 700.\nDECISION QUESTION: Which segment mix, pricing, approval policy, and launch plan creates the strongest risk-adjusted business outcome?",
+      "sample_surprise_event": "TC2 CREDIT-RISK SPIKE: Retail shop default increases to 8%, Service SME default increases to 5%, Small manufacturer default increases to 7%. The risk committee requires portfolio default to remain <= 5.5%."
+    },
+    "TC2 - Surprise: Credit-Risk Spike": {
+      "raw_business_case": "FinNova Capital is running a 1-year INR 27 crore pilot with 600 planned loans. Current Portfolio: Retail shops 45%, Service SMEs 35%, Small manufacturers 20%. Avg customer interest rate: 17%, Cost of funds: 10%, Servicing cost: 1.5% of principal.",
+      "sample_surprise_event": "NEW BUSINESS CONDITION: Retail-shop default increases to 8%. Service-SME default increases to 5%. Small-manufacturer default increases to 7%. Required portfolio default <= 5.5%. Available actions: Tighten approval, reduce segment allocation, increase interest up to 19%, retain liquidity, or pause pilot."
+    },
+    "TC3 - Surprise: Marketing Budget Cut": {
+      "raw_business_case": "FinNova Capital launches small-business loan in 8 weeks. Target: At least 400 qualified applications and 160 funded loans. Marketing budget reduced from INR 60 lakh to INR 36 lakh. Product setup requires INR 18 lakh, leaving INR 18 lakh for marketing.\nCHANNELS:\n- Partner accountants: Cost INR 3,000/app, 45% conversion\n- Digital advertising: Cost INR 1,800/app, 25% conversion\n- Trade associations: Cost INR 4,000/app, 60% conversion\n- Customer referrals: Cost INR 1,200/app, 40% conversion (max 120 apps)",
+      "sample_surprise_event": "CONSTRAINTS: Marketing spend <= INR 18 lakh. Max 65% spending to one channel. Launch delay max 2 weeks. How should the reduced budget be allocated?"
+    },
+    "TC4 - Surprise: Stricter Verification Requirements": {
+      "raw_business_case": "FinNova Capital processes 500 apps/week, approves 35%, 12-min digital onboarding, 10% manual verification, 8 reviewers completing 4 reviews/day each (5 days/week).",
+      "sample_surprise_event": "NEW REQUIREMENT: Enhanced bank-statement verification before disbursement. Automated checks clear 60%, 40% require manual review. Options: Hire 4 temporary reviewers at INR 45k/mo, reduce intake, appointment onboarding, delay launch 4 weeks, or integrate automated verification service (INR 8 lakh, 2 weeks delay). 3-month response budget: INR 15 lakh."
+    },
+    "TC5 - Live Test: Funding-Cost and Fraud Shock": {
+      "raw_business_case": "FinNova Capital approved INR 24 crore across 500 loans. Baseline: Avg interest 17.5%, default 4.5%, Cost of funds 10%, Servicing 1.5%, Retail 50% capital, Suspected retail fraud 2%.",
+      "sample_surprise_event": "LIVE CHANGE: Cost of funds rises to 13%. Suspected retail fraud rises to 7%. Options: Add fraud-screening service (INR 1,200/app, reduces fraud by 60%), reduce retail allocation, increase pricing up to 19%, reduce deployment. Fixed limits: INR 3 crore liquid reserve, portfolio default <= 5.5%, max interest 19%."
+    }
+  },
+  "Theme B - SaaS Swarm (OrbitFlow AI Workflow Platform)": {
+    "TC1 - Baseline: Choose Product Market and MVP": {
+      "raw_business_case": "OrbitFlow Software has INR 2.4 crore available, 12 engineers, 9 months to launch (72 engineer-months capacity), and INR 70 lakh for marketing and sales. Core platform requires 30 engineer-months. Remaining 42 engineer-months allocated to 1 customer segment.\nSEGMENTS:\n1. Small retailers: Effort 18 eng-mo | Avg contract INR 1.2 lakh | Prospects 220 | Conversion 12%\n2. Mid-market service: Effort 28 eng-mo | Avg contract INR 4.5 lakh | Prospects 70 | Conversion 20%\n3. Large enterprises: Effort 42 eng-mo | Avg contract INR 15 lakh | Prospects 18 | Conversion 28%\nTARGET: ARR >= INR 60 lakh within 12 months, Annual churn < 15%, Max discount 20%.",
+      "sample_surprise_event": "TC2 COMPETITOR PRICE CUT: Competitor launches similar product for INR 2.4 lakh/yr (vs OrbitFlow INR 4.5 lakh/yr). 45% prospects price-sensitive, 35% value implementation support, 20% prioritize data controls."
+    },
+    "TC2 - Surprise: Competitor Price Cut": {
+      "raw_business_case": "OrbitFlow plans to sell mid-market AI workflow platform for INR 4.5 lakh/yr. Expected year-one customers: 14. Gross servicing cost: 20%. Sales budget: INR 40 lakh.",
+      "sample_surprise_event": "NEW COMPETITOR: Well-funded competitor launches at INR 2.4 lakh/yr. Options: Match price, introduce INR 2.7 lakh tier, add onboarding support, specialize in one vertical, delay launch for differentiation. Resource limit: Fund either 6 eng-months of new features OR 4 implementation specialists for 6 months."
+    },
+    "TC3 - Surprise: Enterprise Security Requirements": {
+      "raw_business_case": "OrbitFlow MVP ready for mid-market. 3 enterprise prospects (INR 54 lakh potential ARR) require security controls before buying.",
+      "sample_surprise_event": "SECURITY REQUIREMENTS: SSO (8 eng-mo), RBAC (6 eng-mo), Audit logs (5 eng-mo), Customer-managed keys (10 eng-mo), Security testing (INR 12 lakh, 4 weeks). Available: 18 eng-months, INR 15 lakh, max launch delay 6 weeks."
+    },
+    "TC4 - Surprise: Outages and Customer Churn": {
+      "raw_business_case": "OrbitFlow has 40 paying customers, INR 1.5 crore ARR. Monthly churn spiked from 1% to 3%. 3 outage incidents caused 6 hours downtime.",
+      "sample_surprise_event": "CHURN SIGNALS: 50% reliability, 30% slow support, 20% missing features. Available capacity: 20 eng-months, INR 12 lakh budget. Reliability fix (10 eng-mo, 50% downtime drop), Support automation (5 eng-mo, 40% faster response), Support hiring (2 specialists at INR 9 lakh/qtr). Constraint: Churn must fall below 1.5%."
+    },
+    "TC5 - Live Test: Strategic Customer Request": {
+      "raw_business_case": "OrbitFlow has 6 months runway, 8 available engineers, INR 30 lakh budget. Major prospect offers 2-year contract worth INR 60 lakh/yr for private deployment within 12 weeks.",
+      "sample_surprise_event": "DELIVERY REQS: 24 eng-months effort, INR 8 lakh infra cost, INR 6 lakh dedicated support. Portfolio effect: Delays shared-cloud roadmap 8 weeks, placing 3 deals (INR 45 lakh total, 40% win rate) at risk. Termination right if >2 weeks late."
+    }
+  },
+  "Theme C - ChipSwarm (IndusCompute Hub GPU Assembly)": {
+    "TC1 - Baseline: Allocate Production Capacity": {
+      "raw_business_case": "IndusCompute Hub has 24,000 assembly & testing machine-hours available next month.\nPRODUCT DATA:\n1. AI Accelerator module: 6 hrs/unit | Margin INR 45,000 | Max demand 2,500 units\n2. Gaming GPU board: 2 hrs/unit | Margin INR 10,000 | Max demand 6,000 units\n3. Edge GPU module: 3 hrs/unit | Margin INR 18,000 | Max demand 3,500 units\nFIXED COMMITMENTS: Min 800 AI modules, Min 2,000 gaming boards, Min 1,000 edge modules.\nCONSTRAINTS: Max 65% machine-hours per product line. Disruption buffer >= 1,200 machine-hours.",
+      "sample_surprise_event": "TC2 CRITICAL COMPONENT DELAY: HBM supplier delay limits AI accelerator production to 1,100 units. Backup supplier supports 500 additional units (margin reduced by INR 9,000, qualification cost INR 15 lakh). Minimum commitment 1,500 AI modules (INR 6,000 penalty per missing unit)."
+    },
+    "TC2 - Surprise: Critical Component Delay": {
+      "raw_business_case": "IndusCompute planned 1,800 AI modules, 3,500 gaming boards, 2,000 edge modules (fits in 24,000 machine-hours).",
+      "sample_surprise_event": "SUPPLY SHOCK: HBM delay limits AI modules to 1,100. Backup supplier offers 500 units at INR 9,000 lower margin + INR 15 lakh qualification fee. Minimum commitment 1,500 units (INR 6,000 service credit per unit below 1,500). Reallocate unused hours to gaming or edge."
+    },
+    "TC3 - Surprise: AI Demand and Energy-Cost Surge": {
+      "raw_business_case": "IndusCompute has 24,000 regular machine-hours. Original demand: AI 2,500, Gaming 6,000, Edge 3,500.",
+      "sample_surprise_event": "NEW CONDITIONS: AI demand rises to 3,200 units. Electricity costs rise 35%. Margins drop: AI -INR 4,000, Gaming -INR 1,000, Edge -INR 1,500. Weekend-shift option: Adds 3,000 machine-hours for INR 28 lakh fixed cost, increases inspection workload by 20%."
+    },
+    "TC4 - Surprise: Packaging-Yield Decline": {
+      "raw_business_case": "IndusCompute packaging line starts 2,000 AI modules/month. Normal yield 94%, margin INR 45,000/unit.",
+      "sample_surprise_event": "QUALITY SHOCK: Yield falls to 82%. Must deliver at least 1,700 saleable units (INR 8,000 service credit penalty per unit below 1,700). Options: Calibration shutdown (3 days, 92% yield), Enhanced inspection (INR 3,000/unit, 86% yield), Outsourcing (max 300 units, INR 12,000 lost margin/unit)."
+    },
+    "TC5 - Live Test: Export-Restriction Reallocation": {
+      "raw_business_case": "IndusCompute completed plan: 1,600 AI modules, 4,000 gaming boards, 1,800 edge modules. Export allocation: 25% AI modules and 30% gaming boards intended for overseas market.",
+      "sample_surprise_event": "LIVE CHANGE: Export restriction blocks overseas shipments. Domestic absorption: 250 AI modules at full margin, 700 gaming boards at 80% margin. Storage costs: AI INR 2,000/mo, Gaming INR 500/mo. Working capital limit: INR 18 lakh."
+    }
+  }
+}
