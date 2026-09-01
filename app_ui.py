@@ -19,10 +19,81 @@ from core.logger import AuditLogger
 from surprise.adapt import SurpriseAdaptationEngine
 from core.state import BoardroomState
 
-st.set_page_config(page_title="Agentic Swarm — AI Boardroom", layout="wide")
+st.set_page_config(page_title="Agentic Swarm — AI Boardroom", layout="wide", initial_sidebar_state="expanded")
+
+# Custom Modern Glassmorphism CSS
+st.markdown("""
+<style>
+    /* Main Theme Overrides */
+    .stApp {
+        background-color: #0b0f19;
+    }
+    
+    /* Header Card Styling */
+    .main-header {
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 24px;
+        margin-bottom: 24px;
+        backdrop-filter: blur(10px);
+    }
+    
+    /* Stage Stepper Badges */
+    .stepper-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+    .step-badge {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 20px;
+        padding: 8px 16px;
+        font-size: 0.85rem;
+        color: #e2e8f0;
+        font-weight: 600;
+        text-align: center;
+        flex: 1;
+        min-width: 120px;
+    }
+    .step-active {
+        background: rgba(16, 185, 129, 0.2);
+        border-color: #10b981;
+        color: #34d399;
+    }
+    
+    /* Custom Metric Card */
+    div[data-testid="stMetric"] {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 14px 18px;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# Top Banner Graphic if available
+banner_path = "assets/boardroom_banner.jpg"
+if os.path.exists(banner_path):
+    st.image(banner_path, use_container_width=True)
 
 st.title("🏛️ Agentic Swarm: Executive AI Boardroom")
-st.caption("Autonomous 6-Agent Strategic Analysis, Department Debate & Surprise Adaptation Engine")
+st.caption("Autonomous 7-Agent Strategic Analysis, Department Debate & Mid-Event Surprise Adaptation Engine")
+
+# Visual 5-Stage Protocol Stepper Banner
+st.markdown("""
+<div class="stepper-container">
+    <div class="step-badge step-active">📌 Stage 0: Brief Extract</div>
+    <div class="step-badge step-active">📊 Stage 1 & 2: Analysis</div>
+    <div class="step-badge step-active">⚡ Stage 3: Risk Challenge</div>
+    <div class="step-badge step-active">⚖️ Stage 4: Strategy Matrix</div>
+    <div class="step-badge step-active">👑 Stage 5: CEO Dossier</div>
+    <div class="step-badge step-active">🚨 Surprise Adaptation</div>
+</div>
+""", unsafe_allow_html=True)
 
 # Load official test cases
 preset_file = "data/official_test_cases.json"
@@ -49,7 +120,6 @@ if official_presets:
         default_case_text = tc_data.get("raw_business_case", "")
         default_surprise_text = tc_data.get("sample_surprise_event", "")
     else:
-        # Load sample case fallback
         case_file = "data/sample_case.json"
         if os.path.exists(case_file):
             with open(case_file, "r", encoding="utf-8") as f:
@@ -71,7 +141,7 @@ logger = AuditLogger()
 surprise_engine = SurpriseAdaptationEngine()
 
 if run_baseline:
-    with st.spinner("Executing 5-Stage Boardroom Protocol on Manual Input..."):
+    with st.spinner("Executing 5-Stage Boardroom Protocol with Live LLM Agents..."):
         baseline_state = engine.run_boardroom_protocol(case_input)
         logger.export_trace_json(baseline_state, "baseline_trace.json")
         logger.export_decision_markdown(baseline_state, "baseline_decision.md", "Baseline CEO Decision Dossier")
@@ -80,7 +150,7 @@ if run_baseline:
         st.rerun()
 
 if run_surprise:
-    with st.spinner("Executing Surprise Adaptation Engine on Manual Input..."):
+    with st.spinner("Executing Surprise Adaptation Engine on Input..."):
         trace_path = "outputs/baseline_trace.json"
         if 'baseline_data' in st.session_state:
             base_state = BoardroomState(**st.session_state['baseline_data'])
@@ -169,17 +239,25 @@ if state_data:
         st.subheader("📌 Structured Case Brief (Fact vs Assumption Extractor)")
         st.markdown(f"**Problem Statement**: {brief.get('problem_statement')}")
         
+        m1, m2, m3 = st.columns(3)
+        with m1:
+            st.metric("Supplied Hard Facts", len(brief.get("supplied_facts", [])))
+        with m2:
+            st.metric("Tagged Assumptions", len(brief.get("identified_assumptions", [])))
+        with m3:
+            st.metric("Hard Constraints", len(brief.get("hard_constraints", [])))
+
         c1, c2 = st.columns(2)
         with c1:
             with st.container(border=True):
                 st.markdown("### ✅ Supplied Hard Facts")
                 for f in brief.get("supplied_facts", []):
-                    st.markdown(f"- {f}")
+                    st.markdown(f"• {f}")
         with c2:
             with st.container(border=True):
                 st.markdown("### 🏷️ Tagged Assumptions")
                 for a in brief.get("identified_assumptions", []):
-                    st.markdown(f"- `{a}`")
+                    st.markdown(f"• `{a}`")
 
     with tab2:
         st.subheader("📊 Department Analysis & Quantitative Data Modeling (Stage 1 & 2)")
@@ -208,8 +286,9 @@ if state_data:
                     st.table(comp_benchmarks)
 
         for name, data in dept_outputs.items():
+            icon = "💼" if "Research" in name else ("💰" if "Finance" in name else ("📣" if "Marketing" in name else "📈"))
             with st.container(border=True):
-                st.markdown(f"### 🏢 {name}")
+                st.markdown(f"### {icon} {name}")
                 st.markdown(f"**Summary**: {data.get('summary')}")
                 st.markdown("**Key Findings**:")
                 for kf in data.get("key_findings", []):
@@ -220,10 +299,10 @@ if state_data:
         st.subheader("⚡ Stage 3: Risk Challenge & Debate Trace")
         for ch in challenges:
             with st.container(border=True):
-                st.markdown(f"**Challenger**: `{ch.get('challenger')}` ➔ **Target**: `{ch.get('target_agent')}`")
-                st.markdown(f"- **Contested Point**: {ch.get('contested_point')}")
-                st.markdown(f"- **Critique Rationale**: {ch.get('critique_rationale')}")
-                st.markdown(f"- **Recommended Adjustment**: {ch.get('recommended_adjustment')}")
+                st.markdown(f"🛑 **Challenger**: `{ch.get('challenger')}` ➔ **Target**: `{ch.get('target_agent')}`")
+                st.markdown(f"• **Contested Point**: {ch.get('contested_point')}")
+                st.markdown(f"• **Critique Rationale**: {ch.get('critique_rationale')}")
+                st.markdown(f"• **Recommended Adjustment**: {ch.get('recommended_adjustment')}")
                 if ch.get("rebuttal_response"):
                     st.markdown(f"💬 **Rebuttal Response**: {ch.get('rebuttal_response')}")
 
