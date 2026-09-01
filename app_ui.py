@@ -21,16 +21,19 @@ from core.state import BoardroomState
 
 st.set_page_config(page_title="Agentic Swarm — AI Boardroom", layout="wide", initial_sidebar_state="expanded")
 
-# Theme Mode Switcher in Sidebar (Clean naming without "Executive")
+# Theme Mode Switcher
 theme_mode = st.sidebar.radio("🌓 Theme", ["Dark Mode", "Light Mode"], horizontal=True)
 
 if theme_mode == "Dark Mode":
     bg_color = "#0b0f19"
-    card_bg = "rgba(255, 255, 255, 0.03)"
-    card_border = "rgba(255, 255, 255, 0.1)"
+    card_bg = "rgba(255, 255, 255, 0.04)"
+    card_border = "rgba(255, 255, 255, 0.12)"
     text_color = "#f8fafc"
     subtext_color = "#94a3b8"
     accent_green = "#10b981"
+    btn_bg = "#1e293b"
+    btn_text = "#f8fafc"
+    header_gradient = "linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%)"
 else:
     bg_color = "#f8fafc"
     card_bg = "#ffffff"
@@ -38,12 +41,15 @@ else:
     text_color = "#0f172a"
     subtext_color = "#475569"
     accent_green = "#059669"
+    btn_bg = "#f1f5f9"
+    btn_text = "#0f172a"
+    header_gradient = "linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(59, 130, 246, 0.08) 100%)"
 
-# Dynamic CSS Injection with Keyframe Animations
+# Harmonized CSS Design System
 st.markdown(f"""
 <style>
     @keyframes fadeIn {{
-        from {{ opacity: 0; transform: translateY(12px); }}
+        from {{ opacity: 0; transform: translateY(10px); }}
         to {{ opacity: 1; transform: translateY(0); }}
     }}
     
@@ -53,14 +59,36 @@ st.markdown(f"""
     }}
     
     .animated-stage {{
-        animation: fadeIn 0.4s ease-out forwards;
+        animation: fadeIn 0.35s ease-out forwards;
+    }}
+    
+    /* Project Title Banner Card */
+    .project-header-card {{
+        background: {header_gradient};
+        border: 1px solid {card_border};
+        border-radius: 14px;
+        padding: 20px 24px;
+        margin-bottom: 20px;
+    }}
+    
+    .project-title {{
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: {text_color};
+        margin: 0;
+    }}
+    
+    .project-subtitle {{
+        font-size: 0.95rem;
+        color: {subtext_color};
+        margin-top: 6px;
     }}
     
     div[data-testid="stContainer"] {{
         background: {card_bg};
         border: 1px solid {card_border} !important;
         border-radius: 12px;
-        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     }}
     
     div[data-testid="stMetric"] {{
@@ -69,27 +97,34 @@ st.markdown(f"""
         border-radius: 12px;
         padding: 12px 16px;
     }}
-    
-    /* Interactive Button Styling */
+
+    /* Stage Navigation Buttons */
     div.stButton > button {{
         width: 100%;
         border-radius: 10px;
         font-weight: 600;
+        font-size: 0.9rem;
+        padding: 10px 14px;
         transition: all 0.2s ease-in-out;
     }}
 </style>
 """, unsafe_allow_html=True)
 
-# Top Banner Graphic (Hexagonal Node Network, Clean without version numbers)
-banner_path = "assets/boardroom_banner_hex.jpg"
+# Wide Banner Graphic (cropped tight without dark top/bottom bars)
+banner_path = "assets/boardroom_banner_wide.jpg"
 if not os.path.exists(banner_path):
-    banner_path = "assets/boardroom_banner.jpg"
+    banner_path = "assets/boardroom_banner_hex.jpg"
 
 if os.path.exists(banner_path):
     st.image(banner_path, use_container_width=True)
 
-st.title("🏛️ Agentic Swarm: Executive AI Boardroom")
-st.caption("Autonomous 7-Agent Strategic Analysis, Department Debate & Mid-Event Surprise Adaptation Engine")
+# Project Definition Header Box
+st.markdown("""
+<div class="project-header-card">
+    <div class="project-title">🏛️ Agentic Swarm: Executive AI Boardroom</div>
+    <div class="project-subtitle">Autonomous 7-Agent Corporate Strategy Synthesis, Department Debate & Mid-Event Surprise Adaptation System</div>
+</div>
+""", unsafe_allow_html=True)
 
 # Load official test cases
 preset_file = "data/official_test_cases.json"
@@ -129,7 +164,7 @@ else:
     case_input = st.sidebar.text_area("1. Raw Business Case Input", value="Sample case text...", height=180)
     surprise_input = st.sidebar.text_area("2. Surprise Event Update", value="Sample surprise text...", height=120)
 
-run_baseline = st.sidebar.button("🚀 Run Baseline Boardroom Swarm", type="primary")
+run_baseline = st.sidebar.button("🚀 Run Baseline Swarm Protocol", type="primary")
 run_surprise = st.sidebar.button("🚨 Run Surprise Adaptation Protocol")
 
 engine = BoardroomEngine()
@@ -166,19 +201,19 @@ if run_surprise:
         st.sidebar.success("✅ Surprise Adaptation execution complete!")
         st.rerun()
 
-# Interactive Stage Selector Buttons
-st.markdown("### 🎛️ Interactive Boardroom Stage Navigator")
+# Harmonized Stage Selector Buttons
+st.markdown("### 🎛️ Boardroom Stage Navigator")
 stage_buttons = [
-    "📌 Stage 0: Brief Extract",
-    "📊 Stage 1 & 2: Analysis",
-    "⚡ Stage 3: Risk Challenge",
-    "⚖️ Stage 4: Strategy Matrix",
-    "👑 Stage 5: CEO Dossier",
-    "🚨 Surprise Adaptation"
+    "📌 Stage 0: Brief",
+    "📊 Stage 1: Analysis",
+    "⚡ Stage 3: Debate",
+    "⚖️ Stage 4: Strategy",
+    "👑 Stage 5: Decision",
+    "🚨 Surprise Delta"
 ]
 
 if "active_stage" not in st.session_state:
-    st.session_state["active_stage"] = "📌 Stage 0: Brief Extract"
+    st.session_state["active_stage"] = "📌 Stage 0: Brief"
 
 b_cols = st.columns(6)
 for i, b_name in enumerate(stage_buttons):
@@ -248,20 +283,19 @@ if state_data:
 
     st.markdown('<div class="animated-stage">', unsafe_allow_html=True)
 
-    if active_stage == "📌 Stage 0: Brief Extract":
+    if active_stage == "📌 Stage 0: Brief":
         st.subheader("📌 Stage 0: Structured Case Brief (Fact vs Assumption Extractor)")
         st.markdown(f"**Problem Statement**: {brief.get('problem_statement')}")
         
-        # Visual Process Flowchart
-        st.markdown("#### 🔄 Stage 0 Process Flow")
+        st.markdown("#### 🔄 Stage 0 Protocol Flow")
         st.markdown("""
         ```mermaid
         graph LR
-            A[Raw Case Text] --> B[Input Interpreter Agent]
-            B --> C[Extract Hard Facts]
-            B --> D[Tag Assumptions]
-            B --> E[Extract Hard Constraints]
-            C & D & E --> F[Publish Structured Brief]
+            A[Raw Business Case] --> B[Input Interpreter Agent]
+            B --> C[Extracted Facts]
+            B --> D[Tagged Assumptions]
+            B --> E[Hard Constraints]
+            C & D & E --> F[Published Brief]
         ```
         """)
 
@@ -285,7 +319,7 @@ if state_data:
                 for a in brief.get("identified_assumptions", []):
                     st.markdown(f"• `{a}`")
 
-    elif active_stage == "📊 Stage 1 & 2: Analysis":
+    elif active_stage == "📊 Stage 1: Analysis":
         st.subheader("📊 Stage 1 & 2: Department Analysis & Quantitative Data Modeling")
         
         if "Data Analyst" in dept_outputs:
@@ -321,17 +355,16 @@ if state_data:
                     st.markdown(f"- {kf}")
                 st.caption(f"Financial Impact: {data.get('financial_or_operational_impact')}")
 
-    elif active_stage == "⚡ Stage 3: Risk Challenge":
+    elif active_stage == "⚡ Stage 3: Debate":
         st.subheader("⚡ Stage 3: Risk Challenge & Department Debate Trace")
         
-        # Visual Debate Flowchart
         st.markdown("""
         ```mermaid
         graph TD
-            A[Stage 1 & 2 Department Claims] --> B[Risk & Reviewer Agent Audit]
-            B --> C{Detect Contradiction?}
-            C -- Yes --> D[Issue Challenge Memo]
-            D --> E[Target Agent Rebuttal & Concession]
+            A[Stage 1 & 2 Department Claims] --> B[Risk Reviewer Audit]
+            B --> C{Contradiction Detected?}
+            C -- Yes --> D[Issue Stage 3 Challenge Memo]
+            D --> E[Target Agent Rebuttal Response]
             E --> F[Refined Shared Bus State]
         ```
         """)
@@ -345,7 +378,7 @@ if state_data:
                 if ch.get("rebuttal_response"):
                     st.markdown(f"💬 **Rebuttal Response**: {ch.get('rebuttal_response')}")
 
-    elif active_stage == "⚖️ Stage 4: Strategy Matrix":
+    elif active_stage == "⚖️ Stage 4: Strategy":
         st.subheader("⚖️ Stage 4: Dynamic Strategy Comparison Matrix")
         sc1, sc2 = st.columns(2)
         if len(strategies) >= 2:
@@ -364,7 +397,7 @@ if state_data:
                     st.markdown("**Cons**:\n" + "\n".join([f"- {c}" for c in strategies[1].get('cons', [])]))
                     st.caption(f"Risk: {strategies[1].get('estimated_risk')} | ROI: {strategies[1].get('projected_roi')}")
 
-    elif active_stage == "👑 Stage 5: CEO Dossier":
+    elif active_stage == "👑 Stage 5: Decision":
         st.subheader("👑 Stage 5: Final CEO Decision Dossier")
         if ceo:
             st.success(f"### 📌 Final Order\n**{ceo.get('decision_statement')}**")
@@ -393,7 +426,7 @@ if state_data:
             st.markdown("---")
             render_roadmap_cards(ceo.get("implementation_roadmap", {}), "🗺️ Baseline Implementation Roadmap")
 
-    elif active_stage == "🚨 Surprise Adaptation":
+    elif active_stage == "🚨 Surprise Delta":
         st.subheader("🚨 Mid-Event Surprise Adaptation Delta View")
         s_data = st.session_state.get('surprise_data')
         if not s_data and os.path.exists(surprise_path):
@@ -451,4 +484,4 @@ if state_data:
 
     st.markdown('</div>', unsafe_allow_html=True)
 else:
-    st.info("No baseline run trace found yet. Click 'Run Baseline Boardroom Swarm' in the sidebar or run `python main.py` in your terminal.")
+    st.info("No baseline run trace found yet. Click 'Run Baseline Swarm Protocol' in the sidebar or run `python main.py` in your terminal.")
