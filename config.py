@@ -43,7 +43,7 @@ class LLMRouter:
         """
         # Try Primary: Groq API
         if self.groq_client:
-            models_to_try = ["groq/compound", "qwen/qwen3.8-27b", "openai/gpt-oss-120b", "llama-3.3-70b-versatile"]
+            models_to_try = ["llama-3.3-70b-versatile", "groq/compound", "qwen/qwen3.8-27b"]
             for model_id in models_to_try:
                 try:
                     response = self.groq_client.chat.completions.create(
@@ -53,14 +53,14 @@ class LLMRouter:
                             {"role": "user", "content": user_prompt}
                         ],
                         temperature=0.2,
-                        max_tokens=2000
+                        max_tokens=1500
                     )
                     res_text = response.choices[0].message.content
                     if res_text and len(res_text.strip()) > 0:
                         return res_text
                 except Exception:
                     continue
-            print(f"[FALLBACK TRIGGERED] Agent '{role}' failed on all Groq models. Switching to Gemini...")
+            print(f"[FALLBACK TRIGGERED] Agent '{role}' failed on Groq models. Switching to Gemini...")
 
         # Try Secondary Fallback: Gemini 2.0 Flash
         if self.gemini_client:

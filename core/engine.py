@@ -54,12 +54,20 @@ class BoardroomEngine:
         state.brief = self.interpreter.run(raw_case_text)
         self._log_trace(state, "Stage 0", "Input Interpreter", "Extracted Structured Brief", state.brief.model_dump())
 
-        # Stage 1: Independent Department Analysis
-        safe_print("[STAGE 1: ANALYSE] Running Department Analysis...")
-        dept_research = self.research.run(state.brief)
-        dept_finance = self.finance.run(state.brief)
-        dept_marketing = self.marketing.run(state.brief)
-        dept_analyst = self.analyst.run(state.brief)
+        # Stage 1: Independent Department Analysis (Parallel Execution)
+        safe_print("[STAGE 1: ANALYSE] Running Parallel Department Analysis...")
+        from concurrent.futures import ThreadPoolExecutor
+        
+        with ThreadPoolExecutor(max_workers=4) as executor:
+            future_research = executor.submit(self.research.run, state.brief)
+            future_finance = executor.submit(self.finance.run, state.brief)
+            future_marketing = executor.submit(self.marketing.run, state.brief)
+            future_analyst = executor.submit(self.analyst.run, state.brief)
+            
+            dept_research = future_research.result()
+            dept_finance = future_finance.result()
+            dept_marketing = future_marketing.result()
+            dept_analyst = future_analyst.result()
 
         # Stage 2: Share
         safe_print("[STAGE 2: SHARE] Publishing Department Outputs to Central Shared Bus...")
