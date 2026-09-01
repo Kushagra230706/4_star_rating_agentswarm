@@ -112,6 +112,47 @@ tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
 trace_path = "outputs/baseline_trace.json"
 surprise_path = "outputs/surprise_trace.json"
 
+def render_roadmap_cards(roadmap: dict, title: str = "🗺️ Implementation Roadmap (30/60/90 Days)"):
+    st.markdown(f"### {title}")
+    if isinstance(roadmap, dict) and roadmap:
+        r1, r2, r3 = st.columns(3)
+        
+        p1 = roadmap.get("first_30_days") or roadmap.get("days_1_to_30") or roadmap.get("days_1-30") or []
+        p2 = roadmap.get("days_31_to_60") or roadmap.get("days_31-60") or []
+        p3 = roadmap.get("days_61_to_90") or roadmap.get("days_61-90") or []
+        
+        with r1:
+            with st.container(border=True):
+                st.markdown("#### 🚀 Days 1 – 30")
+                st.caption("Phase 1: Foundation & Setup")
+                if p1:
+                    for step in p1:
+                        st.markdown(f"📌 {step}")
+                else:
+                    st.write("Initial setup & onboarding")
+
+        with r2:
+            with st.container(border=True):
+                st.markdown("#### 📈 Days 31 – 60")
+                st.caption("Phase 2: Execution & Scaling")
+                if p2:
+                    for step in p2:
+                        st.markdown(f"📌 {step}")
+                else:
+                    st.write("Channel scaling & partner growth")
+
+        with r3:
+            with st.container(border=True):
+                st.markdown("#### 🎯 Days 61 – 90")
+                st.caption("Phase 3: Optimization & Break-Even")
+                if p3:
+                    for step in p3:
+                        st.markdown(f"📌 {step}")
+                else:
+                    st.write("Unit economics optimization & review")
+    else:
+        st.write(str(roadmap))
+
 state_data = st.session_state.get('baseline_data')
 if not state_data and os.path.exists(trace_path):
     with open(trace_path, "r", encoding="utf-8") as f:
@@ -143,7 +184,6 @@ if state_data:
     with tab2:
         st.subheader("📊 Department Analysis & Quantitative Data Modeling (Stage 1 & 2)")
         
-        # Render Data Analyst quantitative visual charts if present
         if "Data Analyst" in dept_outputs:
             da_metrics = dept_outputs["Data Analyst"].get("metrics", {})
             seg_breakdown = da_metrics.get("segment_breakdown", {})
@@ -231,6 +271,9 @@ if state_data:
             
             st.markdown("#### 📊 Business KPIs")
             st.table(ceo.get("business_kpis", []))
+            
+            st.markdown("---")
+            render_roadmap_cards(ceo.get("implementation_roadmap", {}), "🗺️ Baseline Implementation Roadmap")
 
     with tab6:
         st.subheader("🚨 Mid-Event Surprise Adaptation Delta View")
@@ -284,8 +327,9 @@ if state_data:
                             st.table(s_comp)
 
             st.markdown("---")
-            st.markdown("### 🗺️ Revised Implementation Roadmap (30/60/90 Days)")
-            st.json(s_ceo.get("implementation_roadmap", {}))
+            render_roadmap_cards(s_ceo.get("implementation_roadmap", {}), "🗺️ Revised Implementation Roadmap (Post-Surprise Pivot)")
+        else:
+            st.info("No surprise adaptation run trace found yet. Click '🚨 Run Surprise Adaptation Protocol' in the sidebar to simulate the surprise round.")
         else:
             st.info("No surprise adaptation run trace found yet. Click '🚨 Run Surprise Adaptation Protocol' in the sidebar to simulate the surprise round.")
 else:
